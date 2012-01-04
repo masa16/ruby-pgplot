@@ -13,7 +13,7 @@ is required.
 
 == Download
 
-* ((<version 0.1.4|URL:https://github.com/masa16/ruby-pgplot/tarball/0.1.4>))
+* ((<version 0.1.5|URL:https://github.com/masa16/ruby-pgplot/tarball/0.1.5>))
 
 == Installation
 

@@ -12,6 +12,7 @@ pgdemo3.rb
 pgdemo4.rb
 pgdemo9.rb
 rb_pgplot.c.in
+ruby-pgplot.gemspec
 test/pgband.rb
 test/pgcurs.rb
 test/pggray.rb
