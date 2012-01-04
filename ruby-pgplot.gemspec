@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["."]
   s.rubyforge_project = "ruby-pgplot"
   s.rubygems_version = "1.3.7"
-  s.summary = "PGPLOT wrapper for Ruby"
+  s.summary = "PGPLOT wrapper for Ruby. The PGPLOT library needs to be installed in advance using GNU FORTRAN compiler"
   s.files = %w[
 extconf.rb
 rb_pgplot.c.in

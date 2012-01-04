@@ -1,8 +1,6 @@
 =begin
 = Ruby/PGPLOT
 
-# == Synopsis
-
 A Ruby interface to the
 ((<PGPLOT|URL:http://astro.caltech.edu/~tjp/pgplot/>))
 graphics library.
