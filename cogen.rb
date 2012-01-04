@@ -97,7 +97,7 @@ def pgfuncgen(name, inp, out)
   ninp = inp.size
   nout = out.size
   # int->0, float->1
-  val2 = ["NUM2INT","NUM2DBL","STR2CSTR"]
+  val2 = ["NUM2INT","NUM2DBL","StringValuePtr"]
   type = ["int","float",nil]
   conv = ["INT2NUM","rb_float_new",nil]
   # Initialize Array
@@ -118,8 +118,11 @@ def pgfuncgen(name, inp, out)
     retn = "Qtrue";
   elsif nout>1 then
     retn = "rb_ary_new3(#{nout},"+retn.join(",")+")"
+  else
+    retn = retn.join("")
   end
 
+  vars = vars.join("")
   prot = prot.join(",")
   pass = pass.join(",")
 

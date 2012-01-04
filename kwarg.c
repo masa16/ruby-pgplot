@@ -18,7 +18,7 @@ kw_hash_i(i, tmp)
 {
   VALUE key;
 
-  key = RARRAY(i)->ptr[0];
+  key = RARRAY_PTR(i)[0];
   if (TYPE(key)==T_SYMBOL) {
     key = rb_funcall(key, rb_intern("id2name"), 0);
   } else
@@ -26,7 +26,7 @@ kw_hash_i(i, tmp)
     rb_raise(rb_eArgError, "keywords must be String or Symbol");
   }
 
-  rb_hash_aset(tmp, key, RARRAY(i)->ptr[1]);
+  rb_hash_aset(tmp, key, RARRAY_PTR(i)[1]);
   return Qnil;
 }
 
@@ -71,7 +71,7 @@ rb_scan_kw_args(hash, va_alist)
   if (rb_funcall(tmp, rb_intern("empty?"), 0)==Qfalse) {
     val = rb_funcall(tmp, rb_intern("keys"), 0);
     val = rb_funcall(val, rb_intern("join"), 1, rb_str_new2(","));
-    rb_raise(rb_eArgError, "unknown keywords: %s",STR2CSTR(val));
+    rb_raise(rb_eArgError, "unknown keywords: %s",StringValuePtr(val));
   }
 
   va_end(vargs);

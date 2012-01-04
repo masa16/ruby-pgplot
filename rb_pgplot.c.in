@@ -86,10 +86,10 @@ static VALUE
   rb_pgplot_pgopen( int argc, VALUE *argv, VALUE self )
 {
   VALUE vdev;
-  char *dev="?";
+  const char *dev="?";
 
   rb_scan_args(argc,argv, "01", &vdev);
-  if (vdev!=Qnil) dev = STR2CSTR(vdev);
+  if (vdev!=Qnil) dev = StringValuePtr(vdev);
 
   return INT2NUM(cpgopen(dev));
 }
@@ -101,10 +101,10 @@ static VALUE
 {
   VALUE  vdev, vnxs, vnys;
   int    nxsub=1, nysub=1;
-  char  *dev="?";
+  const char  *dev="?";
 
   rb_scan_args(argc, argv, "03", &vdev,&vnxs,&vnys);
-  if (vdev!=Qnil) dev  = STR2CSTR(vdev);
+  if (vdev!=Qnil) dev  = StringValuePtr(vdev);
   if (vnxs!=Qnil) nxsub = NUM2INT(vnxs);
   if (vnys!=Qnil) nysub = NUM2INT(vnys);
 
@@ -124,7 +124,7 @@ static VALUE
      just: if just=1, the x and y axes is scaled equally,
            otherwise scaled independently.
      axis: controls of axes.
-*/ 
+*/
 static VALUE
   rb_pgplot_pgenv( int argc, VALUE *argv, VALUE self )
 {
@@ -260,8 +260,8 @@ static VALUE
 
   /* Data Range */
   if (vrange!=Qnil) {
-    range[0] = NUM2DBL(rb_ivar_get(vrange, id_beg));
-    range[1] = NUM2DBL(rb_ivar_get(vrange, id_end));
+    range[0] = NUM2DBL(rb_funcall(vrange, id_beg, 0));
+    range[1] = NUM2DBL(rb_funcall(vrange, id_end, 0));
   } else {
     rb_pgplot_minmax(na_dat,range);
   }
@@ -309,14 +309,14 @@ static void
 /* PGERRB -- horizontal or vertical error bar
    pgerrb, dir, x, y, err [,tlen]
 
-   dir : direction to plot the error bar relative to the data point. 
+   dir : direction to plot the error bar relative to the data point.
          One-sided error bar:
            DIR is 1 for +X (X to X+E);
                   2 for +Y (Y to Y+E);
                   3 for -X (X to X-E);
                   4 for -Y (Y to Y-E).
          Two-sided error bar:
-           DIR is 5 for +/-X (X-E to X+E); 
+           DIR is 5 for +/-X (X-E to X+E);
                   6 for +/-Y (Y-E to Y+E).
    x   : world x-coordinates of the data.
    y   : world y-coordinates of the data.
@@ -383,8 +383,8 @@ static void
 {
   /* if Range class is set, extrant begin&end */
   if (vrange!=Qnil) {
-    range[0] = NUM2DBL(rb_ivar_get(vrange, id_beg));
-    range[1] = NUM2DBL(rb_ivar_get(vrange, id_end));
+    range[0] = NUM2DBL(rb_funcall(vrange, id_beg, 0));
+    range[1] = NUM2DBL(rb_funcall(vrange, id_end, 0));
   } else {
   /* if Range is not set, search min&max of array */
     rb_pgplot_minmax(na,range);
@@ -500,9 +500,9 @@ static VALUE
   return Qtrue;
 }
 
-/* PGCONL -- label contour map of a 2D data array 
+/* PGCONL -- label contour map of a 2D data array
    pgconl, map, cont, label [,intval, minint, tr]
-   map    : 2-D array of map data 
+   map    : 2-D array of map data
    cont   : contour level tobe labeld
    label  : label string
    intval : spacing along the contour between labels, in grid cells.
@@ -531,7 +531,7 @@ static VALUE
   /* Show Contour */
   cpgconl( NA_PTR_FLT(na_map), NA_SHAPE0(na_map), NA_SHAPE1(na_map),
 	   1, NA_SHAPE0(na_map), 1, NA_SHAPE1(na_map),
-	   NUM2DBL(vcnt), tr, STR2CSTR(vlab), intval, minint);
+	   NUM2DBL(vcnt), tr, StringValuePtr(vlab), intval, minint);
   return Qtrue;
 }
 
@@ -624,7 +624,7 @@ static VALUE
   else
     cpggray( NA_PTR_FLT(na), NA_SHAPE0(na), NA_SHAPE1(na),
 	     1, NA_SHAPE0(na), 1, NA_SHAPE1(na),
-	     range[0], range[1], tr );    
+	     range[0], range[1], tr );
   return Qtrue;
 }
 
@@ -774,7 +774,7 @@ static VALUE
   int   value_len=20;
   char *item, *value;
 
-  item  = STR2CSTR(vitem);
+  item  = StringValuePtr(vitem);
   value = ALLOCA_N(char,value_len);
   cpgqinf( item, value, &value_len );
 
@@ -819,7 +819,7 @@ static VALUE
   VALUE vx,vy;
   int i;
   float xbox[4], ybox[4];
-  char *txt = STR2CSTR(text);
+  char *txt = StringValuePtr(text);
 
   cpgqtxt( NUM2DBL(x),NUM2DBL(y),NUM2DBL(ang),NUM2DBL(fjust),txt,
 	   xbox, ybox );
@@ -979,7 +979,7 @@ static VALUE
   if (NA_TYPE(x)!=NA_SFLOAT || NA_TYPE(y)!=NA_SFLOAT)
     rb_raise(rb_eArgError, "Array must NArray.sfloat");
 
-  cpgolin( min(NA_TOTAL(x),NA_TOTAL(y)), &npt, 
+  cpgolin( min(NA_TOTAL(x),NA_TOTAL(y)), &npt,
 	   NA_PTR_FLT(x), NA_PTR_FLT(y), sym );
 
   return INT2NUM(npt);
@@ -1009,7 +1009,7 @@ static VALUE
   if (NA_TYPE(x)!=NA_SFLOAT || NA_TYPE(y)!=NA_SFLOAT)
     rb_raise(rb_eArgError, "Array must NArray.sfloat");
 
-  cpgncur( min(NA_TOTAL(x),NA_TOTAL(y)), &npt, 
+  cpgncur( min(NA_TOTAL(x),NA_TOTAL(y)), &npt,
 	   NA_PTR_FLT(x), NA_PTR_FLT(y), sym );
 
   return INT2NUM(npt);
@@ -1037,7 +1037,7 @@ static VALUE
   if (NA_TYPE(x)!=NA_SFLOAT || NA_TYPE(y)!=NA_SFLOAT)
     rb_raise(rb_eArgError, "Array must NArray.sfloat");
 
-  cpglcur( min(NA_TOTAL(x),NA_TOTAL(y)), &npt, 
+  cpglcur( min(NA_TOTAL(x),NA_TOTAL(y)), &npt,
 	   NA_PTR_FLT(x), NA_PTR_FLT(y) );
 
   return INT2NUM(npt);
@@ -1058,7 +1058,7 @@ void rb_scan_kw_args __((VALUE, ...));
     baseline parallel to the axis and reading in the same direction as
     the axis (from point 1 to point 2). Current line and text attributes
     are used.
-   
+
     Arguments:
      X1, Y1  : world coordinates of one endpoint of the axis.
      X2, Y2  : world coordinates of the other endpoint of the axis.
@@ -1080,7 +1080,7 @@ void rb_scan_kw_args __((VALUE, ...));
 static VALUE
   rb_pgplot_pgtick( int argc, VALUE *argv, VALUE self )
 {
-  char *str="";
+  const char *str="";
   VALUE val=Qnil;
   VALUE x1, y1, x2, y2, v, vstr;
   VALUE tickl, tickr, disp, orient;
@@ -1095,7 +1095,7 @@ static VALUE
   if (tickr ==Qnil)  tickr = INT2FIX(0);
   if (disp  ==Qnil)  disp  = INT2FIX(1);
   if (orient==Qnil)  orient= INT2FIX(0);
-  if (vstr  !=Qnil)  str   = STR2CSTR(vstr);
+  if (vstr  !=Qnil)  str   = StringValuePtr(vstr);
 
   cpgtick( NUM2DBL(x1),NUM2DBL(y1),NUM2DBL(x2),NUM2DBL(y2),
 	   NUM2DBL(v), NUM2DBL(tickl),NUM2DBL(tickr),
@@ -1114,25 +1114,25 @@ static VALUE
 
     Draw a labelled graph axis from world-coordinate position (X1,Y1) to
     (X2,Y2).
-   
+
     Normally, this routine draws a standard LINEAR axis with equal
     subdivisions.   The quantity described by the axis runs from V1 to V2;
-    this may be, but need not be, the same as X or Y. 
-   
+    this may be, but need not be, the same as X or Y.
+
     If the 'L' option is specified, the routine draws a LOGARITHMIC axis.
     In this case, the quantity described by the axis runs from 10**V1 to
-    10**V2. A logarithmic axis always has major, labeled, tick marks 
+    10**V2. A logarithmic axis always has major, labeled, tick marks
     spaced by one or more decades. If the major tick marks are spaced
     by one decade (as specified by the STEP argument), then minor
     tick marks are placed at 2, 3, .., 9 times each power of 10;
     otherwise minor tick marks are spaced by one decade. If the axis
     spans less than two decades, numeric labels are placed at 1, 2, and
     5 times each power of ten.
-   
+
     If the axis spans less than one decade, or if it spans many decades,
     it is preferable to use a linear axis labeled with the logarithm of
     the quantity of interest.
-   
+
     Arguments:
      x1, y1  : world coordinates of one endpoint of the axis.
      x2, y2  : world coordinates of the other endpoint of the axis.
@@ -1171,7 +1171,7 @@ static VALUE
 static VALUE
   rb_pgplot_pgaxis( int argc, VALUE *argv, VALUE self )
 {
-  char *opt="";
+  const char *opt="";
   float frac=0.5;
   VALUE val=Qnil;
   VALUE x1, y1, x2, y2, v1, v2;
@@ -1180,7 +1180,7 @@ static VALUE
   if (argc>0 && TYPE(argv[argc-1]) == T_HASH)
     val = argv[--argc];
 
-  rb_scan_kw_args( val, 
+  rb_scan_kw_args( val,
 		   "opt",&vopt, "step",&step, "nsub",&nsub,
 		   "tickl",&tickl, "tickr",&tickr,
 		   "frac",&vfrac, "disp",&disp, "orient",&orient, 0);
@@ -1192,7 +1192,7 @@ static VALUE
   if (tickr ==Qnil)  tickr = INT2FIX(0);
   if (disp  ==Qnil)  disp  = INT2FIX(1);
   if (orient==Qnil)  orient= INT2FIX(0);
-  if (vopt  !=Qnil)  opt   = STR2CSTR(vopt);
+  if (vopt  !=Qnil)  opt   = StringValuePtr(vopt);
   if (vfrac !=Qnil)  frac  = NUM2DBL(vfrac);
 
   cpgaxis( opt, NUM2DBL(x1),NUM2DBL(y1),NUM2DBL(x2),NUM2DBL(y2),
