@@ -38,7 +38,7 @@ whose arguments are modified from original PGPLOT subroutines.
   def methoddoc(x)
     s=''
     x=[x] if String===x
-    x.each{|line| s<<line}
+    x.each{|line| s << line}
     @stream << s
   end
   def docbegin; end
@@ -64,7 +64,7 @@ class FormatterHTML < Formatter
   def printhead
     @stream <<'
 <?xml version="1.0" ?>
-<!DOCTYPE html 
+<!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -98,7 +98,7 @@ h2 {
   color: #444444;
   border-width: 0 0 thin 7pt;
 }
-pre { 
+pre {
   white-space:  pre;
   padding:      0.5em;
   border-style: solid;
@@ -127,7 +127,7 @@ without his permission.
   end
 
   def printtrail
-    print <<EOL
+    @stream << <<EOL
 </body>
 </html>
 EOL
@@ -149,8 +149,8 @@ EOL
   def methoddoc(x)
     s=''
     if String===x
-      x = [x] 
-    end 
+      x = [x]
+    end
 
     line = x.shift
     if line =~ /\(/
@@ -166,7 +166,7 @@ EOL
       end
       if !x.empty?
 	@stream << "<pre>\n--- Ruby notes ---\n"
-	x.each{|i| @stream<<i}
+	x.each{|i| @stream << i}
 	@stream << "</pre>\n"
       end
     end
@@ -300,7 +300,8 @@ pgqvsz:0:1,1,1,1
     @mergefunc.sort!
   end
 
-  def initialize(formatter)
+  def initialize(formatter, srcdir)
+    @srcdir = srcdir
     autofunclist
     manualfunclist
     mergefunclist
@@ -373,12 +374,11 @@ pgqvsz:0:1,1,1,1
   end
 
   def doit
-    dir='/home/masa/src/plot/pgplot/src/'
     @head.printhead
-    @mergefunc.each do |f| 
+    @mergefunc.each do |f|
       if name = f[/(pg\w+)/]
 	begin
-	  fin = open(dir+name+'.f')
+	  fin = open(@srcdir+'/'+name+'.f')
 	rescue
 	  fin = nil
 	end
@@ -394,7 +394,7 @@ pgqvsz:0:1,1,1,1
 	    end
 	  end
 	end
-	@body << "\n\n"
+	#@body << "\n\n"
       end
     end
     @tail.printtrail
@@ -410,4 +410,4 @@ end
 #PgDoc.new(FormatterRD.new(File.open(ARGV[0],"w"))).doit
 #PgDoc.new(FormatterHTML.new(File.open(ARGV[0],"w"))).doit
 
-File.open(ARGV[0],"w") << PgDoc.new(FormatterHTML).doit
+File.open(ARGV[1],"w") << PgDoc.new(FormatterHTML,ARGV[0]).doit

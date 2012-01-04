@@ -1,32 +1,48 @@
-.SUFFIXES: .ja.rd .html.ja .rd .html .rb $(SUFFIXES)
+.SUFFIXES: .rd .html .ja.rd .html.ja .rb $(SUFFIXES)
+
+rd2=ruby myrd2html.rb
+
+.rd.html:
+	$(rd2) --lang=en --kw="Ruby,PGPLOT,NArray" $(opt) $< > $@
 
 .ja.rd.html.ja:
-	rd2 -r rd2html-img-lib.rb --html-lang=ja --out-code=jis --with-css=css.css $< > $@
-.rd.html:
-	rd2 -r rd2html-img-lib.rb --with-css=css.css -o $* $<
-.rb.html:
-	rd2 -r rd2html-img-lib.rb --with-css=css.css -o $* $<
+	$(rd2) --lang=ja --kw="Ruby,PGPLOT,NArray" $(opt) $< > $@
 
-targets_en=index.html \
-  pgline.html pgcont.html pgimag.html pghist.html \
-  rbpg-ind.html
-# rbpgplot.html
-targets_ja=install.html.ja tutorial-01.html.ja method.html.ja
+all=index.html \
+ pgline.html \
+ pgcont.html \
+ pgimag.html \
+ pghist.html \
+ rbpgplot.html \
+ rbpg-ind.html \
+ install.html.ja \
+ tutorial-01.html.ja \
+ method.html.ja
 
-all: $(targets_en) $(targets_ja)
+all: $(all)
 
 # Examples
+index.html: opt= --title="Ruby/PGPLOT"
+pgline.html: opt= --title="pgline : Line plot"
+pgcont.html: opt= --title="pgcont : Histogram plot"
+pgimag.html: opt= --title="pgimag : Contour plot"
+pghist.html: opt= --title="pghist : Image map"
+rbpgplot.html: opt= --title="Ruby/PGPLOT: Method Index and Description"
+rbpg-ind.html: opt= --title="Ruby/PGPLOT: Categorized Method Index"
+install.html.ja: opt= --title="Ruby/PGPLOT: Installation (ja)"
+tutorial-01.html.ja: opt= --title="Ruby/PGPLOT: Tutorial 01 (ja)"
+method.html.ja: opt= --title="Ruby/PGPLOT: Method Reference (ja)"
+
 pgline.html: pgline.rd trailer.html
 pgcont.html: pgcont.rd trailer.html
 pgimag.html: pgimag.rd trailer.html
 pghist.html: pgimag.rd trailer.html
-
-install.html.ja: trailer.html 
+install.html.ja: trailer.html
 tutorial-01.html.ja: tutorial-01.ja.rd trailer.html
 
 # Method description
 rbpgplot.html: mkdoc.rb
-	ruby mkdoc.rb rbpgplot.html
+	ruby -Kn mkdoc.rb $(HOME)/2012/src/pgplot/src rbpgplot.html
 
 # Method index categolized
 rbpg-ind.rd: rbpg-ind.txt mkind.rb trailer.html
@@ -34,20 +50,8 @@ rbpg-ind.rd: rbpg-ind.txt mkind.rb trailer.html
 
 rbpg-ind.html: rbpg-ind.rd
 
-# Method description (obsolete)
-# rbpg-doc.html: rbpg-doc.in.html
-# 	  rm -f $@
-# 	  ruby -p rbpg-relabel.rb rbpg-doc.in.html > $@
-# rbpg-doc.in.html: rbpg-doc.rd
-# 	  rd2 -r rd2html-img-lib.rb --with-css=css.css -o $* $?
-# rbpg-doc.rd: rbpg-mkdoc.rb
-# 	  rm -f $@
-# 	  ruby rbpg-mkdoc.rb  $< > $@
-
-webdir=masa@rubyforge:/var/www/gforge-projects/pgplot/
-
-webup:
-	scp -p css.css rbpgplot.html $(targets_en) $(targets_ja) *.png README.?? $(webdir)
+up:
+	sh up.sh
 
 clean:
-	rm -f $(targets_en) $(targets_ja)
+	rm -f *~ rbpg-ind.rd $(all)

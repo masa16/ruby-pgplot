@@ -9,11 +9,11 @@ graphics library.
 ((<NArray|URL:http://narray.rubyforge.org/>))
 is required.
 
-* ((<RubyForge project page|URL:http://rubyforge.org/projects/pgplot/>))
+* ((<Repository(GitHub)|URL:https://github.com/masa16/ruby-pgplot>))
 
 == Download
 
-* ((<version 0.1.2|URL:http://rubyforge.org/frs/download.php/7826/rb_pgplot-0.1.2.tar.gz>))
+* ((<version 0.1.4|URL:https://github.com/masa16/ruby-pgplot/tarball/0.1.4>))
 
 == Installation
 
@@ -21,13 +21,13 @@ is required.
   * ((<in Japanese|URL:install.html.ja>))
   * ((<original site|URL:http://www.astro.caltech.edu/~tjp/pgplot/install.html>))
 * Install Ruby/PGPLOT
-  * ((<in English|URL:README.en>))
+  * ((<in English|URL:README>))
   * ((<in Japanese|URL:README.ja>))
 
 == Examples
 
 * ((<(({pgline})) : Line plot|URL:pgline.html>))
-* ((<(({pghist})) : Histgram plot|URL:pghist.html>))
+* ((<(({pghist})) : Histogram plot|URL:pghist.html>))
 * ((<(({pgcont})) : Contour map|URL:pgcont.html>))
 * ((<(({pgimag})) : Image map|URL:pgimag.html>))
 
