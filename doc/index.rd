@@ -6,10 +6,14 @@
 A Ruby interface to the
 ((<PGPLOT|URL:http://astro.caltech.edu/~tjp/pgplot/>))
 graphics library.
-((<NArray|URL:http://narray.rubyforge.org/>))
-is required.
 
 * ((<Repository(GitHub)|URL:https://github.com/masa16/ruby-pgplot>))
+
+== Requirement
+
+* ((<PGPLOT Library|URL:http://www.astro.caltech.edu/~tjp/pgplot/>))
+* GNU FORTRAN compiler
+* ((<NArray|URL:http://narray.rubyforge.org/>)) version 0.5/0.6
 
 == Download
 
