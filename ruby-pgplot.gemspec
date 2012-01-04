@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "ruby-pgplot"
-  s.version = "0.1.4"
+  s.version = "0.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Masahiro Tanaka"]
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://pgplot.rubyforge.org/"
   s.require_paths = ["."]
   s.rubyforge_project = "ruby-pgplot"
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.3.7"
   s.summary = "PGPLOT wrapper for Ruby"
   s.files = %w[
 extconf.rb
@@ -36,6 +36,8 @@ test/pgncur.rb
 test/pgolin.rb
 test/pgtick.rb
 ]
+
+  s.add_dependency('narray', '>= 0.5.0')
 
   if s.respond_to? :specification_version then
     s.specification_version = 2

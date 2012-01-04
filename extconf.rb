@@ -34,7 +34,9 @@ dir_config("pgplot")
 exit unless have_header("cpgplot.h")
 
 # Check NArray
-$CPPFLAGS = " -I#{CONFIG['sitearchdir']} "+$CPPFLAGS
+$CPPFLAGS = " -I#{CONFIG['sitearchdir']} " + $CPPFLAGS
+gem_narray_dir = File.dirname(Dir.glob("../narray-0.[56].*/narray.h").last)
+$CPPFLAGS = " -I#{gem_narray_dir} " + $CPPFLAGS if gem_narray_dir
 exit unless have_header("narray.h")
 if RUBY_PLATFORM =~ /cygwin|mingw/
   $LDFLAGS = " -L#{CONFIG['sitearchdir']} "+$LDFLAGS
@@ -86,7 +88,7 @@ end
 
 # Check PGPLOT Library
 $libs = append_library($libs, "pgplot")
-exit unless find_library( "cpgplot", "cpgbeg", "/usr/lib", 
+exit unless find_library( "cpgplot", "cpgbeg", "/usr/lib",
 			  "/usr/local/lib", "/usr/local/pgplot" )
 
 $objs = %w(rb_pgplot.o kwarg.o)
