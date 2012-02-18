@@ -15,7 +15,7 @@ graphics library.
 
 == Download
 
-* ((<version 0.1.5|URL:https://github.com/masa16/ruby-pgplot/tarball/0.1.5>))
+* ((<version 0.1.6|URL:https://github.com/masa16/ruby-pgplot/tarball/0.1.6>))
 
 == Installation
 

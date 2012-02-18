@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name = "ruby-pgplot"
-  s.version = "0.1.5"
+  s.version = "0.1.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Masahiro Tanaka"]
-  s.date = "2012-01-04"
+  s.date = "2012-02-18"
   s.description = "PGPLOT wrapper for Ruby"
   s.email = "masa16.tanaka@gmail.com"
   s.extensions = ["extconf.rb"]
