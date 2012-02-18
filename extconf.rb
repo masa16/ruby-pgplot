@@ -33,11 +33,24 @@ dir_config("pgplot")
 # Check PGPLOT Header
 exit unless have_header("cpgplot.h")
 
+def find_dir_w_file(d,h)
+  g = Dir.glob(RbConfig.expand(d+"/"+h))
+  File.dirname(g.last) if g and !g.empty?
+end
+
 # Check NArray
-$CPPFLAGS = " -I#{CONFIG['sitearchdir']} " + $CPPFLAGS
-gem_narray_dir = File.dirname(Dir.glob("../narray-0.[56].*/narray.h").last)
-$CPPFLAGS = " -I#{gem_narray_dir} " + $CPPFLAGS if gem_narray_dir
+gems_dir="$(rubylibprefix)/gems/$(ruby_version)/gems/"
+narray_d="narray-0.[56].*"
+narray_h="narray.h"
+if narray_h_dir =
+    find_dir_w_file("../"+narray_d,narray_h) ||
+    find_dir_w_file(gems_dir+narray_d,narray_h) ||
+    find_dir_w_file(CONFIG['sitearchdir'],narray_h) ||
+    find_dir_w_file(CONFIG['archdir'],narray_h)
+  $CPPFLAGS = " -I#{narray_h_dir} " + $CPPFLAGS
+end
 exit unless have_header("narray.h")
+
 if RUBY_PLATFORM =~ /cygwin|mingw/
   $LDFLAGS = " -L#{CONFIG['sitearchdir']} "+$LDFLAGS
   exit unless have_library("narray","na_make_object")
