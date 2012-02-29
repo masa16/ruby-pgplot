@@ -98,7 +98,7 @@ def pgfuncgen(name, inp, out)
   ninp = inp.size
   nout = out.size
   # int->0, float->1
-  val2 = ["NUM2INT","NUM2DBL","STR2CSTR"]
+  val2 = ["NUM2INT","NUM2DBL","StringValuePtr"]
   type = ["int","float",nil]
   conv = ["INT2NUM","rb_float_new",nil]
   # Initialize Array
@@ -117,7 +117,9 @@ def pgfuncgen(name, inp, out)
   }
   if nout==0 then
     retn = "Qtrue";
-  elsif nout>1 then
+  elsif nout==1 then
+    retn = retn[0]
+  else
     retn = "rb_ary_new3(#{nout},"+retn.join(",")+")"
   end
 
@@ -128,7 +130,7 @@ def pgfuncgen(name, inp, out)
 static VALUE
   rb_pgplot_#{name}(#{prot})
 {
-  #{vars}
+  #{vars.join}
   c#{name}(#{pass});
   return #{retn};
 }

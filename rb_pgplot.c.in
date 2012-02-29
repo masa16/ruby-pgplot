@@ -89,7 +89,7 @@ static VALUE
   char *dev="?";
 
   rb_scan_args(argc,argv, "01", &vdev);
-  if (vdev!=Qnil) dev = STR2CSTR(vdev);
+  if (vdev!=Qnil) dev = StringValuePtr(vdev);
 
   return INT2NUM(cpgopen(dev));
 }
@@ -104,7 +104,7 @@ static VALUE
   char  *dev="?";
 
   rb_scan_args(argc, argv, "03", &vdev,&vnxs,&vnys);
-  if (vdev!=Qnil) dev  = STR2CSTR(vdev);
+  if (vdev!=Qnil) dev  = StringValuePtr(vdev);
   if (vnxs!=Qnil) nxsub = NUM2INT(vnxs);
   if (vnys!=Qnil) nysub = NUM2INT(vnys);
 
@@ -531,7 +531,7 @@ static VALUE
   /* Show Contour */
   cpgconl( NA_PTR_FLT(na_map), NA_SHAPE0(na_map), NA_SHAPE1(na_map),
 	   1, NA_SHAPE0(na_map), 1, NA_SHAPE1(na_map),
-	   NUM2DBL(vcnt), tr, STR2CSTR(vlab), intval, minint);
+	   NUM2DBL(vcnt), tr, StringValuePtr(vlab), intval, minint);
   return Qtrue;
 }
 
@@ -774,7 +774,7 @@ static VALUE
   int   value_len=20;
   char *item, *value;
 
-  item  = STR2CSTR(vitem);
+  item  = StringValuePtr(vitem);
   value = ALLOCA_N(char,value_len);
   cpgqinf( item, value, &value_len );
 
@@ -819,7 +819,7 @@ static VALUE
   VALUE vx,vy;
   int i;
   float xbox[4], ybox[4];
-  char *txt = STR2CSTR(text);
+  char *txt = StringValuePtr(text);
 
   cpgqtxt( NUM2DBL(x),NUM2DBL(y),NUM2DBL(ang),NUM2DBL(fjust),txt,
 	   xbox, ybox );
@@ -1095,7 +1095,7 @@ static VALUE
   if (tickr ==Qnil)  tickr = INT2FIX(0);
   if (disp  ==Qnil)  disp  = INT2FIX(1);
   if (orient==Qnil)  orient= INT2FIX(0);
-  if (vstr  !=Qnil)  str   = STR2CSTR(vstr);
+  if (vstr  !=Qnil)  str   = StringValuePtr(vstr);
 
   cpgtick( NUM2DBL(x1),NUM2DBL(y1),NUM2DBL(x2),NUM2DBL(y2),
 	   NUM2DBL(v), NUM2DBL(tickl),NUM2DBL(tickr),
@@ -1192,7 +1192,7 @@ static VALUE
   if (tickr ==Qnil)  tickr = INT2FIX(0);
   if (disp  ==Qnil)  disp  = INT2FIX(1);
   if (orient==Qnil)  orient= INT2FIX(0);
-  if (vopt  !=Qnil)  opt   = STR2CSTR(vopt);
+  if (vopt  !=Qnil)  opt   = StringValuePtr(vopt);
   if (vfrac !=Qnil)  frac  = NUM2DBL(vfrac);
 
   cpgaxis( opt, NUM2DBL(x1),NUM2DBL(y1),NUM2DBL(x2),NUM2DBL(y2),
