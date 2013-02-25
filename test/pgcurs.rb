@@ -10,5 +10,5 @@ c = PgCursor.new(0,0)
 for mode in 0..7
   puts 'Enter a key on the window:'
   c = pgcurs(c.x, c.y)
-  pgpt1(c.x, c.y, c.char.ord)
+  pgpt1(c.x, c.y, c.char[0].ord)
 end

@@ -72,6 +72,7 @@ pgswin:1,1,1,1:
 pgqch::1
 pgqcf::0
 pgqci::0
+pgqcs:0:1,1
 pgqfs::0
 pgqls::0
 pgqlw::0
