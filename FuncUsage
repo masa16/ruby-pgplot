@@ -1,3 +1,9 @@
+Here is a brief overview of Ruby/PGPLOT methods whose argument handling differs
+from the underlying PGPLOT functions.
+
+Methods that have the same arguments as the underlying functions are NOT shown
+here.
+
   stat = pgopen([device])
   stat = pgbeg([device, [nxsub, [nysub]]])
 

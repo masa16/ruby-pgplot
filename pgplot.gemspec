@@ -17,6 +17,7 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
   s.files = %w[
     README
     README.ja
+    FuncUsage
     demo/pgdemo1.rb
     demo/pgdemo15.rb
     demo/pgdemo3.rb
@@ -58,5 +59,5 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     --exclude pgplot.*
   ]
   s.has_rdoc = true
-  s.extra_rdoc_files = %w[README.ja]
+  s.extra_rdoc_files = %w[README.ja FuncUsage]
 end
