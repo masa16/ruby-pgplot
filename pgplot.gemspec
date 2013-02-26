@@ -7,7 +7,7 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
   s.date = "2012-02-18"
   s.description = "PGPLOT wrapper for Ruby"
   s.email = "masa16.tanaka@gmail.com"
-  s.extensions = ["extconf.rb"]
+  s.extensions = ["ext/extconf.rb"]
   s.homepage = "http://pgplot.rubyforge.org/"
   s.require_paths = ["."]
   s.rubyforge_project = "pgplot"
@@ -15,19 +15,18 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
   s.summary = "PGPLOT wrapper for Ruby. The PGPLOT library needs to be " \
               "installed in advance using GNU FORTRAN compiler"
   s.files = %w[
-    extconf.rb
-    rb_pgplot.c.in
     README
     README.ja
-    cogen.rb
-    depend
-    extconf.rb
-    kwarg.c
     demo/pgdemo1.rb
     demo/pgdemo15.rb
     demo/pgdemo3.rb
     demo/pgdemo4.rb
     demo/pgdemo9.rb
+    ext/cogen.rb
+    ext/depend
+    ext/extconf.rb
+    ext/kwarg.c
+    ext/rb_pgplot.c.in
     test/pgband.rb
     test/pgcurs.rb
     test/pggray.rb
@@ -50,7 +49,14 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
   end
 
   # Documentation TODO
-  s.rdoc_options = %w[-m README -x Makefile]
-  #s.has_rdoc = false
+  s.rdoc_options = %w[
+    --title Ruby/PGPLOT
+    --main README
+    --exclude demo/
+    --exclude ext/
+    --exclude test/
+    --exclude pgplot.*
+  ]
+  s.has_rdoc = true
   s.extra_rdoc_files = %w[README.ja]
 end
