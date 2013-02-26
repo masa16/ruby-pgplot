@@ -18,7 +18,7 @@ Version 0.1.6 by Masahiro TANAKA  2012-02-18
   * {GrWin Graphics Library for MS-Windows
     }[http://spdg1.sci.shizuoka.ac.jp/grwinlib/english/]
 
-* Ruby version 1.8.x/1.9.x
+* Ruby version 1.8.x/1.9.x/2.0.x
 
 * {NArray}[http://narray.rubyforge.org/] version 0.5.x/0.6.x
 
