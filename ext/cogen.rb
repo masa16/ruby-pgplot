@@ -155,4 +155,4 @@ def cogen_pgplot
   end
 end
 
-cogen_pgplot
+cogen_pgplot if $0 == __FILE__
