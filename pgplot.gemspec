@@ -1,10 +1,19 @@
+open("ext/version.h") do |f|
+  f.each_line do |l|
+    if /RUBY_PGPLOT_VERSION "([\d.]+)"/ =~ l
+      PKG_VERSION=$1
+      break
+    end
+  end
+end
+
 PGPLOT_GEMSPEC = Gem::Specification.new do |s|
   s.name = "pgplot"
-  s.version = "0.1.6"
+  s.version = PKG_VERSION
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Masahiro Tanaka"]
-  s.date = "2012-02-18"
+  s.date = Time.now.strftime("%F")
   s.description = "PGPLOT wrapper for Ruby"
   s.email = "masa16.tanaka@gmail.com"
   s.extensions = ["ext/extconf.rb"]
@@ -28,6 +37,7 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     ext/extconf.rb
     ext/kwarg.c
     ext/rb_pgplot.c.in
+    ext/version.h
     test/pgband.rb
     test/pgcurs.rb
     test/pggray.rb
@@ -54,10 +64,11 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     --title Ruby/PGPLOT
     --main README
     --exclude demo/
-    --exclude ext/
     --exclude test/
-    --exclude pgplot.*
+    --exclude ext/
+    --exclude pgplot\.so
+    --exclude libpgplot\.*
   ]
   s.has_rdoc = true
-  s.extra_rdoc_files = %w[README.ja FuncUsage]
+  s.extra_rdoc_files = %w[README README.ja FuncUsage ext/rb_pgplot.c]
 end
