@@ -12,6 +12,7 @@
 #include <cpgplot.h>
 #include <ruby.h>
 #include "narray.h"
+#include "version.h"
 
 #define min(a,b) (((a)<(b))?(a):(b))
 #define rb_pgplot_fltary(obj)	na_cast_object(obj,NA_SFLOAT)
@@ -903,7 +904,7 @@ static VALUE
     rb_raise(ePgCursorError, "failure in getting cursor position");
 
   return pgcursor_new( rb_float_new(x), rb_float_new(y),
-		       (ch==0) ? Qnil : rb_str_new(ch,1) );
+		       (ch[0]==0) ? Qnil : rb_str_new(ch,1) );
 }
 
 /*
@@ -951,7 +952,7 @@ static VALUE
     rb_raise(ePgCursorError, "failure in getting cursor position");
 
   return pgcursor_new( rb_float_new(x), rb_float_new(y),
-		       (ch==0) ? Qnil : rb_str_new(ch,1) );
+		       (ch[0]==0) ? Qnil : rb_str_new(ch,1) );
 }
 
 
@@ -1210,6 +1211,7 @@ void
   Init_pgplot()
 {
   mPgplot = rb_define_module("Pgplot");
+  rb_define_const(mPgplot, "VERSION", rb_str_new2(RUBY_PGPLOT_VERSION));
 
   /* The C application programming interface */
   rb_define_module_function(mPgplot, "pgopen", rb_pgplot_pgopen,-1);
