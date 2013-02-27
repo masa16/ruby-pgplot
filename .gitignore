@@ -1,6 +1,10 @@
 Makefile
 mkmf.log
 .config
+rb_pgplot.c
+*.o
+*.so
+lib*.a
 *~
 */*~
 */*/*~
