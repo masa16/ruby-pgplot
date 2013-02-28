@@ -1206,10 +1206,18 @@ static VALUE
 
 /*--- auto-generated funcs will be placed here ---*/
 
+void ruby_setenv(const char *name, const char *value);
 
 void
   Init_pgplot()
 {
+#ifdef PGPLOT_DIR
+  char *env;
+  env = getenv("PGPLOT_DIR");
+  if (!env) {
+    ruby_setenv("PGPLOT_DIR",PGPLOT_DIR);
+  }
+#endif
   mPgplot = rb_define_module("Pgplot");
   rb_define_const(mPgplot, "VERSION", rb_str_new2(RUBY_PGPLOT_VERSION));
 
