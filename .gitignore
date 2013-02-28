@@ -5,8 +5,11 @@ rb_pgplot.c
 *.o
 *.so
 lib*.a
+cpgplot.h
 *~
 */*~
 */*/*~
 InstalledFiles
 pkg
+build_pgplot
+.RUBYARCHDIR.time
