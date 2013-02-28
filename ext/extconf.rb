@@ -32,9 +32,6 @@ dir_config("pgplot")
 #  --with-opt-include=path
 #  --with-opt-lib=path
 
-# Check PGPLOT Header
-exit unless have_header("cpgplot.h")
-
 def find_dir_w_file(d,h)
   g = Dir.glob(RbConfig.expand(d+"/"+h))
   File.dirname(g.last) if g and !g.empty?
@@ -102,23 +99,81 @@ if with_config("grwin")
   end
   exit unless have_library("GrWin", "GWinit")
 end
-#
+
+$found_lib = []
+
 # Check X11 Library
-have_library("X11", "XOpenDisplay")
+if have_library("X11", "XOpenDisplay")
+  $found_lib << 'X11'
+end
 
 # Check PNG Library
 libs_save = $libs
 $libs = append_library($libs, "z")
-if !have_library("png","png_create_write_struct")
+if have_library("png","png_create_write_struct")
+  $found_lib << 'png'
+else
   $libs = libs_save
 end
 
-# Check PGPLOT Library
 $libs = append_library($libs, "pgplot")
-exit unless find_library( "cpgplot", "cpgbeg", "/usr/lib",
-			  "/usr/local/lib", "/usr/local/pgplot" )
+$have_pgplot = false
+
+# Check PGPLOT Header
+if have_header("cpgplot.h")
+
+  # Check PGPLOT Library
+  if find_library("cpgplot","cpgbeg", "/usr/lib",
+		  "/usr/local/lib", "/usr/local/pgplot" )
+    $have_pgplot = true
+  end
+end
+
+if !$have_pgplot
+  #$CPPFLAGS = " -I. "+$CPPFLAGS
+  #$LDFLAGS = " -L. "+$LDFLAGS
+  begin
+    load './build-pgplot.rb'
+    if have_header("cpgplot.h")
+      if have_library("cpgplot","cpgbeg")
+	$have_pgplot = true
+      end
+    end
+    $pgplot_built = true
+    $defs.push '-DPGPLOT_DIR=\\"$(PGPLOT_DIR)\\"'
+  rescue => e
+    puts
+    puts e.message
+    puts e.backtrace
+    STDERR.print "\n**** Automatic build of PGPLOT library is failed ****\n\n"
+  end
+end
+
+exit unless $have_pgplot
 
 $objs = %w(rb_pgplot.o kwarg.o)
 
 # Generate Makefile
 create_makefile("pgplot")
+
+# Append PGPLOT install task to Makefile
+if $makefile_created && $pgplot_built
+  puts "appending extra install task to Makefile"
+  File.open("Makefile","a") do |w|
+    w.print <<EOL
+
+install: install-pgplot
+PGPLOT_BUILDDIR = build_pgplot/build
+PGPLOT_DIR = $(RUBYARCHDIR)/pgplot
+install-pgplot:
+	$(MAKEDIRS) $(PGPLOT_DIR)
+	$(INSTALL_DATA) $(PGPLOT_BUILDDIR)/grfont.dat $(PGPLOT_DIR)
+	$(INSTALL_DATA) $(PGPLOT_BUILDDIR)/rgb.txt $(PGPLOT_DIR)
+EOL
+    if $found_lib.include? "X11"
+      w.print <<EOL
+	$(INSTALL_PROG) $(PGPLOT_BUILDDIR)/pgxwin_server $(PGPLOT_DIR)
+EOL
+    end
+  end
+end
