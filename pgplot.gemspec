@@ -37,6 +37,7 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     ext/extconf.rb
     ext/kwarg.c
     ext/rb_pgplot.c
+    ext/rb_pgplot.c.in
     ext/version.h
     test/pgband.rb
     test/pgcurs.rb
@@ -70,6 +71,7 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     --exclude ext/depend
     --exclude ext/extconf.rb
     --exclude ext/kwarg.c
+    --exclude .*\.o
     --exclude pgplot\.so
     --exclude libpgplot\.*
   ]
