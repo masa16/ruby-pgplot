@@ -129,51 +129,9 @@ if have_header("cpgplot.h")
   end
 end
 
-if !$have_pgplot
-  #$CPPFLAGS = " -I. "+$CPPFLAGS
-  #$LDFLAGS = " -L. "+$LDFLAGS
-  begin
-    load './build-pgplot.rb'
-    if have_header("cpgplot.h")
-      if have_library("cpgplot","cpgbeg")
-	$have_pgplot = true
-      end
-    end
-    $pgplot_built = true
-    $defs.push '-DPGPLOT_DIR=\\"$(PGPLOT_DIR)\\"'
-  rescue => e
-    puts
-    puts e.message
-    puts e.backtrace
-    STDERR.print "\n**** Automatic build of PGPLOT library is failed ****\n\n"
-  end
-end
-
-exit unless $have_pgplot
-
 $objs = %w(rb_pgplot.o kwarg.o)
 
-# Generate Makefile
-create_makefile("pgplot")
-
-# Append PGPLOT install task to Makefile
-if $makefile_created && $pgplot_built
-  puts "appending extra install task to Makefile"
-  File.open("Makefile","a") do |w|
-    w.print <<EOL
-
-install: install-pgplot
-PGPLOT_BUILDDIR = build_pgplot/build
-PGPLOT_DIR = $(RUBYARCHDIR)/pgplot
-install-pgplot:
-	$(MAKEDIRS) $(PGPLOT_DIR)
-	$(INSTALL_DATA) $(PGPLOT_BUILDDIR)/grfont.dat $(PGPLOT_DIR)
-	$(INSTALL_DATA) $(PGPLOT_BUILDDIR)/rgb.txt $(PGPLOT_DIR)
-EOL
-    if $found_lib.include? "X11"
-      w.print <<EOL
-	$(INSTALL_PROG) $(PGPLOT_BUILDDIR)/pgxwin_server $(PGPLOT_DIR)
-EOL
-    end
-  end
+if $have_pgplot
+  # Generate Makefile
+  create_makefile("pgplot")
 end

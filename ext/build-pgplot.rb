@@ -9,12 +9,11 @@ puts "
 uri = URI.parse("ftp://ftp.astro.caltech.edu/pub/pgplot/pgplot5.2.tar.gz")
 tar_file = File.basename(uri.path)
 
-$install_file_dir ||= File.join(Dir.pwd,'../pgplot')
-$install_lib_dir ||= Dir.pwd
+$install_dir ||= Dir.pwd
 $top_dir = 'build_pgplot'
 $src_dir = 'pgplot'
 $build_dir = 'build'
-$install_files = %w[grfont.dat rgb.txt]
+$install_files = %w[cpgplot.h libcpgplot.a libpgplot.a grfont.dat rgb.txt]
 
 if !$found_lib
   require 'mkmf'
@@ -129,15 +128,8 @@ Dir.chdir $build_dir do
    end
 
   run "make all cpg"
-end
 
-%w[cpgplot.h libcpgplot.a libpgplot.a].each do |f|
-  FileUtils.cp File.join($build_dir,f), $install_lib_dir
+  FileUtils.cp $install_files, $install_dir
 end
-
-#FileUtils.mkdir_p $install_file_dir
-#$install_files.each do |f|
-#  FileUtils.cp File.join($build_dir,f), $install_file_dir
-#end
 
 Dir.chdir '..'
