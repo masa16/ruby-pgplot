@@ -1,4 +1,4 @@
-Makefile
+ext/Makefile
 mkmf.log
 .config
 rb_pgplot.c
@@ -13,3 +13,6 @@ InstalledFiles
 pkg
 build_pgplot
 .RUBYARCHDIR.time
+ext/build_lib/build
+ext/build_lib/drivers.conf
+ext/build_lib/pgplot*

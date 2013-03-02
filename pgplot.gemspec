@@ -41,6 +41,10 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     ext/rb_pgplot.c
     ext/rb_pgplot.c.in
     ext/version.h
+    ext/build_lib/Makefile
+    ext/build_lib/download.rb
+    ext/build_lib/drivers.rb
+    ext/build_lib/makefile.rb
     test/pgband.rb
     test/pgcurs.rb
     test/pggray.rb
@@ -69,7 +73,7 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     --exclude demo/
     --exclude test/
     --exclude pgplot/
-    --exclude ext/build_pgplot/
+    --exclude ext/build_lib/
     --exclude ext/Makefile
     --exclude ext/build-pgplot.rb
     --exclude ext/cogen.rb
@@ -82,8 +86,6 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     --exclude ext/version.h
     --exclude .*\.o
     --exclude pgplot\.so
-    --exclude lib.*\.a
-    --exclude cpgplot.h
   ]
   s.has_rdoc = true
   s.extra_rdoc_files = %w[README README.ja FuncUsage ext/rb_pgplot.c]

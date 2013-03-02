@@ -16,6 +16,8 @@ load "./extconf.rb"
 
 exit if $have_pgplot
 
+puts "enabling auto-build PGPLOT Library..."
+
 $subdir = 'build_lib'
 
 $CFLAGS = "-I#{$subdir}/build "+$CFLAGS
@@ -30,7 +32,7 @@ create_makefile("pgplot")
 
 # Append PGPLOT install task to Makefile
 if $makefile_created
-  puts "appending extra install task to Makefile"
+  puts "appending extra install tasks to Makefile"
   File.open("Makefile","a") do |w|
     w.print <<EOL
 
@@ -38,7 +40,7 @@ PGPLOT_DIR = $(RUBYARCHDIR)/pgplot
 PGPLOT_BUILD = #{$subdir}/build
 
 $(PGPLOT_BUILD)/libcpgplot.a:
-	(cd #{$subdir}; make)
+	(cd #{$subdir}; make build/libcpgplot.a)
 $(PGPLOT_BUILD)/cpgplot.h: $(PGPLOT_BUILD)/libcpgplot.a
 rb_pgplot.o: $(PGPLOT_BUILD)/cpgplot.h
 $(DLLIB): $(PGPLOT_BUILD)/libcpgplot.a
@@ -52,6 +54,10 @@ EOL
     if $found_lib.include? "X11"
       w.print <<EOL
 	$(INSTALL_PROG) $(PGPLOT_BUILD)/pgxwin_server $(PGPLOT_DIR)
+
+$(PGPLOT_BUILD)/pgxwin_server: $(PGPLOT_BUILD)/cpgplot.h
+	(cd #{$subdir}; make build/pgxwin_server)
+$(DLLIB): $(PGPLOT_BUILD)/pgxwin_server
 EOL
     end
   end

@@ -7,7 +7,8 @@ target=$(bd)/cpgplot.h\
  $(bd)/grfont.dat\
  $(bd)/rgb.txt
 
-all: $(bd)/libcpgplot.a
+all: $(bd)/makefile
+	(cd $(bd); make all cpg)
 
 $(pkg):
 	ruby download.rb
@@ -23,7 +24,10 @@ $(bd)/makefile: $(bd)/drivers.list
 	ruby makefile.rb $(sd) $(bd)
 
 $(bd)/libpgplot.a: $(bd)/makefile
-	(cd $(bd); make all)
+	(cd $(bd); make libpgplot.a grfont.dat)
+
+$(bd)/pgxwin_server: $(bd)/makefile
+	(cd $(bd); make pgxwin_server)
 
 $(bd)/libcpgplot.a: $(bd)/libpgplot.a
-	(cd $(bd); make cpg)
+	(cd $(bd); make libcpgplot.a)
