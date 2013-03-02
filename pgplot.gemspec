@@ -36,7 +36,6 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     ext/depend
     ext/extconf.rb
     ext/extconf-auto.rb
-    ext/build-pgplot.rb
     ext/kwarg.c
     ext/rb_pgplot.c
     ext/rb_pgplot.c.in
