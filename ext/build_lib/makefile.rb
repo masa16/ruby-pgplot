@@ -1,4 +1,3 @@
-p ARGV
 $src_dir = ARGV[0] || 'pgplot'
 $build_dir = ARGV[1] || 'build'
 
