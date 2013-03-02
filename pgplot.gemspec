@@ -20,7 +20,7 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
   s.homepage = "http://pgplot.rubyforge.org/"
   s.require_paths = ["."]
   s.rubyforge_project = "pgplot"
-  s.rubygems_version = "1.3.7"
+  s.rubygems_version = "2.0.0"
   s.summary = "PGPLOT wrapper for Ruby. The PGPLOT library needs to be " \
               "installed in advance using GNU FORTRAN compiler"
   s.files = %w[
