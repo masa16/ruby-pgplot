@@ -1,1 +1,1 @@
-#define RUBY_PGPLOT_VERSION "0.1.8"
+#define RUBY_PGPLOT_VERSION "0.1.9"
