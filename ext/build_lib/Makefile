@@ -1,17 +1,13 @@
 pkg=pgplot5.2.tar.gz
+uri=ftp://ftp.astro.caltech.edu/pub/pgplot/$(pkg)
 sd=pgplot
 bd=build
-target=$(bd)/cpgplot.h\
- $(bd)/libcpgplot.a\
- $(bd)/libpgplot.a\
- $(bd)/grfont.dat\
- $(bd)/rgb.txt
 
 all: $(bd)/makefile
 	(cd $(bd); make all cpg)
 
 $(pkg):
-	ruby download.rb
+	ruby download.rb $(uri)
 
 $(sd)/drivers.list: $(pkg)
 	gunzip -c $(pkg) | tar xf -
