@@ -15,6 +15,7 @@
 load "./extconf.rb"
 
 exit if $have_pgplot
+exit unless %w[gfortran g77].any?{|cmd| system("which #{cmd}")}
 
 puts "enabling auto-build PGPLOT Library..."
 
