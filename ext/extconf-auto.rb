@@ -14,7 +14,24 @@
 
 load "./extconf.rb"
 
+# Exit if user did not specify "--enable-autobuild"
+if !enable_config('autobuild', false)
+  # Print reminder about --enable-autobuild option if pgplot was not found
+  if !$have_pgplot
+    puts
+    puts "The PGPLOT library was not found.  To auto-build it as part of"
+    puts "installing Ruby/PGLOT, pass the --enable-autobuild option."
+    puts
+    puts "Examples:"
+    puts
+    puts "   Gem install:  gem install pgplot -- --enable-autobuild"
+    puts "Manual install:  ruby extconf.rb --enable-autobuild"
+  end
+  exit
+end
+# Exit if pgplot library was found
 exit if $have_pgplot
+# Exit unless a fortran compiler was found
 exit unless %w[gfortran g77].any?{|cmd| system("which #{cmd}")}
 
 puts "enabling auto-build PGPLOT Library..."
