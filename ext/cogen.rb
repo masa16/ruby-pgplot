@@ -153,6 +153,8 @@ def cogen_pgplot
       fout.print
     end
   end
+  fout.close
+  fin.close
 end
 
 cogen_pgplot if $0 == __FILE__
