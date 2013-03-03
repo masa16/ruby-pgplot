@@ -15,19 +15,6 @@ require "mkmf"
 
 #$DEBUG = true
 
-# Allow user to pass --disable-extra-libs to prevent checking for some libs.
-# Some PGPLOT installations need these extra checks and the extra checks are
-# mostly benign for PGPLOT installations that don't need them so the extra
-# checks are enabled by default.  The extra checks can cause problems on some
-# installations where they are not necessary.
-check_extra_libs = enable_config('extra-libs', true)
-
-# configure options:
-#  --with-x11-dir=path
-#  --with-x11-include=path
-#  --with-x11-lib=path
-dir_config("x11") if check_extra_libs
-
 # configure options:
 #  --with-pgplot-dir=path
 #  --with-pgplot-include=path
@@ -74,68 +61,81 @@ if RUBY_PLATFORM =~ /cygwin|mingw/
   exit unless have_library("narray","na_make_object")
 end
 
-if check_extra_libs
-  # Check FORTRAN Libraries
-  #
-  # SUN WorkShop FORTRAN 77 compiler ver5.0
-  # configure options: --with-sunws
-  if with_config("sunws")
-    $libs = "-lM77 -lsunmath "+$libs
-    exit unless find_library("F77", "f77_init", "/opt/SUNWspro/lib")
-    $defs.push "-DSPARC_FORTRAN"
-  #
-  # GNU FORTRAN v4
-  elsif have_library("gfortran")
-    $CFLAGS = "-Wall "+$CFLAGS
-    $defs.push "-DGNU_FORTRAN"
-  #
-  # GNU FORTRAN v3
-  elsif have_library("g77")
-    $CFLAGS = "-Wall "+$CFLAGS
-    $defs.push "-DGNU_FORTRAN"
-  else
-    puts "failed"
-    exit
-  end
-
-  # Check GrWin Library (for cygwin (and mingw32?))
-  #  configure options: --with-grwin
-  if with_config("grwin")
-    #$LDFLAGS = "-Wl,--subsystem,console "+$LDFLAGS
-    if RUBY_PLATFORM =~ /cygwin|mingw/
-      $libs += " -mwindows"
-    end
-    exit unless have_library("GrWin", "GWinit")
-  end
-
-  $found_lib = []
-
-  # Check X11 Library
-  if have_library("X11", "XOpenDisplay")
-    $found_lib << 'X11'
-  end
-
-  # Check PNG Library
-  libs_save = $libs
-  $libs = append_library($libs, "z")
-  if have_library("png","png_create_write_struct")
-    $found_lib << 'png'
-  else
-    $libs = libs_save
-  end
-
-  $libs = append_library($libs, "pgplot")
-end # check_extra_libs
-
 $have_pgplot = false
 
 # Check PGPLOT Header
 if have_header("cpgplot.h")
 
-  # Check PGPLOT Library
+  # Check PGPLOT Library without extra libs
   if find_library("cpgplot","cpgbeg", "/usr/lib",
 		  "/usr/local/lib", "/usr/local/pgplot" )
     $have_pgplot = true
+  else
+    # Check for extra libs then re-check for PGPLOT library
+    puts "First check for PGPLOT library failed,"
+    puts "checking for auxiliary libraries and retrying."
+
+    # Check FORTRAN Libraries
+    #
+    # SUN WorkShop FORTRAN 77 compiler ver5.0
+    # configure options: --with-sunws
+    if with_config("sunws")
+      $libs = "-lM77 -lsunmath "+$libs
+      exit unless find_library("F77", "f77_init", "/opt/SUNWspro/lib")
+      $defs.push "-DSPARC_FORTRAN"
+    #
+    # GNU FORTRAN v4
+    elsif have_library("gfortran")
+      $CFLAGS = "-Wall "+$CFLAGS
+      $defs.push "-DGNU_FORTRAN"
+    #
+    # GNU FORTRAN v3
+    elsif have_library("g77")
+      $CFLAGS = "-Wall "+$CFLAGS
+      $defs.push "-DGNU_FORTRAN"
+    else
+      puts "failed"
+      exit
+    end
+
+    # Check GrWin Library (for cygwin (and mingw32?))
+    #  configure options: --with-grwin
+    if with_config("grwin")
+      #$LDFLAGS = "-Wl,--subsystem,console "+$LDFLAGS
+      if RUBY_PLATFORM =~ /cygwin|mingw/
+        $libs += " -mwindows"
+      end
+      exit unless have_library("GrWin", "GWinit")
+    end
+
+    $found_lib = []
+
+    # configure options:
+    #  --with-x11-dir=path
+    #  --with-x11-include=path
+    #  --with-x11-lib=path
+    dir_config("x11")
+
+    # Check X11 Library
+    if have_library("X11", "XOpenDisplay")
+      $found_lib << 'X11'
+    end
+
+    # Check PNG Library
+    libs_save = $libs
+    $libs = append_library($libs, "z")
+    if have_library("png","png_create_write_struct")
+      $found_lib << 'png'
+    else
+      $libs = libs_save
+    end
+
+    $libs = append_library($libs, "pgplot")
+
+    if find_library("cpgplot","cpgbeg", "/usr/lib",
+        "/usr/local/lib", "/usr/local/pgplot" )
+      $have_pgplot = true
+    end
   end
 end
 
