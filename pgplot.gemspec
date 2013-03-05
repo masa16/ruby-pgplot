@@ -16,7 +16,7 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
   s.date = Time.now.strftime("%F")
   s.description = "PGPLOT wrapper for Ruby"
   s.email = "masa16.tanaka@gmail.com"
-  s.extensions = ["ext/extconf-auto.rb"]
+  s.extensions = ["ext/extconf.rb"]
   s.homepage = "http://pgplot.rubyforge.org/"
   s.require_paths = ["."]
   s.rubyforge_project = "pgplot"
@@ -35,7 +35,6 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     ext/cogen.rb
     ext/depend
     ext/extconf.rb
-    ext/extconf-auto.rb
     ext/kwarg.c
     ext/rb_pgplot.c.in
     ext/version.h
@@ -78,7 +77,6 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     --exclude ext/cpgplot.h
     --exclude ext/depend
     --exclude ext/extconf.rb
-    --exclude ext/extconf-auto.rb
     --exclude ext/kwarg.c
     --exclude ext/rb_pgplot.c.in
     --exclude ext/version.h
