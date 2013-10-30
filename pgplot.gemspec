@@ -52,7 +52,7 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
     test/pgtick.rb
   ]
 
-  s.add_dependency('narray', '>= 0.5.0')
+  s.add_dependency('narray', '< 0.7.0')
 
   if s.respond_to? :specification_version then
     s.specification_version = 2
