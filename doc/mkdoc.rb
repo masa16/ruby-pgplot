@@ -276,7 +276,7 @@ pgqvsz:0:1,1,1,1
   def manualfunclist
     @manualfunc={}
     curfunc=nil
-    File.open("../rb_pgplot.c.in").each do |line|
+    File.open("../ext/rb_pgplot.c.in").each do |line|
       case line
       when %r'^/\* (PG\w+)'
 	curfunc = $1.downcase

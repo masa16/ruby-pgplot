@@ -42,8 +42,8 @@ tutorial-01.html.ja: tutorial-01.ja.rd trailer.html
 
 # Method description
 rbpgplot.html: mkdoc.rb
-	#ruby -Kn mkdoc.rb $(HOME)/2012/src/pgplot/src rbpgplot.html
-	ruby mkdoc.rb rbpgplot.html
+	ruby -Kn mkdoc.rb /data/masa/2013/src/pgplot/src rbpgplot.html
+	#ruby mkdoc.rb rbpgplot.html
 
 # Method index categolized
 rbpg-ind.rd: rbpg-ind.txt mkind.rb trailer.html

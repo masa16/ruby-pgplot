@@ -11,11 +11,11 @@ graphics library.
 
 * ((<PGPLOT Library|URL:http://www.astro.caltech.edu/~tjp/pgplot/>))
 * GNU FORTRAN compiler
-* ((<NArray|URL:http://narray.rubyforge.org/>)) version 0.5/0.6
+* ((<NArray|URL:http://masa16.github.io/narray/>)) version 0.5 or 0.6 (no plan to support narray-devel)
 
 == Download
 
-* ((<version 0.1.6|URL:https://github.com/masa16/ruby-pgplot/tarball/0.1.6>))
+* ((<Releases|URL:https://github.com/masa16/ruby-pgplot/releases>))
 
 == Installation
 
