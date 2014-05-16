@@ -2,14 +2,16 @@
 <!DOCTYPE html 
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>pghist</title>
-<link href="css.css" type="text/css" rel="stylesheet" />
+<title>pghist : Image map</title>
+<link href="./css.css" type="text/css" rel="stylesheet" />
+<meta name="author" content="Masahiro Tanaka"/>
+<meta name="Keywords" content="Ruby,PGPLOT,NArray"/>
 </head>
 <body>
-<h1><a name="label:0" id="label:0">Ruby/PGPLOT example: pghist</a></h1><!-- RDLabel: "Ruby/PGPLOT example: pghist" -->
-<h3><a name="label:1" id="label:1">code</a></h3><!-- RDLabel: "code" -->
+<h1><a name="label-0" id="label-0">Ruby/PGPLOT example: pghist</a></h1><!-- RDLabel: "Ruby/PGPLOT example: pghist" -->
+<h3><a name="label-1" id="label-1">code</a></h3><!-- RDLabel: "code" -->
 <pre>require 'narray'
 require 'pgplot'
 include Pgplot
@@ -36,15 +38,14 @@ pglab('Variate', ' ','PGPLOT Example 4:  Histograms (Gaussian)')
 x = NArray.sfloat(620).indgen!*0.01 - 3.1
 y = NMath.exp(-(x**2)*0.5) * (0.2*1000/NMath.sqrt(2*Math::PI))
 pgline(x,y)</pre>
-<h3><a name="label:2" id="label:2">output</a></h3><!-- RDLabel: "output" -->
-<p><img src="pghist.png" alt="pghist.png"></p>
+<h3><a name="label-2" id="label-2">output</a></h3><!-- RDLabel: "output" -->
+<p><img src="pghist.png" alt="pghist.png"/></p>
 
-<hr>
-<a href ="index.html">Ruby/PGPLOT</a>
-by <a href ="http://www.ir.isas.ac.jp/~masa/">
-Masahiro Tanaka
-</a>
+<hr/>
+<a href="./">Ruby/PGPLOT</a>
+by Masahiro Tanaka
 
 
+<div>Last update: May 16 2014</div>
 </body>
 </html>

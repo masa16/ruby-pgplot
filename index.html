@@ -1,48 +1,65 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html
+<?xml version="1.0" ?>
+<!DOCTYPE html 
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<title>index</title>
-<link href="css.css" type="text/css" rel="stylesheet" />
+<title>Ruby/PGPLOT</title>
+<link href="./css.css" type="text/css" rel="stylesheet" />
+<meta name="author" content="Masahiro Tanaka"/>
+<meta name="Keywords" content="Ruby,PGPLOT,NArray"/>
 </head>
 <body>
-<h1><a name="label:0" id="label:0">Ruby/PGPLOT</a></h1><!-- RDLabel: "Ruby/PGPLOT" -->
-<p>Under construction.</p>
-<h2><a name="label:1" id="label:1">Synopsis</a></h2><!-- RDLabel: "Synopsis" -->
+<h1><a name="label-0" id="label-0">Ruby/PGPLOT</a></h1><!-- RDLabel: "Ruby/PGPLOT" -->
 <p>A Ruby interface to the
 <a href="http://astro.caltech.edu/~tjp/pgplot/">PGPLOT</a>
 graphics library.</p>
 <ul>
-<li><a href="feature-ja.html">Ruby/PGPLOTの特徴</a></li>
+<li><a href="https://github.com/masa16/ruby-pgplot">Repository(GitHub)</a></li>
 </ul>
-<h2><a name="label:2" id="label:2">Installation</a></h2><!-- RDLabel: "Installation" -->
+<h2><a name="label-1" id="label-1">Requirement</a></h2><!-- RDLabel: "Requirement" -->
 <ul>
-<li><a href="install.ja.html">PGPLOTのインストール</a></li>
-<li><a href="http://www.astro.caltech.edu/~tjp/pgplot/install.html">Install PGPLOT (original site)</a></li>
-<li>Install Ruby/PGPLOT</li>
+<li><a href="http://www.astro.caltech.edu/~tjp/pgplot/">PGPLOT Library</a></li>
+<li>GNU FORTRAN compiler</li>
+<li><a href="http://masa16.github.io/narray/">NArray</a> version 0.5 or 0.6 (no plan to support narray-devel)</li>
 </ul>
-<h2><a name="label:3" id="label:3">Examples</a></h2><!-- RDLabel: "Examples" -->
+<h2><a name="label-2" id="label-2">Download</a></h2><!-- RDLabel: "Download" -->
+<ul>
+<li><a href="https://github.com/masa16/ruby-pgplot/releases">Releases</a></li>
+</ul>
+<h2><a name="label-3" id="label-3">Installation</a></h2><!-- RDLabel: "Installation" -->
+<ul>
+<li>PGPLOT
+<ul>
+<li><a href="install.ja.html">in Japanese</a></li>
+<li><a href="http://www.astro.caltech.edu/~tjp/pgplot/install.html">original site</a></li>
+</ul></li>
+<li>Install Ruby/PGPLOT
+<ul>
+<li><a href="README">in English</a></li>
+<li><a href="README.ja">in Japanese</a></li>
+</ul></li>
+</ul>
+<h2><a name="label-4" id="label-4">Examples</a></h2><!-- RDLabel: "Examples" -->
 <ul>
 <li><a href="pgline.html"><code>pgline</code> : Line plot</a></li>
-<li><a href="pghist.html"><code>pghist</code> : Histgram plot</a></li>
+<li><a href="pghist.html"><code>pghist</code> : Histogram plot</a></li>
 <li><a href="pgcont.html"><code>pgcont</code> : Contour map</a></li>
 <li><a href="pgimag.html"><code>pgimag</code> : Image map</a></li>
 </ul>
-<h2><a name="label:4" id="label:4">Manual</a></h2><!-- RDLabel: "Manual" -->
+<h2><a name="label-5" id="label-5">Manual</a></h2><!-- RDLabel: "Manual" -->
 <ul>
 <li><a href="rbpg-ind.html">Method index Categorized</a></li>
 <li><a href="rbpgplot.html">Method index and Description</a></li>
-<li>(<a href="tutorial-01.ja.html">チュートリアル</a>)</li>
-<li>(<a href="method.ja.html">リファレンス</a>)</li>
+<li><a href="tutorial-01.ja.html">Tutorial</a> (in Japanese)</li>
+<li><a href="method.ja.html">Reference</a> (in Japanese)</li>
 </ul>
-<h2><a name="label:5" id="label:5">Link</a></h2><!-- RDLabel: "Link" -->
+<h2><a name="label-6" id="label-6">Link</a></h2><!-- RDLabel: "Link" -->
 <ul>
-<li><a href="http://astro.caltech.edu/~tjp/pgplot/">PGPLOT</a></li>
-<li><a href="http://www.fluidlab.naoe.t.u-tokyo.ac.jp/~minnie/pgplot/">PGPLOTでグラフを描く</a> - PGPLOTの日本語解説。</li>
+<li><a href="http://jun.artcompsci.org/softwares/rongo/">Rongo</a>
+  - simple mongo-like plotting library using Ruby/PGPLOT.</li>
 </ul>
-<h2><a href="https://github.com/masa16/ruby-pgplot">Download from GitHub</a></h2>
+
+<div>Last update: May 16 2014</div>
 </body>
 </html>

@@ -1,33 +1,34 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html
+<?xml version="1.0" ?>
+<!DOCTYPE html 
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<title>install.ja</title>
-<link href="css.css" type="text/css" rel="stylesheet" />
+<title>Ruby/PGPLOT: Installation (ja)</title>
+<link href="./css.css" type="text/css" rel="stylesheet" />
+<meta name="author" content="Masahiro Tanaka"/>
+<meta name="Keywords" content="Ruby,PGPLOT,NArray"/>
 </head>
 <body>
-<h1><a name="label:0" id="label:0">PGPLOTのインストール</a></h1><!-- RDLabel: "PGPLOTのインストール" -->
+<h1><a name="label-0" id="label-0">PGPLOTのインストール</a></h1><!-- RDLabel: "PGPLOTのインストール" -->
 <p>PGPLOTは configure を使わないのでインストールが若干面倒です。
 以下は Solaris、GCC という環境でPGPLOTをコンパイル、
 インストールする手順を説明します。
 他のOSでもUNIXならほとんど同じようにしてインストールできると思います。
 <a href="http://www.astro.caltech.edu/~tjp/pgplot/install.html">本家のインストール説明のページ</a>
 もご覧下さい。</p>
-<h3><a name="label:1" id="label:1">PGPLOTのソースを用意</a></h3><!-- RDLabel: "PGPLOTのソースを用意" -->
+<h3><a name="label-1" id="label-1">PGPLOTのソースを用意</a></h3><!-- RDLabel: "PGPLOTのソースを用意" -->
 <p><a href="http://www.astro.caltech.edu/~tjp/pgplot/">PGPLOTのサイト</a>
 から
 <a href="ftp://ftp.astro.caltech.edu/pub/pgplot/pgplot5.2.tar.gz">ソースコード</a>
 をダウンロード、展開し、pgplotのディレクトリに移動します。</p>
 <pre>gunzip -c pgplot5.2.tar.gz | tar xvf -
 cd pgplot</pre>
-<h3><a name="label:2" id="label:2">作業ディレクトリを作成</a></h3><!-- RDLabel: "作業ディレクトリを作成" -->
+<h3><a name="label-2" id="label-2">作業ディレクトリを作成</a></h3><!-- RDLabel: "作業ディレクトリを作成" -->
 <p>作業ディレクトリを作ります。ここでは build という名前にします。</p>
 <pre>mkdir build
 cd build</pre>
-<h3><a name="label:3" id="label:3">drivers.listを編集</a></h3><!-- RDLabel: "drivers.listを編集" -->
+<h3><a name="label-3" id="label-3">drivers.listを編集</a></h3><!-- RDLabel: "drivers.listを編集" -->
 <p>PGPLOTで描画を出力するドライバを選択します。
 drivers.list というファイルをコピーしてエディタで開き、
 使いたいドライバの行の頭の ! の文字を削除します。</p>
@@ -41,7 +42,7 @@ PNG driverを組み込むには、
 他にもたくさんのドライバが含まれていますが、
 プリンタドライバの中にはコンパイルの時にエラーが出るものがあったり、
 GIFはライセンスに引っ掛かったりします。</p>
-<h3><a name="label:4" id="label:4">makefile 作成</a></h3><!-- RDLabel: "makefile 作成" -->
+<h3><a name="label-4" id="label-4">makefile 作成</a></h3><!-- RDLabel: "makefile 作成" -->
 <p>次のコマンドで makefile を作成します。</p>
 <pre>../makemake .. sol2 g77_gcc</pre>
 <p>1番目の引数はソースのあるディレクトリの指定です。
@@ -56,11 +57,11 @@ GIFはライセンスに引っ掛かったりします。</p>
 吐き出された makefile は、</p>
 <pre>pndriv.o : ./png.h ./pngconf.h ./zlib.h ./zconf.h</pre>
 <p>というまずい設定になっているので、この行を削除します。</p>
-<h3><a name="label:5" id="label:5">コンパイル</a></h3><!-- RDLabel: "コンパイル" -->
+<h3><a name="label-5" id="label-5">コンパイル</a></h3><!-- RDLabel: "コンパイル" -->
 <p>makefile を編集したら、ライブラリをコンパイルします。</p>
 <pre>make
 make cpg</pre>
-<h3><a name="label:6" id="label:6">インストール</a></h3><!-- RDLabel: "インストール" -->
+<h3><a name="label-6" id="label-6">インストール</a></h3><!-- RDLabel: "インストール" -->
 <p>make install が用意されていないので、手動でコピーします。
 必要なら root になってください。
 まずインストール先のディレクトリを環境変数にセットします。
@@ -75,12 +76,12 @@ cp -p cpgplot.h ${PREFIX}/include
 mkdir ${PGPLOT_DIR}
 cp -p grfont.dat rgb.txt pgxwin_server ${PGPLOT_DIR}</pre>
 <p>これでインストール終了です。</p>
-<h3><a name="label:7" id="label:7">デモの実行</a></h3><!-- RDLabel: "デモの実行" -->
+<h3><a name="label-7" id="label-7">デモの実行</a></h3><!-- RDLabel: "デモの実行" -->
 <p>コンパイルがうまくいったかどうかデモプログラムを走らせてみましょう。
 コンパイルしたディレクトリに pgdemo1 から pgdemo17 までと cpgdemo
 という実行ファイルができているはずです。それらを実行できれば正しく
 コンパイルされているはずです。</p>
-<h3><a name="label:8" id="label:8">ユーザ設定</a></h3><!-- RDLabel: "ユーザ設定" -->
+<h3><a name="label-8" id="label-8">ユーザ設定</a></h3><!-- RDLabel: "ユーザ設定" -->
 <p>PGPLOTを使うユーザは、環境変数へ次の設定しておくとよいでしょう。</p>
 <pre>setenv PGPLOT_DIR  /usr/local/pgplot
 setenv PGPLOT_DEV  /xwin</pre>
@@ -89,12 +90,11 @@ PGPLOT_DEV はデフォルトのデバイスです。
 その他の環境変数は特に設定しなくてもいいと思いますが、詳しくは
 <a href="http://www.astro.caltech.edu/~tjp/pgplot/chapter1.html#ENV">ここ</a>
 をご覧下さい。</p>
-<hr>
-<a href ="index.html">Ruby/PGPLOT</a>
-by <a href ="http://www.ir.isas.ac.jp/~masa/">
-Masahiro Tanaka
-</a>
+<hr/>
+<a href="./">Ruby/PGPLOT</a>
+by Masahiro Tanaka
 
 
+<div>Last update: May 16 2014</div>
 </body>
 </html>

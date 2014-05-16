@@ -2,14 +2,16 @@
 <!DOCTYPE html 
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>pgline</title>
-<link href="css.css" type="text/css" rel="stylesheet" />
+<title>pgline : Line plot</title>
+<link href="./css.css" type="text/css" rel="stylesheet" />
+<meta name="author" content="Masahiro Tanaka"/>
+<meta name="Keywords" content="Ruby,PGPLOT,NArray"/>
 </head>
 <body>
-<h1><a name="label:0" id="label:0">Ruby/PGPLOT example: pgline</a></h1><!-- RDLabel: "Ruby/PGPLOT example: pgline" -->
-<h3><a name="label:1" id="label:1">code</a></h3><!-- RDLabel: "code" -->
+<h1><a name="label-0" id="label-0">Ruby/PGPLOT example: pgline</a></h1><!-- RDLabel: "Ruby/PGPLOT example: pgline" -->
+<h3><a name="label-1" id="label-1">code</a></h3><!-- RDLabel: "code" -->
 <pre>require 'narray'
 require 'pgplot'
 include Pgplot
@@ -24,15 +26,14 @@ pglab "x", "y", "PGPLOT Example: y = sin(x)"
 pgsci 2                # set Color Index = Red.
 pgslw 5                # set Line Width.
 pgline x, y            # plot Line.</pre>
-<h3><a name="label:2" id="label:2">output</a></h3><!-- RDLabel: "output" -->
-<p><img src="pgline.png" alt="pgline.png"></p>
+<h3><a name="label-2" id="label-2">output</a></h3><!-- RDLabel: "output" -->
+<p><img src="pgline.png" alt="pgline.png"/></p>
 
-<hr>
-<a href ="index.html">Ruby/PGPLOT</a>
-by <a href ="http://www.ir.isas.ac.jp/~masa/">
-Masahiro Tanaka
-</a>
+<hr/>
+<a href="./">Ruby/PGPLOT</a>
+by Masahiro Tanaka
 
 
+<div>Last update: May 16 2014</div>
 </body>
 </html>

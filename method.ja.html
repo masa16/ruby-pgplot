@@ -1,137 +1,138 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html
+<?xml version="1.0" ?>
+<!DOCTYPE html 
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<title>method.ja</title>
-<link href="css.css" type="text/css" rel="stylesheet" />
+<title>Ruby/PGPLOT: Method Reference (ja)</title>
+<link href="./css.css" type="text/css" rel="stylesheet" />
+<meta name="author" content="Masahiro Tanaka"/>
+<meta name="Keywords" content="Ruby,PGPLOT,NArray"/>
 </head>
 <body>
-<h1><a name="label:0" id="label:0">module Pgplot</a></h1><!-- RDLabel: "module Pgplot" -->
-<h2><a name="label:1" id="label:1">モジュールメソッド</a></h2><!-- RDLabel: "モジュールメソッド" -->
-<h3><a name="label:2" id="label:2">操作</a></h3><!-- RDLabel: "操作" -->
+<h1><a name="label-0" id="label-0">module Pgplot</a></h1><!-- RDLabel: "module Pgplot" -->
+<h2><a name="label-1" id="label-1">モジュールメソッド</a></h2><!-- RDLabel: "モジュールメソッド" -->
+<h3><a name="label-2" id="label-2">操作</a></h3><!-- RDLabel: "操作" -->
 <dl>
-<dt><a name="label:3" id="label:3"><code>pgopen([<var>device</var>])</code></a><!-- RDLabel: "pgopen" -->
+<dt><a name="label-3" id="label-3"><code>pgopen([<var>device</var>])</code></a></dt><!-- RDLabel: "pgopen" -->
 </dl>
 <p>PGPLOTセッションを開始する。戻り値としてステータスを返す。</p>
 <dl>
-<dt><a name="label:4" id="label:4"><code>pgbeg([<var>device</var>, [<var>nxsub</var>, [<var>nysub</var>]]])</code></a><!-- RDLabel: "pgbeg" -->
+<dt><a name="label-4" id="label-4"><code>pgbeg([<var>device</var>, [<var>nxsub</var>, [<var>nysub</var>]]])</code></a></dt><!-- RDLabel: "pgbeg" -->
 </dl>
 <p>(obsolete)
 PGPLOTセッションを開始する。戻り値としてステータスを返す。</p>
 <dl>
-<dt><a name="label:5" id="label:5"><code>pgask( [<var>true</var>|<var>false</var>] )</code></a><!-- RDLabel: "pgask" -->
-<dt><a name="label:6" id="label:6"><code>pgenv( <var>xmin</var>,<var>xmax</var>,<var>ymin</var>,<var>ymax</var> [,<var>just</var>, <var>axis</var>] )</code></a><!-- RDLabel: "pgenv" -->
+<dt><a name="label-5" id="label-5"><code>pgask( [<var>true</var>|<var>false</var>] )</code></a></dt><!-- RDLabel: "pgask" -->
+<dt><a name="label-6" id="label-6"><code>pgenv( <var>xmin</var>,<var>xmax</var>,<var>ymin</var>,<var>ymax</var> [,<var>just</var>, <var>axis</var>] )</code></a></dt><!-- RDLabel: "pgenv" -->
 </dl>
-<h3><a name="label:7" id="label:7">線・マーカの描画</a></h3><!-- RDLabel: "線・マーカの描画" -->
+<h3><a name="label-7" id="label-7">線・マーカの描画</a></h3><!-- RDLabel: "線・マーカの描画" -->
 <dl>
-<dt><a name="label:8" id="label:8"><code>pgline( <var>xarray</var>, <var>yarray</var> )</code></a><!-- RDLabel: "pgline" -->
+<dt><a name="label-8" id="label-8"><code>pgline( <var>xarray</var>, <var>yarray</var> )</code></a></dt><!-- RDLabel: "pgline" -->
 </dl>
 <p>xarray, yarray を結ぶ線を描く。
 xarray, yarray はそれぞれ X, Y 座標の配列。</p>
 <dl>
-<dt><a name="label:9" id="label:9"><code>pgpt( <var>xarray</var>, <var>yarray</var> [,<var>symbol</var>] )</code></a><!-- RDLabel: "pgpt" -->
+<dt><a name="label-9" id="label-9"><code>pgpt( <var>xarray</var>, <var>yarray</var> [,<var>symbol</var>] )</code></a></dt><!-- RDLabel: "pgpt" -->
 </dl>
 <p>xarray, yarray の位置に、symbol のマーカを描く。</p>
 <dl>
-<dt><a name="label:10" id="label:10"><code>pgpnts( <var>xarray</var>, <var>yarray</var>, <var>symarray</var> )</code></a><!-- RDLabel: "pgpnts" -->
+<dt><a name="label-10" id="label-10"><code>pgpnts( <var>xarray</var>, <var>yarray</var>, <var>symarray</var> )</code></a></dt><!-- RDLabel: "pgpnts" -->
 </dl>
 <p>xarray, yarray の位置に、対応する symarray のマーカをそれぞれ描く。</p>
-<h3><a name="label:11" id="label:11">ヒストグラム</a></h3><!-- RDLabel: "ヒストグラム" -->
+<h3><a name="label-11" id="label-11">ヒストグラム</a></h3><!-- RDLabel: "ヒストグラム" -->
 <dl>
-<dt><a name="label:12" id="label:12"><code>pgbin( <var>xarray</var>, <var>yarray</var> [,<var>center</var>] )</code></a><!-- RDLabel: "pgbin" -->
-<dt><a name="label:13" id="label:13"><code>pghist( <var>data</var>, <var>nbin</var> [,<var>range</var>, <var>flag</var>] )</code></a><!-- RDLabel: "pghist" -->
+<dt><a name="label-12" id="label-12"><code>pgbin( <var>xarray</var>, <var>yarray</var> [,<var>center</var>] )</code></a></dt><!-- RDLabel: "pgbin" -->
+<dt><a name="label-13" id="label-13"><code>pghist( <var>data</var>, <var>nbin</var> [,<var>range</var>, <var>flag</var>] )</code></a></dt><!-- RDLabel: "pghist" -->
 </dl>
-<h3><a name="label:14" id="label:14">エラーバー</a></h3><!-- RDLabel: "エラーバー" -->
+<h3><a name="label-14" id="label-14">エラーバー</a></h3><!-- RDLabel: "エラーバー" -->
 <dl>
-<dt><a name="label:15" id="label:15"><code>pgerrb( <var>dir</var>, <var>x</var>, <var>y</var>, <var>err</var> [,<var>tlen</var>] )</code></a><!-- RDLabel: "pgerrb" -->
+<dt><a name="label-15" id="label-15"><code>pgerrb( <var>dir</var>, <var>x</var>, <var>y</var>, <var>err</var> [,<var>tlen</var>] )</code></a></dt><!-- RDLabel: "pgerrb" -->
 </dl>
 <p>エラーバーを描く。
 tlen に端点に描くバーの長さを指定。</p>
-<h5><a name="label:16" id="label:16">片側エラーバー:</a></h5><!-- RDLabel: "片側エラーバー:" -->
+<h5><a name="label-16" id="label-16">片側エラーバー:</a></h5><!-- RDLabel: "片側エラーバー:" -->
 <ul>
 <li>dir = 1 for +X (X to X+err)</li>
 <li>dir = 2 for +Y (Y to Y+err)</li>
 <li>dir = 3 for -X (X to X-err)</li>
 <li>dir = 4 for -Y (Y to Y-err)</li>
 </ul>
-<h5><a name="label:17" id="label:17">両側エラーバー:</a></h5><!-- RDLabel: "両側エラーバー:" -->
+<h5><a name="label-17" id="label-17">両側エラーバー:</a></h5><!-- RDLabel: "両側エラーバー:" -->
 <ul>
 <li>dir = 5 for +/-X (X-err to X+err)</li>
 <li>dir = 6 for +/-Y (Y-err to Y+err)</li>
 </ul>
 <dl>
-<dt><a name="label:18" id="label:18"><code>pgerrx( <var>x1</var>, <var>x2</var>, <var>y</var> [,<var>tlen</var>] )</code></a><!-- RDLabel: "pgerrx" -->
+<dt><a name="label-18" id="label-18"><code>pgerrx( <var>x1</var>, <var>x2</var>, <var>y</var> [,<var>tlen</var>] )</code></a></dt><!-- RDLabel: "pgerrx" -->
 </dl>
 <p>x1 から x2 までを結ぶエラーバーを描く。
 tlen に端点に描くバーの長さを指定。</p>
 <dl>
-<dt><a name="label:19" id="label:19"><code>pgerry( <var>x</var>, <var>y1</var>, <var>y2</var> [,<var>tlen</var>] )</code></a><!-- RDLabel: "pgerry" -->
+<dt><a name="label-19" id="label-19"><code>pgerry( <var>x</var>, <var>y1</var>, <var>y2</var> [,<var>tlen</var>] )</code></a></dt><!-- RDLabel: "pgerry" -->
 </dl>
 <p>y1 から y2 までを結ぶエラーバーを描く。
 tlen に端点に描くバーの長さを指定。</p>
-<h3><a name="label:20" id="label:20">等高線</a></h3><!-- RDLabel: "等高線" -->
+<h3><a name="label-20" id="label-20">等高線</a></h3><!-- RDLabel: "等高線" -->
 <dl>
-<dt><a name="label:21" id="label:21"><code>pgcont( <var>map</var>, <var>cont</var> [,<var>tr</var>] )</code></a><!-- RDLabel: "pgcont" -->
+<dt><a name="label-21" id="label-21"><code>pgcont( <var>map</var>, <var>cont</var> [,<var>tr</var>] )</code></a></dt><!-- RDLabel: "pgcont" -->
 </dl>
 <p>map で与えた２次元マップの等高線を描く。
 cont には等高線のレベルまたはその配列を与える。</p>
 <dl>
-<dt><a name="label:22" id="label:22"><code>pgcons( <var>map</var>, <var>cont</var> [,<var>tr</var>] )</code></a><!-- RDLabel: "pgcons" -->
+<dt><a name="label-22" id="label-22"><code>pgcons( <var>map</var>, <var>cont</var> [,<var>tr</var>] )</code></a></dt><!-- RDLabel: "pgcons" -->
 </dl>
 <p>PGCONTより速いアルゴルズムで描くんだそうな。</p>
 <dl>
-<dt><a name="label:23" id="label:23"><code>pgconb( <var>map</var>, <var>cont</var> [,<var>blank</var>, <var>tr</var>] )</code></a><!-- RDLabel: "pgconb" -->
+<dt><a name="label-23" id="label-23"><code>pgconb( <var>map</var>, <var>cont</var> [,<var>blank</var>, <var>tr</var>] )</code></a></dt><!-- RDLabel: "pgconb" -->
 </dl>
 <p>blankで与えた値を欠損値として等高線を描く。</p>
 <dl>
-<dt><a name="label:24" id="label:24"><code>pgconf( <var>map</var>, <var>cont_range</var> [,<var>tr</var>] )</code></a><!-- RDLabel: "pgconf" -->
+<dt><a name="label-24" id="label-24"><code>pgconf( <var>map</var>, <var>cont_range</var> [,<var>tr</var>] )</code></a></dt><!-- RDLabel: "pgconf" -->
 </dl>
 <p>cont_range に Rangeクラスオブジェクトで与えた範囲のレベルを塗り潰す。</p>
 <dl>
-<dt><a name="label:25" id="label:25"><code>pgconl( <var>map</var>, <var>cont</var>, <var>label</var> [,<var>intval</var>, <var>minint</var>, <var>tr</var>] )</code></a><!-- RDLabel: "pgconl" -->
+<dt><a name="label-25" id="label-25"><code>pgconl( <var>map</var>, <var>cont</var>, <var>label</var> [,<var>intval</var>, <var>minint</var>, <var>tr</var>] )</code></a></dt><!-- RDLabel: "pgconl" -->
 </dl>
 <p>等高線にラベルをつける。</p>
-<h3><a name="label:26" id="label:26">画像</a></h3><!-- RDLabel: "画像" -->
+<h3><a name="label-26" id="label-26">画像</a></h3><!-- RDLabel: "画像" -->
 <dl>
-<dt><a name="label:27" id="label:27"><code>pgimag( <var>array</var> [,<var>range</var>, <var>tr</var>] )</code></a><!-- RDLabel: "pgimag" -->
+<dt><a name="label-27" id="label-27"><code>pgimag( <var>array</var> [,<var>range</var>, <var>tr</var>] )</code></a></dt><!-- RDLabel: "pgimag" -->
 </dl>
 <p>カラースケールで array (２次元配列) の画像を描く。</p>
 <dl>
-<dt><a name="label:28" id="label:28"><code>pgctab( <var>l</var>, <var>r</var>,<var>g</var>,<var>b</var> [,<var>contra</var>,<var>bright</var>] )</code></a><!-- RDLabel: "pgctab" -->
+<dt><a name="label-28" id="label-28"><code>pgctab( <var>l</var>, <var>r</var>,<var>g</var>,<var>b</var> [,<var>contra</var>,<var>bright</var>] )</code></a></dt><!-- RDLabel: "pgctab" -->
 </dl>
 <p>pgimag で使用するカラーテーブルを設定する。</p>
 <dl>
-<dt><a name="label:29" id="label:29"><code>pggray( <var>array</var> [,<var>range</var>, <var>tr</var>] )</code></a><!-- RDLabel: "pggray" -->
+<dt><a name="label-29" id="label-29"><code>pggray( <var>array</var> [,<var>range</var>, <var>tr</var>] )</code></a></dt><!-- RDLabel: "pggray" -->
 </dl>
 <p>グレースケールで array (２次元配列) の画像を描く。</p>
 <dl>
-<dt><a name="label:30" id="label:30"><code>pgpixl( <var>array</var> [,<var>x1</var>,<var>x2</var>,<var>y1</var>,<var>y2</var>] )</code></a><!-- RDLabel: "pgpixl" -->
+<dt><a name="label-30" id="label-30"><code>pgpixl( <var>array</var> [,<var>x1</var>,<var>x2</var>,<var>y1</var>,<var>y2</var>] )</code></a></dt><!-- RDLabel: "pgpixl" -->
 </dl>
 <p>array (２次元配列) の画像を、長方形のpixel 1つ1つで描く。</p>
 <dl>
-<dt><a name="label:31" id="label:31"><code>pgvect( <var>x</var>, <var>y</var> [,<var>scale</var>, <var>pos</var>, <var>tr</var>, <var>blank</var>] )</code></a><!-- RDLabel: "pgvect" -->
+<dt><a name="label-31" id="label-31"><code>pgvect( <var>x</var>, <var>y</var> [,<var>scale</var>, <var>pos</var>, <var>tr</var>, <var>blank</var>] )</code></a></dt><!-- RDLabel: "pgvect" -->
 </dl>
 <p>ベクトル場を描く。</p>
-<h3><a name="label:32" id="label:32">座標軸の描画</a></h3><!-- RDLabel: "座標軸の描画" -->
+<h3><a name="label-32" id="label-32">座標軸の描画</a></h3><!-- RDLabel: "座標軸の描画" -->
 <dl>
-<dt><a name="label:33" id="label:33"><code>pgtick( <var>x1</var>, <var>y1</var>, <var>x2</var>, <var>y2</var>, <var>v</var>, [<var>str</var>], {"<var>tickl</var>", "<var>tickr</var>", "<var>disp</var>", "<var>orient</var>"} )</code></a><!-- RDLabel: "pgtick" -->
-<dt><a name="label:34" id="label:34"><code>pgaxis( <var>x1</var>, <var>y1</var>, <var>x2</var>, <var>y2</var>, <var>v1</var>, <var>v2</var>,</code></a></dt><!-- RDLabel: "pgaxis" -->
+<dt><a name="label-33" id="label-33"><code>pgtick( <var>x1</var>, <var>y1</var>, <var>x2</var>, <var>y2</var>, <var>v</var>, [<var>str</var>], {"<var>tickl</var>", "<var>tickr</var>", "<var>disp</var>", "<var>orient</var>"} )</code></a></dt><!-- RDLabel: "pgtick" -->
+<dt><a name="label-34" id="label-34"><code>pgaxis( <var>x1</var>, <var>y1</var>, <var>x2</var>, <var>y2</var>, <var>v1</var>, <var>v2</var>,</code></a></dt><!-- RDLabel: "pgaxis" -->
 <dd>
-<p>{"opt", "step", "nsub", "tickl", "tickr", "frac", "disp", "orient"} )</p></dd>
+{"opt", "step", "nsub", "tickl", "tickr", "frac", "disp", "orient"} )</dd>
 </dl>
-<h3><a name="label:35" id="label:35">カーソル入力</a></h3><!-- RDLabel: "カーソル入力" -->
+<h3><a name="label-35" id="label-35">カーソル入力</a></h3><!-- RDLabel: "カーソル入力" -->
 <dl>
-<dt><a name="label:36" id="label:36"><code>pgcurs([<var>x</var>,<var>y</var>])</code></a><!-- RDLabel: "pgcurs" -->
+<dt><a name="label-36" id="label-36"><code>pgcurs([<var>x</var>,<var>y</var>])</code></a></dt><!-- RDLabel: "pgcurs" -->
 </dl>
 <p>クリックまたはキータイプのイベントを取得する。
 x,y を指定すると始めにその位置にカーソルを移動する。
 イベントを取得すると
 カーソル位置(WC)と文字を PgCursorクラスのインスタンスで返す。</p>
 <dl>
-<dt><a name="label:37" id="label:37"><code>pgband( <var>mode</var>, [ <var>xref</var>, <var>yref</var>, [<var>x</var>, <var>y</var>, [<var>posn</var>]]])</code></a><!-- RDLabel: "pgband" -->
+<dt><a name="label-37" id="label-37"><code>pgband( <var>mode</var>, [ <var>xref</var>, <var>yref</var>, [<var>x</var>, <var>y</var>, [<var>posn</var>]]])</code></a></dt><!-- RDLabel: "pgband" -->
 </dl>
 <p>クリックまたはキータイプのイベントを取得する。
 x,y を指定すると始めにその位置にカーソルを移動する。
@@ -150,7 +151,7 @@ modeによりカーソル入力中の描画方法を指定できる。</p>
 <li>mode=7 : カーソル位置を通る十字線。</li>
 </ul>
 <dl>
-<dt><a name="label:38" id="label:38"><code>pgolin( <var>x</var>, <var>y</var>, [<var>sym</var>, [<var>npt</var>]] )</code></a><!-- RDLabel: "pgolin" -->
+<dt><a name="label-38" id="label-38"><code>pgolin( <var>x</var>, <var>y</var>, [<var>sym</var>, [<var>npt</var>]] )</code></a></dt><!-- RDLabel: "pgolin" -->
 </dl>
 <p>マウスカーソルで座標を連続して入力する。
 x,y にはあらかじめ NArray::SFLOAT 型の配列を与えておき、
@@ -160,22 +161,23 @@ x,y にはあらかじめ NArray::SFLOAT 型の配列を与えておき、
 npt を指定すると、あらかじめ npt 個の点が入力されているとみなす。
 戻り値は入力した点の数。</p>
 <dl>
-<dt><a name="label:39" id="label:39"><code>pgncur( <var>x</var>, <var>y</var>, [<var>sym</var>, [<var>npt</var>]] )</code></a><!-- RDLabel: "pgncur" -->
+<dt><a name="label-39" id="label-39"><code>pgncur( <var>x</var>, <var>y</var>, [<var>sym</var>, [<var>npt</var>]] )</code></a></dt><!-- RDLabel: "pgncur" -->
 </dl>
 <p>x,yに記録される順番が x の小さい順であることを除き、pgolin と同じ。</p>
 <dl>
-<dt><a name="label:40" id="label:40"><code>pglcur( <var>x</var>, <var>y</var>, [<var>npt</var>] )</code></a><!-- RDLabel: "pglcur" -->
+<dt><a name="label-40" id="label-40"><code>pglcur( <var>x</var>, <var>y</var>, [<var>npt</var>] )</code></a></dt><!-- RDLabel: "pglcur" -->
 </dl>
 <p>入力した点を結ぶ線が描かれることを除いて、pgolin と同じ。</p>
-<h3><a name="label:41" id="label:41">ステータスを返す</a></h3><!-- RDLabel: "ステータスを返す" -->
+<h3><a name="label-41" id="label-41">ステータスを返す</a></h3><!-- RDLabel: "ステータスを返す" -->
 <dl>
-<dt><a name="label:42" id="label:42"><code>pgqinf(<var>item</var>)</code></a><!-- RDLabel: "pgqinf" -->
+<dt><a name="label-42" id="label-42"><code>pgqinf(<var>item</var>)</code></a></dt><!-- RDLabel: "pgqinf" -->
 </dl>
 <pre>value = pgqinf(item)</pre>
 <dl>
-<dt><a name="label:43" id="label:43"><code>pgqdt([<var>ndev</var>])</code></a><!-- RDLabel: "pgqdt" -->
+<dt><a name="label-43" id="label-43"><code>pgqdt([<var>ndev</var>])</code></a></dt><!-- RDLabel: "pgqdt" -->
 </dl>
 <pre>type, descr, inter = pgqdt([ndev])</pre>
 
+<div>Last update: May 16 2014</div>
 </body>
 </html>

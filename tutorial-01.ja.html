@@ -1,16 +1,17 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html
+<?xml version="1.0" ?>
+<!DOCTYPE html 
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<title>tutorial-01.ja</title>
-<link href="css.css" type="text/css" rel="stylesheet" />
+<title>Ruby/PGPLOT: Tutorial 01 (ja)</title>
+<link href="./css.css" type="text/css" rel="stylesheet" />
+<meta name="author" content="Masahiro Tanaka"/>
+<meta name="Keywords" content="Ruby,PGPLOT,NArray"/>
 </head>
 <body>
-<h1><a name="label:0" id="label:0">Ruby/PGPLOT 導入編</a></h1><!-- RDLabel: "Ruby/PGPLOT 導入編" -->
-<h2><a name="label:1" id="label:1">折れ線グラフを描く</a></h2><!-- RDLabel: "折れ線グラフを描く" -->
+<h1><a name="label-0" id="label-0">Ruby/PGPLOT 導入編</a></h1><!-- RDLabel: "Ruby/PGPLOT 導入編" -->
+<h2><a name="label-1" id="label-1">折れ線グラフを描く</a></h2><!-- RDLabel: "折れ線グラフを描く" -->
 <p>Ruby/PGPLOTで折れ線グラフを描く最小限のスクリプトは、以下のようになります。</p>
 <pre>require 'narray'
 require 'pgplot'
@@ -29,7 +30,7 @@ Pgplotモジュールのメソッド名は(今のところ)皆 ``pg'' で始ま�
 確実を期すならインクルードしない方がよいかもしれません。</p>
 <p>4行目の pgopen で PGPLOT のグラフィクスデバイスを開きます。
 ここで引数を書かないと使用するデバイスを聞いてきます。</p>
-<pre>Graphics device/type (? to see list, default /xwin): </pre>
+<pre>Graphics device/type (? to see list, default /xwin):</pre>
 <p>デフォルトのままで良ければ単にリターンキーを押します。
 デフォルトのデバイスは環境変数 PGPLOT_DEV で設定したものになっています。
 `?'とリターンを打ち込むと、使用できるデバイスの一覧が表示されるので、
@@ -47,7 +48,7 @@ Pgplotモジュールのメソッド名は(今のところ)皆 ``pg'' で始ま�
 <p>で、折れ線グラフを描きます。
 引数には線を結ぶ点のX座標とY座標をそれぞれ配列で渡します。</p>
 <p>ここまで成功すれば、このようなグラフが描かれているはずです。</p>
-<p><img src="plot1.png" alt="plot1.png"></p>
+<p><img src="plot1.png" alt="plot1.png"/></p>
 
 <p>以上が折れ線グラフを描くのに最低限必要なメソッドです。</p>
 <p>ところで、このスクリプトにはデバイスを閉じるメソッドがありません。
@@ -61,12 +62,11 @@ pgend を自動的に呼ぶようになっているので、
 ただしRubyの実行途中でPGPLOTを終了したいときのために
 Ruby版でも pgend メソッドは用意してあります。</p>
 <p>以下続く(かもしれない)</p>
-<hr>
-<a href ="index.html">Ruby/PGPLOT</a>
-by <a href ="http://www.ir.isas.ac.jp/~masa/">
-Masahiro Tanaka
-</a>
+<hr/>
+<a href="./">Ruby/PGPLOT</a>
+by Masahiro Tanaka
 
 
+<div>Last update: May 16 2014</div>
 </body>
 </html>
