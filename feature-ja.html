@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html><!--#if expr='${REMOTE_ADDR} != /^133.56./' -->
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta name="robots" content="noindex,nofollow">
+<title> Ruby/PGPLOT feature </title>
+</head>
+
+<body bgcolor="#FFFFFF">
+<h1> Ruby/PGPLOTの特徴 </h1>
+
+中村典嗣さんの比較ポイント <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-list/30443">[ruby-list:30443]</a> に沿って、
+Ruby/PGPLOT の特徴を挙げてみました。
+<hr>
+<h3> 特徴 </h3>
+<ul>
+  <li> PGPLOTは、大部分がFORTRANで書かれた、かなり古くからあるライブラリ。
+  <li> 多くのデバイス・プリンタに対応。(が今では使われないものも多い)。
+    デバイスに依存しないグラフィックス。
+  <li> 低レベルのグラフィクスにより図形を描画できる他、
+    2次元グラフ、等高線、イメージなどが容易に描ける。
+  <li> ベクトルフォントを独自に持っているので、
+    デバイスによらない文字の描画が可能。
+    ギリシャ文字、記号、上つき下つき文字などが描ける。
+  <li> ウィンドウ内のマウスのイベントを拾える。
+  <li> Ruby/PGPLOTは、PGPLOTへのデータの受渡しに NArray を用いる。
+    そのため、データが NArray であれば処理が速い。
+</ul>
+
+<h3> 出力のファイル形式 </h3>
+<ul>
+  <li> Postscript, PPM, PNG, GIF, X11, Textronix, Tcl/TK widget,
+    各種デバイス・プリンタ、などなど。
+  <li> MS Windows, Mac のサポートが貧弱。
+</ul>
+
+<h3> 使い方が簡単か？ </h3>
+<ul>
+  低レベルの描画が中心だが、最低限、
+<p><pre>
+  require 'pgplot'
+  include Pgplot
+  x = [...]
+  y = [...]
+  pgbeg
+  pgenv x.min, x.max, y.min, y.max
+  pgline x, y
+</pre></p>
+で折れ線グラフが書ける。
+メソッドの名前がわかりにくいかも。
+</ul>
+
+<h3> 見栄えがきれいか？</h3>
+<ul>
+  凝ったことはできない。学術論文などに必要十分なレベル。
+</ul>
+
+<h3> パラメータがたくさんあって調整できるか？</h3>
+<ul>
+  ??。低レベルの制御が可能。 (色、線の種類、点の種類が選べる。)
+</ul>
+
+<h3> 日本語が使えるか？</h3>
+<ul>
+  いいえ。 T_T
+</ul>
+
+<h3> グラフの種類は？ </h3>
+<ul>
+<li> 点・線グラフ。
+  エラーバー表示(pgerrbなど)、logスケール(pgenvの第6引数) が可能。
+<li> ヒストグラム (pgbin, pghist)
+<li> 2次元イメージ (pggray, pgimag)、等高線 (pgcontなど)、
+  ベクトルマップ (pgvect)
+<li> 円グラフを描く機能はない。
+</ul>
+
+<h3> 標準出力に出せるか？</h3>
+<ul>
+  出せません。(たぶん)
+</ul>
+
+<h3> インストールが楽か？</h3>
+<ul>
+PGPLOTのインストールが面倒。
+g77などのFORTRAN compilerが必要で、configureがなく、Makefile, drivers.list の編集が必要。
+</ul>
+
+<hr>
+<a href="/~masa/ruby/">
+Back to Numerical Ruby</a>
+<HR>
+<ADDRESS><A href="http://www.ir.isas.ac.jp/~masa/">
+Masahiro Tanaka</A>
+
+&lt;masa at ir.isas.ac.jp&gt;</ADDRESS>
+<!-- hhmts start -->
+Last modified: Jul  3, 2001
+<!-- hhmts end -->
+</BODY>
+</html>

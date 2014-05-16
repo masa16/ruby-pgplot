@@ -1,0 +1,187 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html 
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>rbpg-ind</title>
+<link href="css.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<h1><a name="label:0" id="label:0">Ruby/PGPLOT categorized method index</a></h1><!-- RDLabel: "Ruby/PGPLOT categorized method index" -->
+<h3><a name="label:1" id="label:1">Drawing primitives</a></h3><!-- RDLabel: "Drawing primitives" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGLINE">pgline</a></code> -- draw a polyline (curve defined by line-segments)</li>
+<li><code><a href="rbpgplot.html#PGPOLY">pgpoly</a></code> -- draw a polygon, using fill-area attributes</li>
+<li><code><a href="rbpgplot.html#PGPT1">pgpt1</a></code>  -- draw one graph marker</li>
+<li><code><a href="rbpgplot.html#PGPT">pgpt</a></code>   -- draw several graph markers</li>
+<li><code><a href="rbpgplot.html#PGPNTS">pgpnts</a></code> -- draw several graph markers, not all the same</li>
+<li><code><a href="rbpgplot.html#PGARRO">pgarro</a></code> -- draw an arrow</li>
+<li><code><a href="rbpgplot.html#PGCIRC">pgcirc</a></code> -- draw a circle, using fill-area attributes</li>
+<li><code><a href="rbpgplot.html#PGRECT">pgrect</a></code> -- draw a rectangle, using fill-area attributes</li>
+<li><code><a href="rbpgplot.html#PGMOVE">pgmove</a></code> -- move pen (change current pen position)</li>
+<li><code><a href="rbpgplot.html#PGDRAW">pgdraw</a></code> -- draw a line from the current pen position to a point</li>
+</ul>
+<h3><a name="label:2" id="label:2">Axis</a></h3><!-- RDLabel: "Axis" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGAXIS">pgaxis</a></code> -- draw an axis</li>
+<li><code><a href="rbpgplot.html#PGBOX">pgbox</a></code>  -- draw labeled frame around viewport</li>
+<li><code><a href="rbpgplot.html#PGTICK">pgtick</a></code> -- draw a single tick mark on an axis</li>
+<li><code><a href="rbpgplot.html#PGTBOX">pgtbox</a></code> -- draw frame and write (DD) HH MM SS.S labelling</li>
+</ul>
+<h3><a name="label:3" id="label:3">Text</a></h3><!-- RDLabel: "Text" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGLAB">pglab</a></code>  -- write labels for x-axis, y-axis, and top of plot</li>
+<li><code><a href="rbpgplot.html#PGTEXT">pgtext</a></code> -- write text (horizontal, left-justified)</li>
+<li><code><a href="rbpgplot.html#PGMTXT">pgmtxt</a></code> -- write text at position relative to viewport</li>
+<li><code><a href="rbpgplot.html#PGPTXT">pgptxt</a></code> -- write text at arbitrary position and angle</li>
+<li><code><a href="rbpgplot.html#PGETXT">pgetxt</a></code> -- erase text from graphics display</li>
+<li><code><a href="rbpgplot.html#PGIDEN">pgiden</a></code> -- write username, date, and time at bottom of plot</li>
+<li><code><a href="rbpgplot.html#PGLEN">pglen</a></code>  -- find length of a string in a variety of units</li>
+<li><code><a href="rbpgplot.html#PGQTXT">pgqtxt</a></code> -- find bounding box of text string</li>
+</ul>
+<h3><a name="label:4" id="label:4">Histgram</a></h3><!-- RDLabel: "Histgram" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGBIN">pgbin</a></code>  -- histogram of binned data</li>
+<li><code><a href="rbpgplot.html#PGHIST">pghist</a></code> -- histogram of unbinned data</li>
+</ul>
+<h3><a name="label:5" id="label:5">Error bar</a></h3><!-- RDLabel: "Error bar" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGERR1">pgerr1</a></code> -- horizontal or vertical error bar</li>
+<li><code><a href="rbpgplot.html#PGERRB">pgerrb</a></code> -- horizontal or vertical error bar</li>
+<li><code><a href="rbpgplot.html#PGERRX">pgerrx</a></code> -- horizontal error bar</li>
+<li><code><a href="rbpgplot.html#PGERRY">pgerry</a></code> -- vertical error bar</li>
+</ul>
+<h3><a name="label:6" id="label:6">2D drawing</a></h3><!-- RDLabel: "2D drawing" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGCONT">pgcont</a></code> -- contour map of a 2D data array (contour-following)</li>
+<li><code><a href="rbpgplot.html#PGCONS">pgcons</a></code> -- contour map of a 2D data array (fast algorithm)</li>
+<li><code><a href="rbpgplot.html#PGCONB">pgconb</a></code> -- contour map of a 2D data array, with blanking</li>
+<li><code><a href="rbpgplot.html#PGCONF">pgconf</a></code> -- fill between two contours</li>
+<li><code><a href="rbpgplot.html#PGCONL">pgconl</a></code> -- label contour map of a 2D data array </li>
+<li><code><a href="rbpgplot.html#PGCONX">pgconx</a></code> -- contour map of a 2D data array (non rectangular) (not implemented in Ruby/PGPLOT)</li>
+<li><code><a href="rbpgplot.html#PGIMAG">pgimag</a></code> -- color image from a 2D data array</li>
+<li><code><a href="rbpgplot.html#PGCTAB">pgctab</a></code> -- install the color table to be used by <a href="rbpgplot.html#PGIMAG">pgimag</a></li>
+<li><code><a href="rbpgplot.html#PGGRAY">pggray</a></code> -- gray-scale map of a 2D data array</li>
+<li><code><a href="rbpgplot.html#PGPIXL">pgpixl</a></code> -- draw pixels</li>
+<li><code><a href="rbpgplot.html#PGVECT">pgvect</a></code> -- vector map of a 2D data array, with blanking</li>
+<li><code><a href="rbpgplot.html#PGWEDG">pgwedg</a></code> -- annotate an image plot with a wedge</li>
+<li><code><a href="rbpgplot.html#PGHI2D">pghi2d</a></code> -- cross-sections through a 2D data array</li>
+</ul>
+<h3><a name="label:7" id="label:7">Cursor</a></h3><!-- RDLabel: "Cursor" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGBAND">pgband</a></code> -- read cursor position, with anchor</li>
+<li><code><a href="rbpgplot.html#PGCURS">pgcurs</a></code> -- read cursor position</li>
+<li><code><a href="rbpgplot.html#PGLCUR">pglcur</a></code> -- draw a line using the cursor</li>
+<li><code><a href="rbpgplot.html#PGNCUR">pgncur</a></code> -- mark a set of points using the cursor</li>
+<li><code><a href="rbpgplot.html#PGOLIN">pgolin</a></code> -- mark a set of points using the cursor</li>
+</ul>
+<h3><a name="label:8" id="label:8">Control</a></h3><!-- RDLabel: "Control" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGOPEN">pgopen</a></code> -- open a graphics device</li>
+<li><code><a href="rbpgplot.html#PGBEG">pgbeg</a></code>  -- open a graphics device</li>
+<li><code><a href="rbpgplot.html#PGCLOS">pgclos</a></code> -- close the selected graphics device</li>
+<li><code><a href="rbpgplot.html#PGEND">pgend</a></code>  -- close all open graphics devices</li>
+<li><code><a href="rbpgplot.html#PGENV">pgenv</a></code>  -- set window and viewport and draw labeled frame</li>
+<li><code><a href="rbpgplot.html#PGASK">pgask</a></code>  -- control new page prompting</li>
+<li><code><a href="rbpgplot.html#PGPAGE">pgpage</a></code> -- advance to new page</li>
+<li><code><a href="rbpgplot.html#PGERAS">pgeras</a></code> -- erase all graphics from current page</li>
+<li><code><a href="rbpgplot.html#PGBBUF">pgbbuf</a></code> -- begin batch of output (buffer)</li>
+<li><code><a href="rbpgplot.html#PGEBUF">pgebuf</a></code> -- end batch of output (buffer)</li>
+<li><code><a href="rbpgplot.html#PGPANL">pgpanl</a></code> -- switch to a different panel on the view surface</li>
+<li><code><a href="rbpgplot.html#PGPAP">pgpap</a></code>  -- change the size of the view surface </li>
+<li><code><a href="rbpgplot.html#PGRNGE">pgrnge</a></code> -- choose axis limits</li>
+<li><code><a href="rbpgplot.html#PGSAVE">pgsave</a></code> -- save PGPLOT attributes</li>
+<li><code><a href="rbpgplot.html#PGUNSA">pgunsa</a></code> -- restore PGPLOT attributes</li>
+<li><code><a href="rbpgplot.html#PGSCRL">pgscrl</a></code> -- scroll window</li>
+<li><code><a href="rbpgplot.html#PGSUBP">pgsubp</a></code> -- subdivide view surface into panels</li>
+<li><code><a href="rbpgplot.html#PGUPDT">pgupdt</a></code> -- update display</li>
+</ul>
+<h3><a name="label:9" id="label:9">Set attributes</a></h3><!-- RDLabel: "Set attributes" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGSAH">pgsah</a></code>  -- set arrow-head style</li>
+<li><code><a href="rbpgplot.html#PGSCF">pgscf</a></code>  -- set character font</li>
+<li><code><a href="rbpgplot.html#PGSCH">pgsch</a></code>  -- set character height</li>
+<li><code><a href="rbpgplot.html#PGSCI">pgsci</a></code>  -- set color index</li>
+<li><code><a href="rbpgplot.html#PGSCIR">pgscir</a></code> -- set color index range</li>
+<li><code><a href="rbpgplot.html#PGSCLP">pgsclp</a></code> -- enable or disable clipping at edge of viewport</li>
+<li><code><a href="rbpgplot.html#PGSCR">pgscr</a></code>  -- set color representation</li>
+<li><code><a href="rbpgplot.html#PGSCRN">pgscrn</a></code> -- set color representation by name</li>
+<li><code><a href="rbpgplot.html#PGSFS">pgsfs</a></code>  -- set fill-area style</li>
+<li><code><a href="rbpgplot.html#PGSHLS">pgshls</a></code> -- set color representation using HLS system</li>
+<li><code><a href="rbpgplot.html#PGSHS">pgshs</a></code>  -- set hatching style</li>
+<li><code><a href="rbpgplot.html#PGSITF">pgsitf</a></code> -- set image transfer function</li>
+<li><code><a href="rbpgplot.html#PGSLCT">pgslct</a></code> -- select an open graphics device</li>
+<li><code><a href="rbpgplot.html#PGSLS">pgsls</a></code>  -- set line style</li>
+<li><code><a href="rbpgplot.html#PGSLW">pgslw</a></code>  -- set line width</li>
+<li><code><a href="rbpgplot.html#PGSTBG">pgstbg</a></code> -- set text background color index</li>
+<li><code><a href="rbpgplot.html#PGSVP">pgsvp</a></code>  -- set viewport (normalized device coordinates)</li>
+<li><code><a href="rbpgplot.html#PGSWIN">pgswin</a></code> -- set window</li>
+<li><code><a href="rbpgplot.html#PGVSIZ">pgvsiz</a></code> -- set viewport (inches)</li>
+<li><code><a href="rbpgplot.html#PGVSTD">pgvstd</a></code> -- set standard (default) viewport</li>
+<li><code><a href="rbpgplot.html#PGWNAD">pgwnad</a></code> -- set window and adjust viewport to same aspect ratio</li>
+</ul>
+<h3><a name="label:10" id="label:10">Inquire attributes</a></h3><!-- RDLabel: "Inquire attributes" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGLDEV">pgldev</a></code> -- list available device types on standard output</li>
+<li><code><a href="rbpgplot.html#PGQAH">pgqah</a></code>  -- inquire arrow-head style</li>
+<li><code><a href="rbpgplot.html#PGQCF">pgqcf</a></code>  -- inquire character font</li>
+<li><code><a href="rbpgplot.html#PGQCH">pgqch</a></code>  -- inquire character height</li>
+<li><code><a href="rbpgplot.html#PGQCI">pgqci</a></code>  -- inquire color index</li>
+<li><code><a href="rbpgplot.html#PGQCIR">pgqcir</a></code> -- inquire color index range</li>
+<li><code><a href="rbpgplot.html#PGQCLP">pgqclp</a></code> -- inquire clipping status</li>
+<li><code><a href="rbpgplot.html#PGQCOL">pgqcol</a></code> -- inquire color capability</li>
+<li><code><a href="rbpgplot.html#PGQCR">pgqcr</a></code>  -- inquire color representation</li>
+<li><code><a href="rbpgplot.html#PGQCS">pgqcs</a></code>  -- inquire character height in a variety of units</li>
+<li><code><a href="rbpgplot.html#PGQDT">pgqdt</a></code>  -- inquire name of nth available device type</li>
+<li><code><a href="rbpgplot.html#PGQFS">pgqfs</a></code>  -- inquire fill-area style</li>
+<li><code><a href="rbpgplot.html#PGQHS">pgqhs</a></code>  -- inquire hatching style</li>
+<li><code><a href="rbpgplot.html#PGQID">pgqid</a></code>  -- inquire current device identifier</li>
+<li><code><a href="rbpgplot.html#PGQINF">pgqinf</a></code> -- inquire PGPLOT general information</li>
+<li><code><a href="rbpgplot.html#PGQITF">pgqitf</a></code> -- inquire image transfer function</li>
+<li><code><a href="rbpgplot.html#PGQLS">pgqls</a></code>  -- inquire line style</li>
+<li><code><a href="rbpgplot.html#PGQLW">pgqlw</a></code>  -- inquire line width</li>
+<li><code><a href="rbpgplot.html#PGQNDT">pgqndt</a></code> -- inquire number of available device types</li>
+<li><code><a href="rbpgplot.html#PGQPOS">pgqpos</a></code> -- inquire current pen position</li>
+<li><code><a href="rbpgplot.html#PGQTBG">pgqtbg</a></code> -- inquire text background color index</li>
+<li><code><a href="rbpgplot.html#PGQVP">pgqvp</a></code>  -- inquire viewport size and position</li>
+<li><code><a href="rbpgplot.html#PGQVSZ">pgqvsz</a></code> -- inquire size of view surface</li>
+<li><code><a href="rbpgplot.html#PGQWIN">pgqwin</a></code> -- inquire window boundary coordinates</li>
+</ul>
+<h4><a name="label:11" id="label:11">Hereafter not implemented in Ruby/PGPLOT</a></h4><!-- RDLabel: "Hereafter not implemented in Ruby/PGPLOT" -->
+<h3><a name="label:12" id="label:12">Utility</a></h3><!-- RDLabel: "Utility" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGNUMB">pgnumb</a></code> -- convert a number into a plottable character string</li>
+<li><code><a href="rbpgplot.html#PGRND">pgrnd</a></code>  -- find the smallest `round' number greater than x</li>
+</ul>
+<h3><a name="label:13" id="label:13">Drawing function</a></h3><!-- RDLabel: "Drawing function" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGFUNT">pgfunt</a></code> -- function defined by X = F(T), Y = G(T)</li>
+<li><code><a href="rbpgplot.html#PGFUNX">pgfunx</a></code> -- function defined by Y = F(X)</li>
+<li><code><a href="rbpgplot.html#PGFUNY">pgfuny</a></code> -- function defined by X = F(Y)</li>
+</ul>
+<h3><a name="label:14" id="label:14">Alias</a></h3><!-- RDLabel: "Alias" -->
+<ul>
+<li><code><a href="rbpgplot.html#PGADVANCE">pgadvance</a></code> -- non-standard alias for <a href="rbpgplot.html#PGPAGE">pgpage</a></li>
+<li><code><a href="rbpgplot.html#PGBEGIN">pgbegin</a></code>  -- non-standard alias for <a href="rbpgplot.html#PGBEG">pgbeg</a></li>
+<li><code><a href="rbpgplot.html#PGCURSE">pgcurse</a></code>  -- non-standard alias for <a href="rbpgplot.html#PGCURS">pgcurs</a></li>
+<li><code><a href="rbpgplot.html#PGLABEL">pglabel</a></code>  -- non-standard alias for <a href="rbpgplot.html#PGLAB">pglab</a></li>
+<li><code><a href="rbpgplot.html#PGMTEXT">pgmtext</a></code>  -- non-standard alias for <a href="rbpgplot.html#PGMTXT">pgmtxt</a></li>
+<li><code><a href="rbpgplot.html#PGNCURSE">pgncurse</a></code> -- non-standard alias for <a href="rbpgplot.html#PGNCUR">pgncur</a></li>
+<li><code><a href="rbpgplot.html#PGPAPER">pgpaper</a></code>  -- non-standard alias for <a href="rbpgplot.html#PGPAP">pgpap</a></li>
+<li><code><a href="rbpgplot.html#PGPOINT">pgpoint</a></code>  -- non-standard alias for <a href="rbpgplot.html#PGPT">pgpt</a></li>
+<li><code><a href="rbpgplot.html#PGPTEXT">pgptext</a></code>  -- non-standard alias for <a href="rbpgplot.html#PGPTXT">pgptxt</a></li>
+<li><code><a href="rbpgplot.html#PGVPORT">pgvport</a></code>  -- non-standard alias for <a href="rbpgplot.html#PGSVP">pgsvp</a></li>
+<li><code><a href="rbpgplot.html#PGVSIZE">pgvsize</a></code>  -- non-standard alias for <a href="rbpgplot.html#PGVSIZ">pgvsiz</a></li>
+<li><code><a href="rbpgplot.html#PGVSTAND">pgvstand</a></code> -- non-standard alias for <a href="rbpgplot.html#PGVSTD">pgvstd</a></li>
+<li><code><a href="rbpgplot.html#PGWINDOW">pgwindow</a></code> -- non-standard alias for <a href="rbpgplot.html#PGSWIN">pgswin</a></li>
+</ul>
+<hr>
+<a href ="index.html">Ruby/PGPLOT</a>
+by <a href ="http://www.ir.isas.ac.jp/~masa/">
+Masahiro Tanaka
+</a>
+
+
+</body>
+</html>

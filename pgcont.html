@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html 
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>pgcont</title>
+<link href="css.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<h1><a name="label:0" id="label:0">Ruby/PGPLOT example: pgcont</a></h1><!-- RDLabel: "Ruby/PGPLOT example: pgcont" -->
+<h3><a name="label:1" id="label:1">code</a></h3><!-- RDLabel: "code" -->
+<pre>require "narray"
+require "pgplot"
+include Pgplot
+
+# Preparing data
+x = NArray.sfloat(40,1).indgen!(1)
+y = NArray.sfloat(1,40).indgen!(1)
+map = NMath.cos( NMath.sqrt(x*2)*0.3 - y*0.4/3 ) * NMath.cos( x*0.4/3 ) \
+      + (x-y)/40
+n = 21
+level = NArray.sfloat(n).indgen! * (map.max-map.min)/n + map.min
+
+# Draw contour map
+pgopen
+pgenv(1,40,1,40)    # set "Plotter Environment" and draw box.
+pgsci(3)            # set Color Index to Green.
+pgcont  map, level</pre>
+<h3><a name="label:2" id="label:2">output</a></h3><!-- RDLabel: "output" -->
+<p><img src="pgcont.png" alt="pgcont.png"></p>
+
+<hr>
+<a href ="index.html">Ruby/PGPLOT</a>
+by <a href ="http://www.ir.isas.ac.jp/~masa/">
+Masahiro Tanaka
+</a>
+
+
+</body>
+</html>

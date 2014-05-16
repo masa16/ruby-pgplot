@@ -1,0 +1,1019 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html 
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>rbpg-doc.in</title>
+<link href="css.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<h1><a name="label:0" id="label:0">Ruby/PGPLOT method descriptions</a></h1><!-- RDLabel: "Ruby/PGPLOT method descriptions" -->
+<p>This page contains descriptions of Ruby/PGPLOT method
+whose arguments are modified from original PGPLOT subroutines.</p>
+<h3><a name="label:1" id="label:1"><em>pgask</em> -- control new page prompting</a></h3><!-- RDLabel: "pgask &shy;&shy; control new page prompting" -->
+<dl>
+<dt><a name="label:2" id="label:2"><code>pgask( <var>true</var> | <var>false</var> )</code></a><!-- RDLabel: "pgask" -->
+</dl>
+<p>Change the ``prompt state'' of PGPLOT. If the prompt state is
+ON, PGPAGE will type ``Type RETURN for next page:'' and will wait
+for the user to type a carriage-return before starting a new page.
+The initial prompt state (after the device has been opened) is ON
+for interactive devices. Prompt state is always OFF for
+non-interactive devices.</p>
+<p>Arguments:</p>
+<pre>FLAG   (input)  : if .TRUE., and if the device is an interactive
+                  device, the prompt state will be set to ON. If
+                  .FALSE., the prompt state will be set to OFF.</pre>
+<h3><a name="label:3" id="label:3"><em>pgaxis</em> -- draw an axis</a></h3><!-- RDLabel: "pgaxis &shy;&shy; draw an axis" -->
+<dl>
+<dt><a name="label:4" id="label:4"><code>pgaxis( <var>x1</var>, <var>y1</var>, <var>x2</var>, <var>y2</var>, <var>v1</var>, <var>v2</var> [,"<var>opt</var>"|"<var>step</var>"|"<var>nsub</var>"|"<var>tickl</var>"|"<var>tickr</var>"|"<var>frac</var>"|"<var>disp</var>"|"<var>orient</var>" =&gt; <var>arg</var>] )</code></a><!-- RDLabel: "pgaxis" -->
+</dl>
+<p>Draw a labelled graph axis from world-coordinate position (X1,Y1) to
+(X2,Y2).</p>
+<p>Normally, this routine draws a standard LINEAR axis with equal
+subdivisions.   The quantity described by the axis runs from V1 to V2;
+this may be, but need not be, the same as X or Y. </p>
+<p>If the 'L' option is specified, the routine draws a LOGARITHMIC axis.
+In this case, the quantity described by the axis runs from 10**V1 to
+10**V2. A logarithmic axis always has major, labeled, tick marks 
+spaced by one or more decades. If the major tick marks are spaced
+by one decade (as specified by the STEP argument), then minor
+tick marks are placed at 2, 3, .., 9 times each power of 10;
+otherwise minor tick marks are spaced by one decade. If the axis
+spans less than two decades, numeric labels are placed at 1, 2, and
+5 times each power of ten.</p>
+<p>If the axis spans less than one decade, or if it spans many decades,
+it is preferable to use a linear axis labeled with the logarithm of
+the quantity of interest.</p>
+<p>Arguments:</p>
+<pre>OPT    (input)  : a string containing single-letter codes for
+                  various options. The options currently
+                  recognized are:
+                  L : draw a logarithmic axis
+                  N : write numeric labels
+                  1 : force decimal labelling, instead of automatic
+                      choice (see PGNUMB).
+                  2 : force exponential labelling, instead of
+                      automatic.
+X1, Y1 (input)  : world coordinates of one endpoint of the axis.
+X2, Y2 (input)  : world coordinates of the other endpoint of the axis.
+V1     (input)  : axis value at first endpoint.
+V2     (input)  : axis value at second endpoint.
+STEP   (input)  : major tick marks are drawn at axis value 0.0 plus
+                  or minus integer multiples of STEP. If STEP=0.0,
+                  a value is chosen automatically.
+NSUB   (input)  : minor tick marks are drawn to divide the major
+                  divisions into NSUB equal subdivisions (ignored if
+                  STEP=0.0). If NSUB &lt;= 1, no minor tick marks are
+                  drawn. NSUB is ignored for a logarithmic axis.
+DMAJL  (input)  : length of major tick marks drawn to left of axis
+                  (as seen looking from first endpoint to second), in
+                  units of the character height.
+DMAJR  (input)  : length of major tick marks drawn to right of axis,
+                  in units of the character height.
+FMIN   (input)  : length of minor tick marks, as fraction of major.
+DISP   (input)  : displacement of baseline of tick labels to
+                  right of axis, in units of the character height.
+ORIENT (input)  : orientation of label text, in degrees; angle between
+                  baseline of text and direction of axis (0-360°).</pre>
+<h3><a name="label:5" id="label:5"><em>pgband</em> -- read cursor position, with anchor</a></h3><!-- RDLabel: "pgband &shy;&shy; read cursor position, with anchor" -->
+<dl>
+<dt><a name="label:6" id="label:6"><code>pgband( <var>mode</var>, [ <var>xref</var>, <var>yref</var>, [<var>x</var>, <var>y</var>, [<var>posn</var>]]] ) #=&gt; <var>obj_of_Pgcursor</var></code></a><!-- RDLabel: "pgband" -->
+</dl>
+<p>Read the cursor position and a character typed by the user.
+The position is returned in world coordinates.  PGBAND positions
+the cursor at the position specified (if POSN=1), allows the user to
+move the cursor using the mouse or arrow keys or whatever is available
+on the device. When he has positioned the cursor, the user types a
+single character on the keyboard; PGBAND then returns this
+character and the new cursor position (in world coordinates).</p>
+<p>Some interactive devices offer a selection of cursor types,
+implemented as thin lines that move with the cursor, but without
+erasing underlying graphics. Of these types, some extend between
+a stationary anchor-point at XREF,YREF, and the position of the
+cursor, while others simply follow the cursor without changing shape
+or size. The cursor type is specified with one of the following MODE
+values. Cursor types that are not supported by a given device, are
+treated as MODE=0.</p>
+<ul>
+<li>If MODE=0, the anchor point is ignored and the routine behaves
+  like PGCURS.</li>
+<li>If MODE=1, a straight line is drawn joining the anchor point 
+  and the cursor position.</li>
+<li>If MODE=2, a hollow rectangle is extended as the cursor is moved,
+  with one vertex at the anchor point and the opposite vertex at the
+  current cursor position; the edges of the rectangle are horizontal
+  and vertical.</li>
+<li>If MODE=3, two horizontal lines are extended across the width of
+  the display, one drawn through the anchor point and the other
+  through the moving cursor position. This could be used to select
+  a Y-axis range when one end of the range is known.</li>
+<li>If MODE=4, two vertical lines are extended over the height of
+  the display, one drawn through the anchor point and the other
+  through the moving cursor position. This could be used to select an
+  X-axis range when one end of the range is known.</li>
+<li>If MODE=5, a horizontal line is extended through the cursor
+  position over the width of the display. This could be used to select
+  an X-axis value such as the start of an X-axis range. The anchor point
+  is ignored.</li>
+<li>If MODE=6, a vertical line is extended through the cursor
+  position over the height of the display. This could be used to select
+  a Y-axis value such as the start of a Y-axis range. The anchor point
+  is ignored.</li>
+<li>If MODE=7, a cross-hair, centered on the cursor, is extended over
+  the width and height of the display. The anchor point is ignored.</li>
+</ul>
+<p>Returns:</p>
+<pre>PGBAND          : 1 if the call was successful; 0 if the device
+                  has no cursor or some other error occurs.</pre>
+<p>Arguments:</p>
+<pre>MODE   (input)  : display mode (0, 1, ..7: see above).
+POSN   (input)  : if POSN=1, PGBAND attempts to place the cursor
+                  at point (X,Y); if POSN=0, it leaves the cursor
+                  at its current position. (On some devices this
+                  request may be ignored.)
+XREF   (input)  : the world x-coordinate of the anchor point.
+YREF   (input)  : the world y-coordinate of the anchor point.
+X      (in/out) : the world x-coordinate of the cursor.
+Y      (in/out) : the world y-coordinate of the cursor.
+CH     (output) : the character typed by the user; if the device has
+                  no cursor or if some other error occurs, the value
+                  CHAR(0) [ASCII NUL character] is returned.</pre>
+<p>Note: The cursor coordinates (X,Y) may be changed by PGBAND even if
+the device has no cursor or if the user does not move the cursor.
+Under these circumstances, the position returned in (X,Y) is that of
+the pixel nearest to the requested position.</p>
+<h3><a name="label:7" id="label:7"><em>pgbeg</em> -- open a graphics device</a></h3><!-- RDLabel: "pgbeg &shy;&shy; open a graphics device" -->
+<dl>
+<dt><a name="label:8" id="label:8"><code>pgbeg([<var>device</var>, [<var>nxsub</var>, [<var>nysub</var>]]]) #=&gt; <var>status</var></code></a><!-- RDLabel: "pgbeg" -->
+</dl>
+<p>Note: new programs should use PGOPEN rather than PGBEG. PGOPEN
+is retained for compatibility with existing programs. Unlike PGOPEN,
+PGBEG closes any graphics devices that are already open, so it 
+cannot be used to open devices to be used in parallel.</p>
+<p>PGBEG opens a graphical device or file and prepares it for
+subsequent plotting. A device must be opened with PGBEG or PGOPEN
+before any other calls to PGPLOT subroutines for the device.</p>
+<p>If any device  is already open for PGPLOT output, it is closed before
+the new device is opened.</p>
+<p>Returns:</p>
+<pre>PGBEG         : a status return value. A value of 1 indicates
+                  successful completion, any other value indicates
+                  an error. In the event of error a message is
+                  written on the standard error unit.  
+                  To test the return value, call
+                  PGBEG as a function, eg IER=PGBEG(...); note
+                  that PGBEG must be declared INTEGER in the
+                  calling program. Some Fortran compilers allow
+                  you to use CALL PGBEG(...) and discard the
+                  return value, but this is not standard Fortran.</pre>
+<p>Arguments:</p>
+<pre>UNIT  (input)   : this argument is ignored by PGBEG (use zero).
+FILE  (input)   : the "device specification" for the plot device.
+                  (For explanation, see description of PGOPEN.)
+NXSUB  (input)  : the number of subdivisions of the view surface in
+                  X (&gt;0 or &lt;0).
+NYSUB  (input)  : the number of subdivisions of the view surface in
+                  Y (&gt;0).
+                  PGPLOT puts NXSUB x NYSUB graphs on each plot
+                  page or screen; when the view surface is sub-
+                  divided in this way, PGPAGE moves to the next
+                  panel, not the  next physical page. If
+                  NXSUB &gt; 0, PGPLOT uses the panels in row
+                  order; if &lt;0, PGPLOT uses them in column order.</pre>
+<h3><a name="label:9" id="label:9"><em>pgbin</em> -- histogram of binned data</a></h3><!-- RDLabel: "pgbin &shy;&shy; histogram of binned data" -->
+<dl>
+<dt><a name="label:10" id="label:10"><code>pgbin( <var>xarray</var>, <var>yarray</var> [,<var>center</var>] )</code></a><!-- RDLabel: "pgbin" -->
+</dl>
+<p>Plot a histogram of NBIN values with X(1..NBIN) values along
+the ordinate, and DATA(1...NBIN) along the abscissa. Bin width is
+spacing between X values.</p>
+<p>Arguments:</p>
+<pre>NBIN   (input)  : number of values.
+X      (input)  : abscissae of bins.
+DATA   (input)  : data values of bins.
+CENTER (input)  : if .TRUE., the X values denote the center of the
+                  bin; if .FALSE., the X values denote the lower
+                  edge (in X) of the bin.</pre>
+<h3><a name="label:11" id="label:11"><em>pgconb</em> -- contour map of a 2D data array, with blanking</a></h3><!-- RDLabel: "pgconb &shy;&shy; contour map of a 2D data array, with blanking" -->
+<dl>
+<dt><a name="label:12" id="label:12"><code>pgconb( <var>map</var>, <var>cont</var> [,<var>blank</var>, <var>tr</var>] )</code></a><!-- RDLabel: "pgconb" -->
+</dl>
+<p>Draw a contour map of an array. This routine is the same as PGCONS,
+except that array elements that have the "magic value" defined by
+argument BLANK are ignored, making gaps in the contour map. The
+routine may be useful for data measured on most but not all of the
+points of a grid.</p>
+<p>Arguments:</p>
+<pre>A      (input)  : data array.
+IDIM   (input)  : first dimension of A.
+JDIM   (input)  : second dimension of A.
+I1,I2  (input)  : range of first index to be contoured (inclusive).
+J1,J2  (input)  : range of second index to be contoured (inclusive).
+C      (input)  : array of contour levels (in the same units as the
+                  data in array A); dimension at least NC.
+NC     (input)  : number of contour levels (less than or equal to
+                  dimension of C). The absolute value of this
+                  argument is used (for compatibility with PGCONT,
+                  where the sign of NC is significant).
+TR     (input)  : array defining a transformation between the I,J
+                  grid of the array and the world coordinates. The
+                  world coordinates of the array point A(I,J) are
+                  given by:
+                    X = TR(1) + TR(2)*I + TR(3)*J
+                    Y = TR(4) + TR(5)*I + TR(6)*J
+                  Usually TR(3) and TR(5) are zero - unless the
+                  coordinate transformation involves a rotation
+                  or shear.
+BLANK   (input) : elements of array A that are exactly equal to
+                  this value are ignored (blanked).</pre>
+<h3><a name="label:13" id="label:13"><em>pgconf</em> -- fill between two contours</a></h3><!-- RDLabel: "pgconf &shy;&shy; fill between two contours" -->
+<dl>
+<dt><a name="label:14" id="label:14"><code>pgconf( <var>map</var>, <var>cont_range</var> [,<var>tr</var>] )</code></a><!-- RDLabel: "pgconf" -->
+</dl>
+<p>Shade the region between two contour levels of a function defined on
+the nodes of a rectangular grid. The routine uses the current fill
+attributes, hatching style (if appropriate), and color index.</p>
+<p>If you want to both shade between contours and draw the contour
+lines, call this routine first (once for each pair of levels) and 
+then CALL PGCONT (or PGCONS) to draw the contour lines on top of the
+shading.</p>
+<p>Note 1: This routine is not very efficient: it generates a polygon
+fill command for each cell of the mesh that intersects the desired
+area, rather than consolidating adjacent cells into a single polygon.</p>
+<p>Note 2: If both contours intersect all four edges of a particular
+mesh cell, the program behaves badly and may consider some parts
+of the cell to lie in more than one contour range.</p>
+<p>Note 3: If a contour crosses all four edges of a cell, this
+routine may not generate the same contours as PGCONT or PGCONS
+(these two routines may not agree either). Such cases are always
+ambiguous and the routines use different approaches to resolving
+the ambiguity.</p>
+<p>Arguments:</p>
+<pre>A      (input)  : data array.
+IDIM   (input)  : first dimension of A.
+JDIM   (input)  : second dimension of A.
+I1,I2  (input)  : range of first index to be contoured (inclusive).
+J1,J2  (input)  : range of second index to be contoured (inclusive).
+C1, C2 (input)  : contour levels; note that C1 must be less than C2.
+TR     (input)  : array defining a transformation between the I,J
+                  grid of the array and the world coordinates. The
+                  world coordinates of the array point A(I,J) are
+                  given by:
+                    X = TR(1) + TR(2)*I + TR(3)*J
+                    Y = TR(4) + TR(5)*I + TR(6)*J
+                  Usually TR(3) and TR(5) are zero - unless the
+                  coordinate transformation involves a rotation
+                  or shear.</pre>
+<h3><a name="label:15" id="label:15"><em>pgconl</em> -- label contour map of a 2D data array </a></h3><!-- RDLabel: "pgconl &shy;&shy; label contour map of a 2D data array " -->
+<dl>
+<dt><a name="label:16" id="label:16"><code>pgconl( <var>map</var>, <var>cont</var>, <var>label</var> [,<var>intval</var>, <var>minint</var>, <var>tr</var>] )</code></a><!-- RDLabel: "pgconl" -->
+</dl>
+<p>Label a contour map drawn with routine PGCONT. Routine PGCONT should
+be called first to draw the contour lines, then this routine should be
+called to add the labels. Labels are written at intervals along the
+contour lines, centered on the contour lines with lettering aligned
+in the up-hill direction. Labels are opaque, so a part of the under-
+lying contour line is obscured by the label. Labels use the current
+attributes (character height, line width, color index, character
+font).</p>
+<p>The first 9 arguments are the same as those supplied to PGCONT, and
+should normally be identical to those used with PGCONT. Note that
+only one contour level can be specified; tolabel more contours, call
+PGCONL for each level.</p>
+<p>The Label is supplied as a character string in argument LABEL.</p>
+<p>The spacing of labels along the contour is specified by parameters
+INTVAL and MININT. The routine follows the contour through the
+array, counting the number of cells that the contour crosses. The
+first label will be written in the MININT'th cell, and additional
+labels will be written every INTVAL cells thereafter. A contour
+that crosses less than MININT cells will not be labelled. Some
+experimentation may be needed to get satisfactory results; a good
+place to start is INTVAL=20, MININT=10.</p>
+<p>Arguments:</p>
+<pre>A      (input) : data array.
+IDIM   (input) : first dimension of A.
+JDIM   (input) : second dimension of A.
+I1, I2 (input) : range of first index to be contoured (inclusive).
+J1, J2 (input) : range of second index to be contoured (inclusive).
+C      (input) : the level of the contour to be labelled (one of the
+                 values given to PGCONT).
+TR     (input) : array defining a transformation between the I,J
+                 grid of the array and the world coordinates.
+                 The world coordinates of the array point A(I,J)
+                 are given by:
+                   X = TR(1) + TR(2)*I + TR(3)*J
+                   Y = TR(4) + TR(5)*I + TR(6)*J
+                 Usually TR(3) and TR(5) are zero - unless the
+                 coordinate transformation involves a rotation or
+                 shear.
+LABEL  (input) : character strings to be used to label the specified
+                 contour. Leading and trailing blank spaces are
+                 ignored.
+INTVAL (input) : spacing along the contour between labels, in
+                 grid cells.
+MININT (input) : contours that cross less than MININT cells
+                 will not be labelled.</pre>
+<h3><a name="label:17" id="label:17"><em>pgcons</em> -- contour map of a 2D data array (fast algorithm)</a></h3><!-- RDLabel: "pgcons &shy;&shy; contour map of a 2D data array (fast algorithm)" -->
+<dl>
+<dt><a name="label:18" id="label:18"><code>pgcons( <var>map</var>, <var>cont</var> [,<var>tr</var>] )</code></a><!-- RDLabel: "pgcons" -->
+</dl>
+<p>Draw a contour map of an array. The map is truncated if
+necessary at the boundaries of the viewport.  Each contour line is
+drawn with the current line attributes (color index, style, and
+width).  This routine, unlike PGCONT, does not draw each contour as a
+continuous line, but draws the straight line segments composing each
+contour in a random order.  It is thus not suitable for use on pen
+plotters, and it usually gives unsatisfactory results with dashed or
+dotted lines.  It is, however, faster than PGCONT, especially if
+several contour levels are drawn with one call of PGCONS.</p>
+<p>Arguments:</p>
+<pre>A      (input)  : data array.
+IDIM   (input)  : first dimension of A.
+JDIM   (input)  : second dimension of A.
+I1,I2  (input)  : range of first index to be contoured (inclusive).
+J1,J2  (input)  : range of second index to be contoured (inclusive).
+C      (input)  : array of contour levels (in the same units as the
+                  data in array A); dimension at least NC.
+NC     (input)  : number of contour levels (less than or equal to
+                  dimension of C). The absolute value of this
+                  argument is used (for compatibility with PGCONT,
+                  where the sign of NC is significant).
+TR     (input)  : array defining a transformation between the I,J
+                  grid of the array and the world coordinates. The
+                  world coordinates of the array point A(I,J) are
+                  given by:
+                    X = TR(1) + TR(2)*I + TR(3)*J
+                    Y = TR(4) + TR(5)*I + TR(6)*J
+                  Usually TR(3) and TR(5) are zero - unless the
+                  coordinate transformation involves a rotation
+                  or shear.</pre>
+<h3><a name="label:19" id="label:19"><em>pgcont</em> -- contour map of a 2D data array (contour-following)</a></h3><!-- RDLabel: "pgcont &shy;&shy; contour map of a 2D data array (contour-following)" -->
+<dl>
+<dt><a name="label:20" id="label:20"><code>pgcont( <var>map</var>, <var>cont</var> [,<var>tr</var>] )</code></a><!-- RDLabel: "pgcont" -->
+</dl>
+<p>Draw a contour map of an array.  The map is truncated if
+necessary at the boundaries of the viewport.  Each contour line
+is drawn with the current line attributes (color index, style, and
+width); except that if argument NC is positive (see below), the line
+style is set by PGCONT to 1 (solid) for positive contours or 2
+(dashed) for negative contours.</p>
+<p>Arguments:</p>
+<pre>A      (input) : data array.
+IDIM   (input) : first dimension of A.
+JDIM   (input) : second dimension of A.
+I1, I2 (input) : range of first index to be contoured (inclusive).
+J1, J2 (input) : range of second index to be contoured (inclusive).
+C      (input) : array of NC contour levels; dimension at least NC.
+NC     (input) : +/- number of contour levels (less than or equal
+                 to dimension of C). If NC is positive, it is the
+                 number of contour levels, and the line-style is
+                 chosen automatically as described above. If NC is
+                 negative, it is minus the number of contour
+                 levels, and the current setting of line-style is
+                 used for all the contours.
+TR     (input) : array defining a transformation between the I,J
+                 grid of the array and the world coordinates.
+                 The world coordinates of the array point A(I,J)
+                 are given by:
+                   X = TR(1) + TR(2)*I + TR(3)*J
+                   Y = TR(4) + TR(5)*I + TR(6)*J
+                 Usually TR(3) and TR(5) are zero - unless the
+                 coordinate transformation involves a rotation or
+                 shear.</pre>
+<h3><a name="label:21" id="label:21"><em>pgctab</em> -- install the color table to be used by PGIMAG</a></h3><!-- RDLabel: "pgctab &shy;&shy; install the color table to be used by PGIMAG" -->
+<dl>
+<dt><a name="label:22" id="label:22"><code>pgctab( <var>l</var>, <var>r</var>,<var>g</var>,<var>b</var> [,<var>contra</var>,<var>bright</var>] )</code></a><!-- RDLabel: "pgctab" -->
+</dl>
+<p>Use the given color table to change the color representations of
+all color indexes marked for use by PGIMAG. To change which
+color indexes are thus marked, call PGSCIR before calling PGCTAB
+or PGIMAG. On devices that can change the color representations
+of previously plotted graphics, PGCTAB will also change the colors
+of existing graphics that were plotted with the marked color
+indexes. This feature can then be combined with PGBAND to
+interactively manipulate the displayed colors of data previously
+plotted with PGIMAG.</p>
+<p>Limitations:</p>
+<pre>1. Some devices do not propagate color representation changes
+   to previously drawn graphics.
+2. Some devices ignore requests to change color representations.
+3. The appearance of specific color representations on grey-scale
+   devices is device-dependent.</pre>
+<p>Notes:</p>
+<pre>To reverse the sense of a color table, change the chosen contrast
+and brightness to -CONTRA and 1-BRIGHT.
+
+In the following, the term 'color table' refers to the input
+L,R,G,B arrays, whereas 'color ramp' refers to the resulting
+ramp of colors that would be seen with PGWEDG.</pre>
+<p>Arguments:</p>
+<pre>L      (input)  : An array of NC normalized ramp-intensity levels
+                  corresponding to the RGB primary color intensities
+                  in R(),G(),B(). Colors on the ramp are linearly
+                  interpolated from neighbouring levels.
+                  Levels must be sorted in increasing order.
+                   0.0 places a color at the beginning of the ramp.
+                   1.0 places a color at the end of the ramp.
+                  Colors outside these limits are legal, but will
+                  not be visible if CONTRA=1.0 and BRIGHT=0.5.
+R      (input)  : An array of NC normalized red intensities.
+G      (input)  : An array of NC normalized green intensities.
+B      (input)  : An array of NC normalized blue intensities.
+NC     (input)  : The number of color table entries.
+CONTRA (input)  : The contrast of the color ramp (normally 1.0).
+                  Negative values reverse the direction of the ramp.
+BRIGHT (input)  : The brightness of the color ramp. This is normally
+                  0.5, but can sensibly hold any value between 0.0
+                  and 1.0. Values at or beyond the latter two
+                  extremes, saturate the color ramp with the colors
+                  of the respective end of the color table.</pre>
+<h3><a name="label:23" id="label:23"><em>pgenv</em> -- set window and viewport and draw labeled frame</a></h3><!-- RDLabel: "pgenv &shy;&shy; set window and viewport and draw labeled frame" -->
+<dl>
+<dt><a name="label:24" id="label:24"><code>pgenv( <var>xmin</var>,<var>xmax</var>,<var>ymin</var>,<var>ymax</var> [, <var>just</var> [, <var>axis</var>]] )</code></a><!-- RDLabel: "pgenv" -->
+</dl>
+<p>Set PGPLOT "Plotter Environment".  PGENV establishes the scaling
+for subsequent calls to PGPT, PGLINE, etc.  The plotter is
+advanced to a new page or panel, clearing the screen if necessary.
+If the "prompt state" is ON (see PGASK), confirmation
+is requested from the user before clearing the screen.
+If requested, a box, axes, labels, etc. are drawn according to
+the setting of argument AXIS.</p>
+<p>Arguments:</p>
+<pre>XMIN   (input)  : the world x-coordinate at the bottom left corner
+                  of the viewport.
+XMAX   (input)  : the world x-coordinate at the top right corner
+                  of the viewport (note XMAX may be less than XMIN).
+YMIN   (input)  : the world y-coordinate at the bottom left corner
+                  of the viewport.
+YMAX   (input)  : the world y-coordinate at the top right corner
+                  of the viewport (note YMAX may be less than YMIN).
+JUST   (input)  : if JUST=1, the scales of the x and y axes (in
+                  world coordinates per inch) will be equal,
+                  otherwise they will be scaled independently.
+AXIS   (input)  : controls the plotting of axes, tick marks, etc:
+    AXIS = -2 : draw no box, axes or labels;
+    AXIS = -1 : draw box only;
+    AXIS =  0 : draw box and label it with coordinates;
+    AXIS =  1 : same as AXIS=0, but also draw the
+                coordinate axes (X=0, Y=0);
+    AXIS =  2 : same as AXIS=1, but also draw grid lines
+                at major increments of the coordinates;
+    AXIS = 10 : draw box and label X-axis logarithmically;
+    AXIS = 20 : draw box and label Y-axis logarithmically;
+    AXIS = 30 : draw box and label both axes logarithmically.</pre>
+<p>For other axis options, use routine PGBOX. PGENV can be persuaded to
+call PGBOX with additional axis options by defining an environment
+parameter PGPLOT_ENVOPT containing the required option codes. 
+Examples:</p>
+<pre>PGPLOT_ENVOPT=P      ! draw Projecting tick marks
+PGPLOT_ENVOPT=I      ! Invert the tick marks
+PGPLOT_ENVOPT=IV     ! Invert tick marks and label y Vertically</pre>
+<h3><a name="label:25" id="label:25"><em>pgerrb</em> -- horizontal or vertical error bar</a></h3><!-- RDLabel: "pgerrb &shy;&shy; horizontal or vertical error bar" -->
+<dl>
+<dt><a name="label:26" id="label:26"><code>pgerrb( <var>dir</var>, <var>x</var>, <var>y</var>, <var>err</var> [,<var>tlen</var>] )</code></a><!-- RDLabel: "pgerrb" -->
+</dl>
+<p>Plot error bars in the direction specified by DIR.
+This routine draws an error bar only; to mark the data point at
+the start of the error bar, an additional call to PGPT is required.</p>
+<p>Arguments:</p>
+<pre>DIR    (input)  : direction to plot the error bar relative to
+                  the data point. 
+                  One-sided error bar:
+                    DIR is 1 for +X (X to X+E);
+                           2 for +Y (Y to Y+E);
+                           3 for -X (X to X-E);
+                           4 for -Y (Y to Y-E).
+                  Two-sided error bar:
+                    DIR is 5 for +/-X (X-E to X+E); 
+                           6 for +/-Y (Y-E to Y+E).
+N      (input)  : number of error bars to plot.
+X      (input)  : world x-coordinates of the data.
+Y      (input)  : world y-coordinates of the data.
+E      (input)  : value of error bar distance to be added to the
+                  data position in world coordinates.
+T      (input)  : length of terminals to be drawn at the ends
+                  of the error bar, as a multiple of the default
+                  length; if T = 0.0, no terminals will be drawn.</pre>
+<p>Note: the dimension of arrays X, Y, and E must be greater
+than or equal to N. If N is 1, X, Y, and E may be scalar
+variables, or expressions.</p>
+<h3><a name="label:27" id="label:27"><em>pgerrx</em> -- horizontal error bar</a></h3><!-- RDLabel: "pgerrx &shy;&shy; horizontal error bar" -->
+<dl>
+<dt><a name="label:28" id="label:28"><code>pgerrx( <var>x1</var>, <var>x2</var>, <var>y</var> [,<var>tlen</var>] )</code></a><!-- RDLabel: "pgerrx" -->
+</dl>
+<p>Plot horizontal error bars.
+This routine draws an error bar only; to mark the data point in
+the middle of the error bar, an additional call to PGPT or
+PGERRY is required.</p>
+<p>Arguments:</p>
+<pre>N      (input)  : number of error bars to plot.
+X1     (input)  : world x-coordinates of lower end of the
+                  error bars.
+X2     (input)  : world x-coordinates of upper end of the
+                  error bars.
+Y      (input)  : world y-coordinates of the data.
+T      (input)  : length of terminals to be drawn at the ends
+                  of the error bar, as a multiple of the default
+                  length; if T = 0.0, no terminals will be drawn.</pre>
+<p>Note: the dimension of arrays X1, X2, and Y must be greater
+than or equal to N. If N is 1, X1, X2, and Y may be scalar
+variables, or expressions, eg:</p>
+<pre>CALL PGERRX(1,X-SIGMA,X+SIGMA,Y)</pre>
+<h3><a name="label:29" id="label:29"><em>pgerry</em> -- vertical error bar</a></h3><!-- RDLabel: "pgerry &shy;&shy; vertical error bar" -->
+<dl>
+<dt><a name="label:30" id="label:30"><code>pgerry( <var>x</var>, <var>y1</var>, <var>y2</var> [,<var>tlen</var>] )</code></a><!-- RDLabel: "pgerry" -->
+</dl>
+<p>Plot vertical error bars.
+This routine draws an error bar only; to mark the data point in
+the middle of the error bar, an additional call to PGPT or
+PGERRX is required.</p>
+<p>Arguments:</p>
+<pre>N      (input)  : number of error bars to plot.
+X      (input)  : world x-coordinates of the data.
+Y1     (input)  : world y-coordinates of top end of the
+                  error bars.
+Y2     (input)  : world y-coordinates of bottom end of the
+                  error bars.
+T      (input)  : length of terminals to be drawn at the ends
+                  of the error bar, as a multiple of the default
+                  length; if T = 0.0, no terminals will be drawn.</pre>
+<p>Note: the dimension of arrays X, Y1, and Y2 must be greater
+than or equal to N. If N is 1, X, Y1, and Y2 may be scalar
+variables or expressions, eg:</p>
+<pre>CALL PGERRY(1,X,Y+SIGMA,Y-SIGMA)</pre>
+<h3><a name="label:31" id="label:31"><em>pggray</em> -- gray-scale map of a 2D data array</a></h3><!-- RDLabel: "pggray &shy;&shy; gray-scale map of a 2D data array" -->
+<dl>
+<dt><a name="label:32" id="label:32"><code>pggray( <var>array</var> [,<var>range</var>, <var>tr</var>] )</code></a><!-- RDLabel: "pggray" -->
+</dl>
+<p>Draw gray-scale map of an array in current window. The subsection
+of the array A defined by indices (I1:I2, J1:J2) is mapped onto
+the view surface world-coordinate system by the transformation
+matrix TR. The resulting quadrilateral region is clipped at the edge
+of the window and shaded with the shade at each point determined
+by the corresponding array value.  The shade is a number in the
+range 0 to 1 obtained by linear interpolation between the background
+level (BG) and the foreground level (FG), i.e.,</p>
+<pre>shade = [A(i,j) - BG] / [FG - BG]</pre>
+<p>The background level BG can be either less than or greater than the
+foreground level FG.  Points in the array that are outside the range
+BG to FG are assigned shade 0 or 1 as appropriate.</p>
+<p>PGGRAY uses two different algorithms, depending how many color
+indices are available in the color index range specified for images.
+(This range is set with routine PGSCIR, and the current or default
+range can be queried by calling routine PGQCIR).</p>
+<p>If 16 or more color indices are available, PGGRAY first assigns
+color representations to these color indices to give a linear ramp
+between the background color (color index 0) and the foreground color
+(color index 1), and then calls PGIMAG to draw the image using these
+color indices. In this mode, the shaded region is "opaque": every
+pixel is assigned a color.</p>
+<p>If less than 16 color indices are available, PGGRAY uses only
+color index 1, and uses  a "dithering" algorithm to fill in pixels,
+with the shade (computed as above) determining the faction of pixels
+that are filled. In this mode the shaded region is "transparent" and
+allows previously-drawn graphics to show through.</p>
+<p>The transformation matrix TR is used to calculate the world
+coordinates of the center of the "cell" that represents each
+array element. The world coordinates of the center of the cell
+corresponding to array element A(I,J) are given by:</p>
+<pre>X = TR(1) + TR(2)*I + TR(3)*J
+Y = TR(4) + TR(5)*I + TR(6)*J</pre>
+<p>Usually TR(3) and TR(5) are zero -- unless the coordinate
+transformation involves a rotation or shear.  The corners of the
+quadrilateral region that is shaded by PGGRAY are given by
+applying this transformation to (I1-0.5,J1-0.5), (I2+0.5, J2+0.5).</p>
+<p>Arguments:</p>
+<pre>A      (input)  : the array to be plotted.
+IDIM   (input)  : the first dimension of array A.
+JDIM   (input)  : the second dimension of array A.
+I1, I2 (input)  : the inclusive range of the first index
+                  (I) to be plotted.
+J1, J2 (input)  : the inclusive range of the second
+                  index (J) to be plotted.
+FG     (input)  : the array value which is to appear with the
+                  foreground color (corresponding to color index 1).
+BG     (input)  : the array value which is to appear with the
+                  background color (corresponding to color index 0).
+TR     (input)  : transformation matrix between array grid and
+                  world coordinates.</pre>
+<h3><a name="label:33" id="label:33"><em>pghist</em> -- histogram of unbinned data</a></h3><!-- RDLabel: "pghist &shy;&shy; histogram of unbinned data" -->
+<dl>
+<dt><a name="label:34" id="label:34"><code>pghist( <var>data</var>, <var>nbin</var> [,<var>range</var>, <var>flag</var>] )</code></a><!-- RDLabel: "pghist" -->
+</dl>
+<p>Draw a histogram of N values of a variable in array
+DATA(1...N) in the range DATMIN to DATMAX using NBIN bins.  Note
+that array elements which fall exactly on the boundary between
+two bins will be counted in the higher bin rather than the
+lower one; and array elements whose value is less than DATMIN or
+greater than or equal to DATMAX will not be counted at all.</p>
+<p>Arguments:</p>
+<pre>N      (input)  : the number of data values.
+DATA   (input)  : the data values. Note: the dimension of array
+                  DATA must be greater than or equal to N. The
+                  first N elements of the array are used.
+DATMIN (input)  : the minimum data value for the histogram.
+DATMAX (input)  : the maximum data value for the histogram.
+NBIN   (input)  : the number of bins to use: the range DATMIN to
+                  DATMAX is divided into NBIN equal bins and
+                  the number of DATA values in each bin is
+                  determined by PGHIST.  NBIN may not exceed 200.
+PGFLAG (input)  : if PGFLAG = 1, the histogram is plotted in the
+                  current window and viewport; if PGFLAG = 0,
+                  PGENV is called automatically by PGHIST to start
+                  a new plot (the x-limits of the window will be
+                  DATMIN and DATMAX; the y-limits will be chosen
+                  automatically.
+                  IF PGFLAG = 2,3 the histogram will be in the same
+                  window and viewport but with a filled area style.
+                  If pgflag=4,5 as for pgflag = 0,1, but simple
+                  line drawn as for PGBIN</pre>
+<h3><a name="label:35" id="label:35"><em>pgimag</em> -- color image from a 2D data array</a></h3><!-- RDLabel: "pgimag &shy;&shy; color image from a 2D data array" -->
+<dl>
+<dt><a name="label:36" id="label:36"><code>pgimag( <var>array</var> [,<var>range</var>, <var>tr</var>] )</code></a><!-- RDLabel: "pgimag" -->
+</dl>
+<p>Draw a color image of an array in current window. The subsection
+of the array A defined by indices (I1:I2, J1:J2) is mapped onto
+the view surface world-coordinate system by the transformation
+matrix TR. The resulting quadrilateral region is clipped at the edge
+of the window. Each element of the array is represented in the image
+by a small quadrilateral, which is filled with a color specified by
+the corresponding array value.</p>
+<p>The subroutine uses color indices in the range C1 to C2, which can
+be specified by calling PGSCIR before PGIMAG. The default values
+for C1 and C2 are device-dependent; these values can be determined by
+calling PGQCIR. Note that color representations should be assigned to
+color indices C1 to C2 by calling PGSCR before calling PGIMAG. On some
+devices (but not all), the color representation can be changed after
+the call to PGIMAG by calling PGSCR again.</p>
+<p>Array values in the range A1 to A2 are mapped on to the range of
+color indices C1 to C2, with array values &lt;= A1 being given color
+index C1 and values &gt;= A2 being given color index C2. The mapping
+function for intermediate array values can be specified by
+calling routine PGSITF before PGIMAG; the default is linear.</p>
+<p>On devices which have no available color indices (C1 &gt; C2),
+PGIMAG will return without doing anything. On devices with only
+one color index (C1=C2), all array values map to the same color
+which is rather uninteresting. An image is always "opaque",
+i.e., it obscures all graphical elements previously drawn in
+the region.</p>
+<p>The transformation matrix TR is used to calculate the world
+coordinates of the center of the "cell" that represents each
+array element. The world coordinates of the center of the cell
+corresponding to array element A(I,J) are given by:</p>
+<pre>X = TR(1) + TR(2)*I + TR(3)*J
+Y = TR(4) + TR(5)*I + TR(6)*J</pre>
+<p>Usually TR(3) and TR(5) are zero -- unless the coordinate
+transformation involves a rotation or shear.  The corners of the
+quadrilateral region that is shaded by PGIMAG are given by
+applying this transformation to (I1-0.5,J1-0.5), (I2+0.5, J2+0.5).</p>
+<p>Arguments:</p>
+<pre>A      (input)  : the array to be plotted.
+IDIM   (input)  : the first dimension of array A.
+JDIM   (input)  : the second dimension of array A.
+I1, I2 (input)  : the inclusive range of the first index
+                  (I) to be plotted.
+J1, J2 (input)  : the inclusive range of the second
+                  index (J) to be plotted.
+A1     (input)  : the array value which is to appear with shade C1.
+A2     (input)  : the array value which is to appear with shade C2.
+TR     (input)  : transformation matrix between array grid and
+                  world coordinates.</pre>
+<h3><a name="label:37" id="label:37"><em>pglcur</em> -- draw a line using the cursor</a></h3><!-- RDLabel: "pglcur &shy;&shy; draw a line using the cursor" -->
+<dl>
+<dt><a name="label:38" id="label:38"><code>pglcur( <var>x</var>, <var>y</var>, [<var>npt</var>] ) #=&gt; <var>n_of_cursor_entered</var></code></a><!-- RDLabel: "pglcur" -->
+</dl>
+<p>Interactive routine for user to enter a polyline by use of
+the cursor.  Routine allows user to Add and Delete vertices;
+vertices are joined by straight-line segments.</p>
+<p>Arguments:</p>
+<pre>MAXPT  (input)  : maximum number of points that may be accepted.
+NPT    (in/out) : number of points entered; should be zero on
+                  first call.
+X      (in/out) : array of x-coordinates (dimension at least MAXPT).
+Y      (in/out) : array of y-coordinates (dimension at least MAXPT).</pre>
+<p>Notes:</p>
+<ol>
+<li>On return from the program, cursor points are returned in</li>
+</ol>
+<p>the order they were entered. Routine may be (re-)called with points
+already defined in X,Y (# in NPT), and they will be plotted
+first, before editing.</p>
+<ol>
+<li>User commands: the user types single-character commands</li>
+</ol>
+<p>after positioning the cursor: the following are accepted:</p>
+<pre>A (Add)    - add point at current cursor location.
+D (Delete) - delete last-entered point.
+X (eXit)   - leave subroutine.</pre>
+<h3><a name="label:39" id="label:39"><em>pgline</em> -- draw a polyline (curve defined by line-segments)</a></h3><!-- RDLabel: "pgline &shy;&shy; draw a polyline (curve defined by line-segments)" -->
+<dl>
+<dt><a name="label:40" id="label:40"><code>pgline( <var>xarray</var>, <var>yarray</var> )</code></a><!-- RDLabel: "pgline" -->
+</dl>
+<p>Primitive routine to draw a Polyline. A polyline is one or more
+connected straight-line segments.  The polyline is drawn using
+the current setting of attributes color-index, line-style, and
+line-width. The polyline is clipped at the edge of the window.</p>
+<p>Arguments:</p>
+<pre>N      (input)  : number of points defining the line; the line
+                  consists of (N-1) straight-line segments.
+                  N should be greater than 1 (if it is 1 or less,
+                  nothing will be drawn).
+XPTS   (input)  : world x-coordinates of the points.
+YPTS   (input)  : world y-coordinates of the points.</pre>
+<p>The dimension of arrays X and Y must be greater than or equal to N.
+The "pen position" is changed to (X(N),Y(N)) in world coordinates
+(if N &gt; 1).</p>
+<h3><a name="label:41" id="label:41"><em>pgncur</em> -- mark a set of points using the cursor</a></h3><!-- RDLabel: "pgncur &shy;&shy; mark a set of points using the cursor" -->
+<dl>
+<dt><a name="label:42" id="label:42"><code>pgncur( <var>x</var>, <var>y</var>, [<var>sym</var>, [<var>npt</var>]] ) #=&gt; <var>n_of_cursor_entered</var></code></a><!-- RDLabel: "pgncur" -->
+</dl>
+<p>Interactive routine for user to enter data points by use of
+the cursor.  Routine allows user to Add and Delete points.  The
+points are returned in order of increasing x-coordinate, not in the
+order they were entered.</p>
+<p>Arguments:</p>
+<pre>MAXPT  (input)  : maximum number of points that may be accepted.
+NPT    (in/out) : number of points entered; should be zero on
+                  first call.
+X      (in/out) : array of x-coordinates.
+Y      (in/out) : array of y-coordinates.
+SYMBOL (input)  : code number of symbol to use for marking
+                  entered points (see PGPT).</pre>
+<p>Note (1): The dimension of arrays X and Y must be greater than or
+equal to MAXPT.</p>
+<p>Note (2): On return from the program, cursor points are returned in
+increasing order of X. Routine may be (re-)called with points
+already defined in X,Y (number in NPT), and they will be plotted
+first, before editing.</p>
+<p>Note (3): User commands: the user types single-character commands
+after positioning the cursor: the following are accepted:
+A (Add)    - add point at current cursor location.
+D (Delete) - delete nearest point to cursor.
+X (eXit)   - leave subroutine.</p>
+<h3><a name="label:43" id="label:43"><em>pgolin</em> -- mark a set of points using the cursor</a></h3><!-- RDLabel: "pgolin &shy;&shy; mark a set of points using the cursor" -->
+<dl>
+<dt><a name="label:44" id="label:44"><code>pgolin( <var>x</var>, <var>y</var>, [<var>sym</var>, [<var>npt</var>]] ) #=&gt; <var>n_of_cursor_entered</var></code></a><!-- RDLabel: "pgolin" -->
+</dl>
+<p>Interactive routine for user to enter data points by use of
+the cursor.  Routine allows user to Add and Delete points.  The
+points are returned in the order that they were entered (unlike
+PGNCUR).</p>
+<p>Arguments:</p>
+<pre>MAXPT  (input)  : maximum number of points that may be accepted.
+NPT    (in/out) : number of points entered; should be zero on
+                  first call.
+X      (in/out) : array of x-coordinates.
+Y      (in/out) : array of y-coordinates.
+SYMBOL (input)  : code number of symbol to use for marking
+                  entered points (see PGPT).</pre>
+<p>Note (1): The dimension of arrays X and Y must be greater than or
+equal to MAXPT.</p>
+<p>Note (2): On return from the program, cursor points are returned in
+the order they were entered. Routine may be (re-)called with points
+already defined in X,Y (number in NPT), and they will be plotted
+first, before editing.</p>
+<p>Note (3): User commands: the user types single-character commands
+after positioning the cursor: the following are accepted:
+A (Add)    - add point at current cursor location.
+D (Delete) - delete the last point entered.
+X (eXit)   - leave subroutine.</p>
+<h3><a name="label:45" id="label:45"><em>pgopen</em> -- open a graphics device</a></h3><!-- RDLabel: "pgopen &shy;&shy; open a graphics device" -->
+<dl>
+<dt><a name="label:46" id="label:46"><code>pgopen([<var>device</var>]) #=&gt; <var>id_of_device</var></code></a><!-- RDLabel: "pgopen" -->
+</dl>
+<p>Open a graphics device for PGPLOT output. If the device is
+opened successfully, it becomes the selected device to which
+graphics output is directed until another device is selected
+with PGSLCT or the device is closed with PGCLOS.</p>
+<p>The value returned by PGOPEN should be tested to ensure that
+the device was opened successfully, e.g.,</p>
+<pre>ISTAT = PGOPEN('plot.ps/PS')
+IF (ISTAT .LE. 0 ) STOP</pre>
+<p>Note that PGOPEN must be declared INTEGER in the calling program.</p>
+<p>The DEVICE argument is a character constant or variable; its value
+should be one of the following:</p>
+<ol>
+<li>A complete device specification of the form 'device/type' or
+    'file/type', where 'type' is one of the allowed PGPLOT device
+    types (installation-dependent) and 'device' or 'file' is the 
+    name of a graphics device or disk file appropriate for this type.
+    The 'device' or 'file' may contain '/' characters; the final
+    '/' delimits the 'type'. If necessary to avoid ambiguity,
+    the 'device' part of the string may be enclosed in double
+    quotation marks.</li>
+<li>A device specification of the form '/type', where 'type' is one
+    of the allowed PGPLOT device types. PGPLOT supplies a default
+    file or device name appropriate for this device type.</li>
+<li>A device specification with '/type' omitted; in this case
+    the type is taken from the environment variable PGPLOT_TYPE,
+    if defined (e.g., setenv PGPLOT_TYPE PS). Because of possible
+    confusion with '/' in file-names, omitting the device type
+    in this way is not recommended.</li>
+<li>A blank string (' '); in this case, PGOPEN will use the value
+    of environment variable PGPLOT_DEV as the device specification,
+    or '/NULL' if the environment variable is undefined.</li>
+<li><p>A single question mark, with optional trailing spaces ('?'); in
+    this case, PGPLOT will prompt the user to supply the device
+    specification, with a prompt string of the form</p>
+<pre>'Graphics device/type (? to see list, default XXX):'</pre>
+<p>where 'XXX' is the default (value of environment variable
+PGPLOT_DEV).</p></li>
+<li>A non-blank string in which the first character is a question
+    mark (e.g., '?Device: '); in this case, PGPLOT will prompt the
+    user to supply the device specification, using the supplied
+    string as the prompt (without the leading question mark but
+    including any trailing spaces).</li>
+</ol>
+<p>In cases (5) and (6), the device specification is read from the
+standard input. The user should respond to the prompt with a device
+specification of the form (1), (2), or (3). If the user types a 
+question-mark in response to the prompt, a list of available device
+types is displayed and the prompt is re-issued. If the user supplies
+an invalid device specification, the prompt is re-issued. If the user
+responds with an end-of-file character, e.g., ctrl-D in UNIX, program
+execution is aborted; this  avoids the possibility of an infinite
+prompting loop.  A programmer should avoid use of PGPLOT-prompting
+if this behavior is not desirable.</p>
+<p>The device type is case-insensitive (e.g., '/ps' and '/PS' are 
+equivalent). The device or file name may be case-sensitive in some
+operating systems.</p>
+<p>Examples of valid DEVICE arguments:</p>
+<ol>
+<li>'plot.ps/ps', 'dir/plot.ps/ps', '"dir/plot.ps"/ps', 
+     'user:[tjp.plots]plot.ps/PS'</li>
+<li>'/ps'      (PGPLOT interprets this as 'pgplot.ps/ps')</li>
+<li><p>'plot.ps'  (if PGPLOT_TYPE is defined as 'ps', PGPLOT</p>
+<pre>interprets this as 'plot.ps/ps')</pre></li>
+<li>'   '      (if PGPLOT_DEV is defined)</li>
+<li>'?  '</li>
+<li>'?Device specification for PGPLOT: '</li>
+</ol>
+<p>[This routine was added to PGPLOT in Version 5.1.0. Older programs
+use PGBEG instead.]</p>
+<p>Returns:</p>
+<pre>PGOPEN          : returns either a positive value, the
+                  identifier of the graphics device for use with
+                  PGSLCT, or a 0 or negative value indicating an
+                  error. In the event of error a message is
+                  written on the standard error unit.</pre>
+<p>Arguments:</p>
+<pre>DEVICE  (input) : the 'device specification' for the plot device
+                  (see above).</pre>
+<h3><a name="label:47" id="label:47"><em>pgpixl</em> -- draw pixels</a></h3><!-- RDLabel: "pgpixl &shy;&shy; draw pixels" -->
+<dl>
+<dt><a name="label:48" id="label:48"><code>pgpixl( <var>array</var> [,<var>x1</var>,<var>x2</var>,<var>y1</var>,<var>y2</var>] )</code></a><!-- RDLabel: "pgpixl" -->
+</dl>
+<p>Draw lots of solid-filled (tiny) rectangles aligned with the
+coordinate axes. Best performance is achieved when output is
+directed to a pixel-oriented device and the rectangles coincide
+with the pixels on the device. In other cases, pixel output is
+emulated.</p>
+<p>The subsection of the array IA defined by indices (I1:I2, J1:J2)
+is mapped onto world-coordinate rectangle defined by X1, X2, Y1
+and Y2. This rectangle is divided into (I2 - I1 + 1) * (J2 - J1 + 1)
+small rectangles. Each of these small rectangles is solid-filled
+with the color index specified by the corresponding element of 
+IA.</p>
+<p>On most devices, the output region is "opaque", i.e., it obscures
+all graphical elements previously drawn in the region. But on
+devices that do not have erase capability, the background shade
+is "transparent" and allows previously-drawn graphics to show
+through.</p>
+<p>Arguments:</p>
+<pre>IA     (input)  : the array to be plotted.
+IDIM   (input)  : the first dimension of array A.
+JDIM   (input)  : the second dimension of array A.
+I1, I2 (input)  : the inclusive range of the first index
+                  (I) to be plotted.
+J1, J2 (input)  : the inclusive range of the second
+                  index (J) to be plotted.
+X1, Y1 (input)  : world coordinates of one corner of the output
+                  region
+X2, Y2 (input)  : world coordinates of the opposite corner of the
+                  output region</pre>
+<h3><a name="label:49" id="label:49"><em>pgpnts</em> -- draw several graph markers, not all the same</a></h3><!-- RDLabel: "pgpnts &shy;&shy; draw several graph markers, not all the same" -->
+<dl>
+<dt><a name="label:50" id="label:50"><code>pgpnts( <var>xarray</var>, <var>yarray</var>, <var>symarray</var> )</code></a><!-- RDLabel: "pgpnts" -->
+</dl>
+<p>Draw Graph Markers. Unlike PGPT, this routine can draw a different
+symbol at each point. The markers are drawn using the current values
+of attributes color-index, line-width, and character-height
+(character-font applies if the symbol number is &gt;31).  If the point
+to be marked lies outside the window, no marker is drawn.  The "pen 
+position" is changed to (XPTS(N),YPTS(N)) in world coordinates
+(if N &gt; 0).</p>
+<p>Arguments:</p>
+<pre>N      (input)  : number of points to mark.
+X      (input)  : world x-coordinate of the points.
+Y      (input)  : world y-coordinate of the points.
+SYMBOL (input)  : code number of the symbol to be plotted at each
+                  point (see PGPT).
+NS     (input)  : number of values in the SYMBOL array.  If NS &lt;= N,
+                  then the first NS points are drawn using the value
+                  of SYMBOL(I) at (X(I), Y(I)) and SYMBOL(1) for all
+                  the values of (X(I), Y(I)) where I &gt; NS.</pre>
+<p>Note: the dimension of arrays X and Y must be greater than or equal
+to N and the dimension of the array SYMBOL must be greater than or
+equal to NS.  If N is 1, X and Y may be scalars (constants or
+variables).  If NS is 1, then SYMBOL may be a scalar.  If N is
+less than 1, nothing is drawn.</p>
+<h3><a name="label:51" id="label:51"><em>pgpt</em> -- draw several graph markers</a></h3><!-- RDLabel: "pgpt &shy;&shy; draw several graph markers" -->
+<dl>
+<dt><a name="label:52" id="label:52"><code>pgpt( <var>xarray</var>, <var>yarray</var> [,<var>symbol</var>] )</code></a><!-- RDLabel: "pgpt" -->
+</dl>
+<p>Primitive routine to draw Graph Markers (polymarker). The markers
+are drawn using the current values of attributes color-index,
+line-width, and character-height (character-font applies if the symbol
+number is &gt;31).  If the point to be marked lies outside the window,
+no marker is drawn.  The "pen position" is changed to
+(XPTS(N),YPTS(N)) in world coordinates (if N &gt; 0).</p>
+<p>Arguments:</p>
+<pre>N      (input)  : number of points to mark.
+XPTS   (input)  : world x-coordinates of the points.
+YPTS   (input)  : world y-coordinates of the points.
+SYMBOL (input)  : code number of the symbol to be drawn at each 
+                  point:
+                  -1, -2  : a single dot (diameter = current
+                            line width).
+                  -3..-31 : a regular polygon with ABS(SYMBOL)
+                            edges (style set by current fill style).
+                  0..31   : standard marker symbols.
+                  32..127 : ASCII characters (in current font).
+                            e.g. to use letter F as a marker, let
+                            SYMBOL = ICHAR('F'). 
+                  &gt; 127  :  a Hershey symbol number.</pre>
+<p>Note: the dimension of arrays X and Y must be greater than or equal
+to N. If N is 1, X and Y may be scalars (constants or variables). If
+N is less than 1, nothing is drawn.</p>
+<h3><a name="label:53" id="label:53"><em>pgtick</em> -- draw a single tick mark on an axis</a></h3><!-- RDLabel: "pgtick &shy;&shy; draw a single tick mark on an axis" -->
+<dl>
+<dt><a name="label:54" id="label:54"><code>pgtick( <var>x1</var>, <var>y1</var>, <var>x2</var>, <var>y2</var>, <var>v</var> [,<var>str</var>] [,"<var>tickl</var>"|"<var>tickr</var>"|"<var>disp</var>"|"<var>orient</var>" =&gt; <var>arg</var>] )</code></a><!-- RDLabel: "pgtick" -->
+</dl>
+<p>Draw and label single tick mark on a graph axis. The tick mark is
+a short line perpendicular to the direction of the axis (which is not
+drawn by this routine). The optional text label is drawn with its
+baseline parallel to the axis and reading in the same direction as
+the axis (from point 1 to point 2). Current line and text attributes
+are used.</p>
+<p>Arguments:</p>
+<pre>X1, Y1 (input)  : world coordinates of one endpoint of the axis.
+X2, Y2 (input)  : world coordinates of the other endpoint of the axis.
+V      (input)  : draw the tick mark at fraction V (0&lt;=V&lt;=1) along
+                  the line from (X1,Y1) to (X2,Y2).
+TIKL   (input)  : length of tick mark drawn to left of axis
+                  (as seen looking from first endpoint to second), in
+                  units of the character height.
+TIKR   (input)  : length of major tick marks drawn to right of axis,
+                  in units of the character height.
+DISP   (input)  : displacement of label text to
+                  right of axis, in units of the character height.
+ORIENT (input)  : orientation of label text, in degrees; angle between
+                  baseline of text and direction of axis (0-360°).
+STR    (input)  : text of label (may be blank).</pre>
+<h3><a name="label:55" id="label:55"><em>pgvect</em> -- vector map of a 2D data array, with blanking</a></h3><!-- RDLabel: "pgvect &shy;&shy; vector map of a 2D data array, with blanking" -->
+<dl>
+<dt><a name="label:56" id="label:56"><code>pgvect( <var>x</var>, <var>y</var> [,<var>scale</var>, <var>pos</var>, <var>tr</var>, <var>blank</var>] )</code></a><!-- RDLabel: "pgvect" -->
+</dl>
+<p>Draw a vector map of two arrays.  This routine is similar to
+PGCONB in that array elements that have the "magic value" defined by
+the argument BLANK are ignored, making gaps in the vector map.  The
+routine may be useful for data measured on most but not all of the
+points of a grid. Vectors are displayed as arrows; the style of the
+arrowhead can be set with routine PGSAH, and the the size of the
+arrowhead is determined by the current character size, set by PGSCH.</p>
+<p>Arguments:</p>
+<pre>A      (input)  : horizontal component data array.
+B      (input)  : vertical component data array.
+IDIM   (input)  : first dimension of A and B.
+JDIM   (input)  : second dimension of A and B.
+I1,I2  (input)  : range of first index to be mapped (inclusive).
+J1,J2  (input)  : range of second index to be mapped (inclusive).
+C      (input)  : scale factor for vector lengths, if 0.0, C will be
+                  set so that the longest vector is equal to the
+                  smaller of TR(2)+TR(3) and TR(5)+TR(6).
+NC     (input)  : vector positioning code.
+                  &lt;0 vector head positioned on coordinates
+                  &gt;0 vector base positioned on coordinates
+                  =0 vector centered on the coordinates
+TR     (input)  : array defining a transformation between the I,J
+                  grid of the array and the world coordinates. The
+                  world coordinates of the array point A(I,J) are
+                  given by:
+                    X = TR(1) + TR(2)*I + TR(3)*J
+                    Y = TR(4) + TR(5)*I + TR(6)*J
+                  Usually TR(3) and TR(5) are zero - unless the
+                  coordinate transformation involves a rotation
+                  or shear.
+BLANK   (input) : elements of arrays A or B that are exactly equal to
+                  this value are ignored (blanked).</pre>
+<hr>
+<a href ="index.html">Ruby/PGPLOT</a>
+by <a href ="http://www.ir.isas.ac.jp/~masa/">
+Masahiro Tanaka
+</a>
+
+
+</body>
+</html>

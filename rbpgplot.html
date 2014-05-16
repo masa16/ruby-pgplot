@@ -1,0 +1,3109 @@
+
+<?xml version="1.0" ?>
+<!DOCTYPE html 
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>index</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+ body { background: white; color: black }
+dl {
+  margin-left: 1em;
+  margin-right: 2em;
+  padding: 2pt 1em 2pt 0.5em;
+  border-width: thin 0 thin thin;
+  border-color: #aaaaff;
+  background-color: #eeeeff
+}
+h1 {
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-style: solid;
+  border-width: thin thick thin thick;
+  border-color: #bbbbff;
+  color: #444444;
+  background-color: #eeeeff;
+}
+h2 {
+  padding: 0 0.75em 0 0.5em;
+  border-style: solid;
+  text-indent: 0em;
+  background-color: #eeffee;
+  border-color: #88bb88;
+  color: #444444;
+  border-width: 0 0 thin 7pt;
+}
+pre { 
+  white-space:  pre;
+  padding:      0.5em;
+  border-style: solid;
+  border-color: #CCCCCC;
+  border-width: 1px 2px 2px 1px;
+}
+h3 {
+  padding: 0 2em 0pt 0.25em;
+  border-style: solid;
+  border-color: #bb88ff;
+  color: #444444;
+  border-width: 0 0 thin thick;
+}
+--></style>
+</head>
+<body bgcolor="#ffffff">
+<h1>Ruby/PGPLOT method descriptions</h1>
+Most part of this document is from the original PGPLOT distribution
+and copyrighted by Dr. Tim Pearson.
+<b>Do not</b> redistribute this document
+separately from Ruby/PGPLOT distribution
+without his permission.
+<hr>
+<h2>Index</h2>
+<ul>
+<li><a href="#PGARRO"><code>pgarro</code></a> -- draw an arrow
+<li><a href="#PGASK"><code>pgask</code></a> -- control new page prompting
+<li><a href="#PGAXIS"><code>pgaxis</code></a> -- draw an axis
+<li><a href="#PGBBUF"><code>pgbbuf</code></a> -- begin batch of output (buffer)
+<li><a href="#PGBEG"><code>pgbeg</code></a> -- open a graphics device
+<li><a href="#PGBIN"><code>pgbin</code></a> -- histogram of binned data
+<li><a href="#PGBOX"><code>pgbox</code></a> -- draw labeled frame around viewport
+<li><a href="#PGCIRC"><code>pgcirc</code></a> -- draw a circle, using fill-area attributes
+<li><a href="#PGCLOS"><code>pgclos</code></a> -- close the selected graphics device
+<li><a href="#PGCONB"><code>pgconb</code></a> -- contour map of a 2D data array, with blanking
+<li><a href="#PGCONF"><code>pgconf</code></a> -- fill between two contours
+<li><a href="#PGCONL"><code>pgconl</code></a> -- label contour map of a 2D data array 
+<li><a href="#PGCONS"><code>pgcons</code></a> -- contour map of a 2D data array (fast algorithm)
+<li><a href="#PGCONT"><code>pgcont</code></a> -- contour map of a 2D data array (contour-following)
+<li><a href="#PGCTAB"><code>pgctab</code></a> -- install the color table to be used by PGIMAG
+<li><a href="#PGDRAW"><code>pgdraw</code></a> -- draw a line from the current pen position to a point
+<li><a href="#PGEBUF"><code>pgebuf</code></a> -- end batch of output (buffer)
+<li><a href="#PGEND"><code>pgend</code></a> -- close all open graphics devices
+<li><a href="#PGENV"><code>pgenv</code></a> -- set window and viewport and draw labeled frame
+<li><a href="#PGERAS"><code>pgeras</code></a> -- erase all graphics from current page
+<li><a href="#PGERR1"><code>pgerr1</code></a> -- horizontal or vertical error bar
+<li><a href="#PGERRB"><code>pgerrb</code></a> -- horizontal or vertical error bar
+<li><a href="#PGERRX"><code>pgerrx</code></a> -- horizontal error bar
+<li><a href="#PGERRY"><code>pgerry</code></a> -- vertical error bar
+<li><a href="#PGETXT"><code>pgetxt</code></a> -- erase text from graphics display
+<li><a href="#PGGRAY"><code>pggray</code></a> -- gray-scale map of a 2D data array
+<li><a href="#PGHIST"><code>pghist</code></a> -- histogram of unbinned data
+<li><a href="#PGIDEN"><code>pgiden</code></a> -- write username, date, and time at bottom of plot
+<li><a href="#PGIMAG"><code>pgimag</code></a> -- color image from a 2D data array
+<li><a href="#PGLAB"><code>pglab</code></a> -- write labels for x-axis, y-axis, and top of plot
+<li><a href="#PGLDEV"><code>pgldev</code></a> -- list available device types on standard output
+<li><a href="#PGLINE"><code>pgline</code></a> -- draw a polyline (curve defined by line-segments)
+<li><a href="#PGMOVE"><code>pgmove</code></a> -- move pen (change current pen position)
+<li><a href="#PGMTXT"><code>pgmtxt</code></a> -- write text at position relative to viewport
+<li><a href="#PGOPEN"><code>pgopen</code></a> -- open a graphics device
+<li><a href="#PGPAGE"><code>pgpage</code></a> -- advance to new page
+<li><a href="#PGPANL"><code>pgpanl</code></a> -- switch to a different panel on the view surface
+<li><a href="#PGPAP"><code>pgpap</code></a> -- change the size of the view surface 
+<li><a href="#PGPNTS"><code>pgpnts</code></a> -- draw several graph markers, not all the same
+<li><a href="#PGPOLY"><code>pgpoly</code></a> -- draw a polygon, using fill-area attributes
+<li><a href="#PGPT"><code>pgpt</code></a> -- draw several graph markers
+<li><a href="#PGPT1"><code>pgpt1</code></a> -- draw one graph marker
+<li><a href="#PGPTXT"><code>pgptxt</code></a> -- write text at arbitrary position and angle
+<li><a href="#PGQCF"><code>pgqcf</code></a> -- inquire character font
+<li><a href="#PGQCH"><code>pgqch</code></a> -- inquire character height
+<li><a href="#PGQCI"><code>pgqci</code></a> -- inquire color index
+<li><a href="#PGQCIR"><code>pgqcir</code></a> -- inquire color index range
+<li><a href="#PGQCLP"><code>pgqclp</code></a> -- inquire clipping status
+<li><a href="#PGQCOL"><code>pgqcol</code></a> -- inquire color capability
+<li><a href="#PGQCR"><code>pgqcr</code></a>  -- inquire color representation
+<li><a href="#PGQDT"><code>pgqdt</code></a> -- inquire name of nth available device type
+<li><a href="#PGQFS"><code>pgqfs</code></a> -- inquire fill-area style
+<li><a href="#PGQID"><code>pgqid</code></a> -- inquire current device identifier
+<li><a href="#PGQINF"><code>pgqinf</code></a> -- inquire PGPLOT general information
+<li><a href="#PGQITF"><code>pgqitf</code></a> -- inquire image transfer function
+<li><a href="#PGQLS"><code>pgqls</code></a> -- inquire line style
+<li><a href="#PGQLW"><code>pgqlw</code></a> -- inquire line width
+<li><a href="#PGQNDT"><code>pgqndt</code></a> -- inquire number of available device types
+<li><a href="#PGQPOS"><code>pgqpos</code></a> -- inquire current pen position
+<li><a href="#PGQTBG"><code>pgqtbg</code></a> -- inquire text background color index
+<li><a href="#PGQTXT"><code>pgqtxt</code></a> -- find bounding box of text string
+<li><a href="#PGQVP"><code>pgqvp</code></a> -- inquire viewport size and position
+<li><a href="#PGQVSZ"><code>pgqvsz</code></a> -- inquire size of view surface
+<li><a href="#PGQWIN"><code>pgqwin</code></a> -- inquire window boundary coordinates
+<li><a href="#PGRECT"><code>pgrect</code></a> -- draw a rectangle, using fill-area attributes
+<li><a href="#PGSAH"><code>pgsah</code></a> -- set arrow-head style
+<li><a href="#PGSAVE"><code>pgsave</code></a> -- save PGPLOT attributes
+<li><a href="#PGUNSA"><code>pgunsa</code></a> -- restore PGPLOT attributes
+<li><a href="#PGSCF"><code>pgscf</code></a> -- set character font
+<li><a href="#PGSCH"><code>pgsch</code></a> -- set character height
+<li><a href="#PGSCI"><code>pgsci</code></a> -- set color index
+<li><a href="#PGSCIR"><code>pgscir</code></a> -- set color index range
+<li><a href="#PGSCLP"><code>pgsclp</code></a> -- enable or disable clipping at edge of viewport
+<li><a href="#PGSCR"><code>pgscr</code></a> -- set color representation
+<li><a href="#PGSCRL"><code>pgscrl</code></a> -- scroll window
+<li><a href="#PGSCRN"><code>pgscrn</code></a> -- set color representation by name
+<li><a href="#PGSFS"><code>pgsfs</code></a> -- set fill-area style
+<li><a href="#PGSHLS"><code>pgshls</code></a> -- set color representation using HLS system
+<li><a href="#PGSHS"><code>pgshs</code></a> -- set hatching style
+<li><a href="#PGSITF"><code>pgsitf</code></a> -- set image transfer function
+<li><a href="#PGSLCT"><code>pgslct</code></a> -- select an open graphics device
+<li><a href="#PGSLS"><code>pgsls</code></a> -- set line style
+<li><a href="#PGSLW"><code>pgslw</code></a> -- set line width
+<li><a href="#PGSTBG"><code>pgstbg</code></a> -- set text background color index
+<li><a href="#PGSUBP"><code>pgsubp</code></a> -- subdivide view surface into panels
+<li><a href="#PGSVP"><code>pgsvp</code></a> -- set viewport (normalized device coordinates)
+<li><a href="#PGSWIN"><code>pgswin</code></a> -- set window
+<li><a href="#PGTBOX"><code>pgtbox</code></a> -- draw frame and write (DD) HH MM SS.S labelling
+<li><a href="#PGTEXT"><code>pgtext</code></a> -- write text (horizontal, left-justified)
+<li><a href="#PGTICK"><code>pgtick</code></a> -- draw a single tick mark on an axis
+<li><a href="#PGUPDT"><code>pgupdt</code></a> -- update display
+<li><a href="#PGVECT"><code>pgvect</code></a> -- vector map of a 2D data array, with blanking
+<li><a href="#PGVSIZ"><code>pgvsiz</code></a> -- set viewport (inches)
+<li><a href="#PGVSTD"><code>pgvstd</code></a> -- set standard (default) viewport
+<li><a href="#PGWEDG"><code>pgwedg</code></a> -- annotate an image plot with a wedge
+<li><a href="#PGWNAD"><code>pgwnad</code></a> -- set window and adjust viewport to same aspect ratio
+</ul><hr>
+<h2>Descriptions</h2>
+<h3><a name="PGARRO"><em>pgarro</em> -- draw an arrow
+</a></h3>
+<dl><dt><code>pgarro( x1, y1, x2, y2 )</code></dl>
+<pre>
+Draw an arrow from the point with world-coordinates (X1,Y1) to 
+(X2,Y2). The size of the arrowhead at (X2,Y2) is determined by 
+the current character size set by routine <a href="#PGSCH">PGSCH</a>. The default size 
+is 1/40th of the smaller of the width or height of the view surface.
+The appearance of the arrowhead (shape and solid or open) is
+controlled by routine <a href="#PGSAH">PGSAH</a>.
+
+Arguments:
+ X1, Y1 (input)  : world coordinates of the tail of the arrow.
+ X2, Y2 (input)  : world coordinates of the head of the arrow.
+</pre>
+<hr>
+
+
+<h3><a name="PGASK"><em>pgask</em> -- control new page prompting
+</a></h3>
+<dl><dt><code>pgask( true|false )
+</code></dl>
+<pre>
+Change the ``prompt state'' of PGPLOT. If the prompt state is
+ON, <a href="#PGPAGE">PGPAGE</a> will type ``Type RETURN for next page:'' and will wait
+for the user to type a carriage-return before starting a new page.
+The initial prompt state (after the device has been opened) is ON
+for interactive devices. Prompt state is always OFF for
+non-interactive devices.
+
+Arguments:
+ FLAG   (input)  : if .TRUE., and if the device is an interactive
+                   device, the prompt state will be set to ON. If
+                   .FALSE., the prompt state will be set to OFF.
+</pre>
+<hr>
+
+
+<h3><a name="PGAXIS"><em>pgaxis</em> -- draw an axis
+</a></h3>
+<dl><dt><code>pgaxis( x1, y1, x2, y2, v1, v2
+      [,"opt"|"step"|"nsub"|"tickl"|"tickr"|"frac"|"disp"|"orient"] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+  Example:
+    pgaxis( 1, 1, 9, 5, 0, 3, "tickl"=>1, "opt"=>"NL2" )
+
+  Arguments:
+     x1, y1  : world coordinates of one endpoint of the axis.
+     x2, y2  : world coordinates of the other endpoint of the axis.
+     v1      : axis value at first endpoint.
+     v2      : axis value at second endpoint.
+
+  Keyword Argnuments:
+     opt     : a string containing single-letter codes for
+ 	       various options. The options currently
+ 	       recognized are:
+ 	       L : draw a logarithmic axis
+ 	       N : write numeric labels
+ 	       1 : force decimal labelling, instead of automatic
+ 	    	   choice (see PGNUMB).
+ 	       2 : force exponential labelling, instead of
+ 	    	   automatic.
+     step    : major tick marks are drawn at axis value 0.0 plus
+ 	       or minus integer multiples of STEP. If STEP=0.0,
+ 	       a value is chosen automatically.
+     nsub    : minor tick marks are drawn to divide the major
+ 	       divisions into NSUB equal subdivisions (ignored if
+ 	       STEP=0.0). If NSUB <= 1, no minor tick marks are
+ 	       drawn. NSUB is ignored for a logarithmic axis.
+     tickl   : length of major tick marks drawn to left of axis
+ 	       (as seen looking from first endpoint to second), in
+ 	       units of the character height.
+     tickr   : length of major tick marks drawn to right of axis,
+ 	       in units of the character height.
+     frac    : length of minor tick marks, as fraction of major.
+     disp    : displacement of baseline of tick labels to
+ 	       right of axis, in units of the character height.
+     orient  : orientation of label text, in degrees; angle between
+               baseline of text and direction of axis (0-360
+</pre>
+<pre>
+Draw a labelled graph axis from world-coordinate position (X1,Y1) to
+(X2,Y2).
+
+Normally, this routine draws a standard LINEAR axis with equal
+subdivisions.   The quantity described by the axis runs from V1 to V2;
+this may be, but need not be, the same as X or Y. 
+
+If the 'L' option is specified, the routine draws a LOGARITHMIC axis.
+In this case, the quantity described by the axis runs from 10**V1 to
+10**V2. A logarithmic axis always has major, labeled, tick marks 
+spaced by one or more decades. If the major tick marks are spaced
+by one decade (as specified by the STEP argument), then minor
+tick marks are placed at 2, 3, .., 9 times each power of 10;
+otherwise minor tick marks are spaced by one decade. If the axis
+spans less than two decades, numeric labels are placed at 1, 2, and
+5 times each power of ten.
+
+If the axis spans less than one decade, or if it spans many decades,
+it is preferable to use a linear axis labeled with the logarithm of
+the quantity of interest.
+
+Arguments:
+ OPT    (input)  : a string containing single-letter codes for
+                   various options. The options currently
+                   recognized are:
+                   L : draw a logarithmic axis
+                   N : write numeric labels
+                   1 : force decimal labelling, instead of automatic
+                       choice (see <a href="#PGNUMB">PGNUMB</a>).
+                   2 : force exponential labelling, instead of
+                       automatic.
+ X1, Y1 (input)  : world coordinates of one endpoint of the axis.
+ X2, Y2 (input)  : world coordinates of the other endpoint of the axis.
+ V1     (input)  : axis value at first endpoint.
+ V2     (input)  : axis value at second endpoint.
+ STEP   (input)  : major tick marks are drawn at axis value 0.0 plus
+                   or minus integer multiples of STEP. If STEP=0.0,
+                   a value is chosen automatically.
+ NSUB   (input)  : minor tick marks are drawn to divide the major
+                   divisions into NSUB equal subdivisions (ignored if
+                   STEP=0.0). If NSUB &lt= 1, no minor tick marks are
+                   drawn. NSUB is ignored for a logarithmic axis.
+ DMAJL  (input)  : length of major tick marks drawn to left of axis
+                   (as seen looking from first endpoint to second), in
+                   units of the character height.
+ DMAJR  (input)  : length of major tick marks drawn to right of axis,
+                   in units of the character height.
+ FMIN   (input)  : length of minor tick marks, as fraction of major.
+ DISP   (input)  : displacement of baseline of tick labels to
+                   right of axis, in units of the character height.
+ ORIENT (input)  : orientation of label text, in degrees; angle between
+                   baseline of text and direction of axis (0-360°).
+</pre>
+<hr>
+
+
+<h3><a name="PGBBUF"><em>pgbbuf</em> -- begin batch of output (buffer)
+</a></h3>
+<dl><dt><code>pgbbuf</code></dl>
+<pre>
+Begin saving graphical output commands in an internal buffer; the
+commands are held until a matching <a href="#PGEBUF">PGEBUF</a> call (or until the buffer
+is emptied by <a href="#PGUPDT">PGUPDT</a>). This can greatly improve the efficiency of
+PGPLOT.  <a href="#PGBBUF">PGBBUF</a> increments an internal counter, while <a href="#PGEBUF">PGEBUF</a>
+decrements this counter and flushes the buffer to the output
+device when the counter drops to zero.  <a href="#PGBBUF">PGBBUF</a> and <a href="#PGEBUF">PGEBUF</a> calls
+should always be paired.
+
+Arguments: none
+</pre>
+<hr>
+
+
+<h3><a name="PGBEG"><em>pgbeg</em> -- open a graphics device
+</a></h3>
+<dl><dt><code>pgbeg( [device, [nxsub, [nysub]]] ) #=&gt status
+</code></dl>
+<pre>
+Note: new programs should use <a href="#PGOPEN">PGOPEN</a> rather than <a href="#PGBEG">PGBEG</a>. <a href="#PGOPEN">PGOPEN</a>
+is retained for compatibility with existing programs. Unlike <a href="#PGOPEN">PGOPEN</a>,
+<a href="#PGBEG">PGBEG</a> closes any graphics devices that are already open, so it 
+cannot be used to open devices to be used in parallel.
+
+<a href="#PGBEG">PGBEG</a> opens a graphical device or file and prepares it for
+subsequent plotting. A device must be opened with <a href="#PGBEG">PGBEG</a> or <a href="#PGOPEN">PGOPEN</a>
+before any other calls to PGPLOT subroutines for the device.
+
+If any device  is already open for PGPLOT output, it is closed before
+the new device is opened.
+
+Returns:
+ <a href="#PGBEG">PGBEG</a>         : a status return value. A value of 1 indicates
+                   successful completion, any other value indicates
+                   an error. In the event of error a message is
+                   written on the standard error unit.  
+                   To test the return value, call
+                   <a href="#PGBEG">PGBEG</a> as a function, eg IER=<a href="#PGBEG">PGBEG</a>(...); note
+                   that <a href="#PGBEG">PGBEG</a> must be declared INTEGER in the
+                   calling program. Some Fortran compilers allow
+                   you to use CALL <a href="#PGBEG">PGBEG</a>(...) and discard the
+                   return value, but this is not standard Fortran.
+Arguments:
+ UNIT  (input)   : this argument is ignored by <a href="#PGBEG">PGBEG</a> (use zero).
+ FILE  (input)   : the "device specification" for the plot device.
+                   (For explanation, see description of <a href="#PGOPEN">PGOPEN</a>.)
+ NXSUB  (input)  : the number of subdivisions of the view surface in
+                   X (&gt0 or &lt0).
+ NYSUB  (input)  : the number of subdivisions of the view surface in
+                   Y (&gt0).
+                   PGPLOT puts NXSUB x NYSUB graphs on each plot
+                   page or screen; when the view surface is sub-
+                   divided in this way, <a href="#PGPAGE">PGPAGE</a> moves to the next
+                   panel, not the  next physical page. If
+                   NXSUB &gt 0, PGPLOT uses the panels in row
+                   order; if &lt0, PGPLOT uses them in column order.
+</pre>
+<hr>
+
+
+<h3><a name="PGBIN"><em>pgbin</em> -- histogram of binned data
+</a></h3>
+<dl><dt><code>pgbin( xarray, yarray [,center] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+   x      : abscissae of bins.
+   y      : data values of bins.
+   center : if true, the X values denote the center of the bin;
+            if false, the X values denote the lower edge (in X) of the bin.
+</pre>
+<pre>
+Plot a histogram of NBIN values with X(1..NBIN) values along
+the ordinate, and DATA(1...NBIN) along the abscissa. Bin width is
+spacing between X values.
+
+Arguments:
+ NBIN   (input)  : number of values.
+ X      (input)  : abscissae of bins.
+ DATA   (input)  : data values of bins.
+ CENTER (input)  : if .TRUE., the X values denote the center of the
+                   bin; if .FALSE., the X values denote the lower
+                   edge (in X) of the bin.
+</pre>
+<hr>
+
+
+<h3><a name="PGBOX"><em>pgbox</em> -- draw labeled frame around viewport
+</a></h3>
+<dl><dt><code>pgbox( xopt, xtick, nxsub, yopt, ytick, nysub )</code></dl>
+<pre>
+Annotate the viewport with frame, axes, numeric labels, etc.
+<a href="#PGBOX">PGBOX</a> is called by on the user's behalf by <a href="#PGENV">PGENV</a>, but may also be
+called explicitly.
+
+Arguments:
+ XOPT   (input)  : string of options for X (horizontal) axis of
+                   plot. Options are single letters, and may be in
+                   any order (see below).
+ XTICK  (input)  : world coordinate interval between major tick marks
+                   on X axis. If XTICK=0.0, the interval is chosen by
+                   <a href="#PGBOX">PGBOX</a>, so that there will be at least 3 major tick
+                   marks along the axis.
+ NXSUB  (input)  : the number of subintervals to divide the major
+                   coordinate interval into. If XTICK=0.0 or NXSUB=0,
+                   the number is chosen by <a href="#PGBOX">PGBOX</a>.
+ YOPT   (input)  : string of options for Y (vertical) axis of plot.
+                   Coding is the same as for XOPT.
+ YTICK  (input)  : like XTICK for the Y axis.
+ NYSUB  (input)  : like NXSUB for the Y axis.
+
+Options (for parameters XOPT and YOPT):
+ A : draw Axis (X axis is horizontal line Y=0, Y axis is vertical
+     line X=0).
+ B : draw bottom (X) or left (Y) edge of frame.
+ C : draw top (X) or right (Y) edge of frame.
+ G : draw Grid of vertical (X) or horizontal (Y) lines.
+ I : Invert the tick marks; ie draw them outside the viewport
+     instead of inside.
+ L : label axis Logarithmically (see below).
+ N : write Numeric labels in the conventional location below the
+     viewport (X) or to the left of the viewport (Y).
+ P : extend ("Project") major tick marks outside the box (ignored if
+     option I is specified).
+ M : write numeric labels in the unconventional location above the
+     viewport (X) or to the right of the viewport (Y).
+ T : draw major Tick marks at the major coordinate interval.
+ S : draw minor tick marks (Subticks).
+ V : orient numeric labels Vertically. This is only applicable to Y.
+     The default is to write Y-labels parallel to the axis.
+ 1 : force decimal labelling, instead of automatic choice (see <a href="#PGNUMB">PGNUMB</a>).
+ 2 : force exponential labelling, instead of automatic.
+
+To get a complete frame, specify BC in both XOPT and YOPT.
+Tick marks, if requested, are drawn on the axes or frame
+or both, depending which are requested. If none of ABC is specified,
+tick marks will not be drawn. When <a href="#PGENV">PGENV</a> calls <a href="#PGBOX">PGBOX</a>, it sets both
+XOPT and YOPT according to the value of its parameter AXIS:
+-1: 'BC', 0: 'BCNST', 1: 'ABCNST', 2: 'ABCGNST'.
+
+For a logarithmic axis, the major tick interval is always 1.0. The
+numeric label is 10**(x) where x is the world coordinate at the
+tick mark. If subticks are requested, 8 subticks are drawn between
+each major tick at equal logarithmic intervals.
+
+To label an axis with time (days, hours, minutes, seconds) or
+angle (degrees, arcmin, arcsec), use routine <a href="#PGTBOX">PGTBOX</a>.
+</pre>
+<hr>
+
+
+<h3><a name="PGCIRC"><em>pgcirc</em> -- draw a circle, using fill-area attributes
+</a></h3>
+<dl><dt><code>pgcirc( xcent, ycent, radius )</code></dl>
+<pre>
+Draw a circle. The action of this routine depends
+on the setting of the Fill-Area Style attribute. If Fill-Area Style
+is SOLID (the default), the interior of the circle is solid-filled
+using the current Color Index. If Fill-Area Style is HOLLOW, the
+outline of the circle is drawn using the current line attributes
+(color index, line-style, and line-width).
+
+Arguments:
+ XCENT  (input)  : world x-coordinate of the center of the circle.
+ YCENT  (input)  : world y-coordinate of the center of the circle.
+ RADIUS (input)  : radius of circle (world coordinates).
+</pre>
+<hr>
+
+
+<h3><a name="PGCLOS"><em>pgclos</em> -- close the selected graphics device
+</a></h3>
+<dl><dt><code>pgclos</code></dl>
+<pre>
+Close the currently selected graphics device. After the device has
+been closed, either another open device must be selected with <a href="#PGSLCT">PGSLCT</a>
+or another device must be opened with <a href="#PGOPEN">PGOPEN</a> before any further
+plotting can be done. If the call to <a href="#PGCLOS">PGCLOS</a> is omitted, some or all 
+of the plot may be lost.
+
+[This routine was added to PGPLOT in Version 5.1.0. Older programs
+use <a href="#PGEND">PGEND</a> instead.]
+
+Arguments: none
+</pre>
+<hr>
+
+
+<h3><a name="PGCONB"><em>pgconb</em> -- contour map of a 2D data array, with blanking
+</a></h3>
+<dl><dt><code>pgconb( map, cont [, blank, tr] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+   map   : 2-D array of map data
+   cont  : array of contour levels
+   tr    : transformation matrix
+   blank : elements of array A that are equal to this value are blanked.
+</pre>
+<pre>
+Draw a contour map of an array. This routine is the same as <a href="#PGCONS">PGCONS</a>,
+except that array elements that have the "magic value" defined by
+argument BLANK are ignored, making gaps in the contour map. The
+routine may be useful for data measured on most but not all of the
+points of a grid.
+
+Arguments:
+ A      (input)  : data array.
+ IDIM   (input)  : first dimension of A.
+ JDIM   (input)  : second dimension of A.
+ I1,I2  (input)  : range of first index to be contoured (inclusive).
+ J1,J2  (input)  : range of second index to be contoured (inclusive).
+ C      (input)  : array of contour levels (in the same units as the
+                   data in array A); dimension at least NC.
+ NC     (input)  : number of contour levels (less than or equal to
+                   dimension of C). The absolute value of this
+                   argument is used (for compatibility with <a href="#PGCONT">PGCONT</a>,
+                   where the sign of NC is significant).
+ TR     (input)  : array defining a transformation between the I,J
+                   grid of the array and the world coordinates. The
+                   world coordinates of the array point A(I,J) are
+                   given by:
+                     X = TR(1) + TR(2)*I + TR(3)*J
+                     Y = TR(4) + TR(5)*I + TR(6)*J
+                   Usually TR(3) and TR(5) are zero - unless the
+                   coordinate transformation involves a rotation
+                   or shear.
+ BLANK   (input) : elements of array A that are exactly equal to
+                   this value are ignored (blanked).
+</pre>
+<hr>
+
+
+<h3><a name="PGCONF"><em>pgconf</em> -- fill between two contours
+</a></h3>
+<dl><dt><code>pgconf( map, cont_range [,tr] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+   map        : 2-D array of map data
+   cont_range : range of two contour levels
+   tr         : transformation matrix
+</pre>
+<pre>
+Shade the region between two contour levels of a function defined on
+the nodes of a rectangular grid. The routine uses the current fill
+attributes, hatching style (if appropriate), and color index.
+
+If you want to both shade between contours and draw the contour
+lines, call this routine first (once for each pair of levels) and 
+then CALL <a href="#PGCONT">PGCONT</a> (or <a href="#PGCONS">PGCONS</a>) to draw the contour lines on top of the
+shading.
+
+Note 1: This routine is not very efficient: it generates a polygon
+fill command for each cell of the mesh that intersects the desired
+area, rather than consolidating adjacent cells into a single polygon.
+
+Note 2: If both contours intersect all four edges of a particular
+mesh cell, the program behaves badly and may consider some parts
+of the cell to lie in more than one contour range.
+
+Note 3: If a contour crosses all four edges of a cell, this
+routine may not generate the same contours as <a href="#PGCONT">PGCONT</a> or <a href="#PGCONS">PGCONS</a>
+(these two routines may not agree either). Such cases are always
+ambiguous and the routines use different approaches to resolving
+the ambiguity.
+
+Arguments:
+ A      (input)  : data array.
+ IDIM   (input)  : first dimension of A.
+ JDIM   (input)  : second dimension of A.
+ I1,I2  (input)  : range of first index to be contoured (inclusive).
+ J1,J2  (input)  : range of second index to be contoured (inclusive).
+ C1, C2 (input)  : contour levels; note that C1 must be less than C2.
+ TR     (input)  : array defining a transformation between the I,J
+                   grid of the array and the world coordinates. The
+                   world coordinates of the array point A(I,J) are
+                   given by:
+                     X = TR(1) + TR(2)*I + TR(3)*J
+                     Y = TR(4) + TR(5)*I + TR(6)*J
+                   Usually TR(3) and TR(5) are zero - unless the
+                   coordinate transformation involves a rotation
+                   or shear.
+</pre>
+<hr>
+
+
+<h3><a name="PGCONL"><em>pgconl</em> -- label contour map of a 2D data array 
+</a></h3>
+<dl><dt><code>pgconl( map, cont, label [,intval, minint, tr] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+   map    : 2-D array of map data 
+   cont   : contour level tobe labeld
+   label  : label string
+   intval : spacing along the contour between labels, in grid cells.
+   minint : contours that cross less than MININT cells will not be labelled.
+   tr     : transformation matrix
+</pre>
+<pre>
+Label a contour map drawn with routine <a href="#PGCONT">PGCONT</a>. Routine <a href="#PGCONT">PGCONT</a> should
+be called first to draw the contour lines, then this routine should be
+called to add the labels. Labels are written at intervals along the
+contour lines, centered on the contour lines with lettering aligned
+in the up-hill direction. Labels are opaque, so a part of the under-
+lying contour line is obscured by the label. Labels use the current
+attributes (character height, line width, color index, character
+font).
+
+The first 9 arguments are the same as those supplied to <a href="#PGCONT">PGCONT</a>, and
+should normally be identical to those used with <a href="#PGCONT">PGCONT</a>. Note that
+only one contour level can be specified; tolabel more contours, call
+<a href="#PGCONL">PGCONL</a> for each level.
+
+The Label is supplied as a character string in argument LABEL.
+
+The spacing of labels along the contour is specified by parameters
+INTVAL and MININT. The routine follows the contour through the
+array, counting the number of cells that the contour crosses. The
+first label will be written in the MININT'th cell, and additional
+labels will be written every INTVAL cells thereafter. A contour
+that crosses less than MININT cells will not be labelled. Some
+experimentation may be needed to get satisfactory results; a good
+place to start is INTVAL=20, MININT=10.
+
+Arguments:
+ A      (input) : data array.
+ IDIM   (input) : first dimension of A.
+ JDIM   (input) : second dimension of A.
+ I1, I2 (input) : range of first index to be contoured (inclusive).
+ J1, J2 (input) : range of second index to be contoured (inclusive).
+ C      (input) : the level of the contour to be labelled (one of the
+                  values given to <a href="#PGCONT">PGCONT</a>).
+ TR     (input) : array defining a transformation between the I,J
+                  grid of the array and the world coordinates.
+                  The world coordinates of the array point A(I,J)
+                  are given by:
+                    X = TR(1) + TR(2)*I + TR(3)*J
+                    Y = TR(4) + TR(5)*I + TR(6)*J
+                  Usually TR(3) and TR(5) are zero - unless the
+                  coordinate transformation involves a rotation or
+                  shear.
+ LABEL  (input) : character strings to be used to label the specified
+                  contour. Leading and trailing blank spaces are
+                  ignored.
+ INTVAL (input) : spacing along the contour between labels, in
+                  grid cells.
+ MININT (input) : contours that cross less than MININT cells
+                  will not be labelled.
+</pre>
+<hr>
+
+
+<h3><a name="PGCONS"><em>pgcons</em> -- contour map of a 2D data array (fast algorithm)
+</a></h3>
+<dl><dt><code>pgcons( map, cont [,tr] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+   map   : 2-D array of map data
+   cont  : array of contour levels
+   tr    : transformation matrix
+</pre>
+<pre>
+Draw a contour map of an array. The map is truncated if
+necessary at the boundaries of the viewport.  Each contour line is
+drawn with the current line attributes (color index, style, and
+width).  This routine, unlike <a href="#PGCONT">PGCONT</a>, does not draw each contour as a
+continuous line, but draws the straight line segments composing each
+contour in a random order.  It is thus not suitable for use on pen
+plotters, and it usually gives unsatisfactory results with dashed or
+dotted lines.  It is, however, faster than <a href="#PGCONT">PGCONT</a>, especially if
+several contour levels are drawn with one call of <a href="#PGCONS">PGCONS</a>.
+
+Arguments:
+ A      (input)  : data array.
+ IDIM   (input)  : first dimension of A.
+ JDIM   (input)  : second dimension of A.
+ I1,I2  (input)  : range of first index to be contoured (inclusive).
+ J1,J2  (input)  : range of second index to be contoured (inclusive).
+ C      (input)  : array of contour levels (in the same units as the
+                   data in array A); dimension at least NC.
+ NC     (input)  : number of contour levels (less than or equal to
+                   dimension of C). The absolute value of this
+                   argument is used (for compatibility with <a href="#PGCONT">PGCONT</a>,
+                   where the sign of NC is significant).
+ TR     (input)  : array defining a transformation between the I,J
+                   grid of the array and the world coordinates. The
+                   world coordinates of the array point A(I,J) are
+                   given by:
+                     X = TR(1) + TR(2)*I + TR(3)*J
+                     Y = TR(4) + TR(5)*I + TR(6)*J
+                   Usually TR(3) and TR(5) are zero - unless the
+                   coordinate transformation involves a rotation
+                   or shear.
+</pre>
+<hr>
+
+
+<h3><a name="PGCONT"><em>pgcont</em> -- contour map of a 2D data array (contour-following)
+</a></h3>
+<dl><dt><code>pgcont( map, cont [,tr] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+   map   : 2-D array of map data
+   cont  : array of contour levels
+   tr    : transformation matrix between array grid and world coordinates.
+</pre>
+<pre>
+Draw a contour map of an array.  The map is truncated if
+necessary at the boundaries of the viewport.  Each contour line
+is drawn with the current line attributes (color index, style, and
+width); except that if argument NC is positive (see below), the line
+style is set by <a href="#PGCONT">PGCONT</a> to 1 (solid) for positive contours or 2
+(dashed) for negative contours.
+
+Arguments:
+ A      (input) : data array.
+ IDIM   (input) : first dimension of A.
+ JDIM   (input) : second dimension of A.
+ I1, I2 (input) : range of first index to be contoured (inclusive).
+ J1, J2 (input) : range of second index to be contoured (inclusive).
+ C      (input) : array of NC contour levels; dimension at least NC.
+ NC     (input) : +/- number of contour levels (less than or equal
+                  to dimension of C). If NC is positive, it is the
+                  number of contour levels, and the line-style is
+                  chosen automatically as described above. If NC is
+                  negative, it is minus the number of contour
+                  levels, and the current setting of line-style is
+                  used for all the contours.
+ TR     (input) : array defining a transformation between the I,J
+                  grid of the array and the world coordinates.
+                  The world coordinates of the array point A(I,J)
+                  are given by:
+                    X = TR(1) + TR(2)*I + TR(3)*J
+                    Y = TR(4) + TR(5)*I + TR(6)*J
+                  Usually TR(3) and TR(5) are zero - unless the
+                  coordinate transformation involves a rotation or
+                  shear.
+</pre>
+<hr>
+
+
+<h3><a name="PGCTAB"><em>pgctab</em> -- install the color table to be used by PGIMAG
+</a></h3>
+<dl><dt><code>pgctab( l,r,g,b [,contra,bright] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+  Arguments:
+   l       : An array of NC normalized ramp-intensity levels
+             corresponding to the RGB primary color intensities
+             in R(),G(),B(). Colors on the ramp are linearly
+             interpolated from neighbouring levels.
+             Levels must be sorted in increasing order.
+              0.0 places a color at the beginning of the ramp.
+              1.0 places a color at the end of the ramp.
+             Colors outside these limits are legal, but will
+             not be visible if CONTRA=1.0 and BRIGHT=0.5.
+   r,g,b   : array of normalized red,green,blue intensities.
+   contra  : The contrast of the color ramp (normally 1.0).
+             Negative values reverse the direction of the ramp.
+   bright  : The brightness of the color ramp. This is normally 0.5
+             but can sensibly hold any value between 0.0 and 1.0.
+</pre>
+<pre>
+Use the given color table to change the color representations of
+all color indexes marked for use by <a href="#PGIMAG">PGIMAG</a>. To change which
+color indexes are thus marked, call <a href="#PGSCIR">PGSCIR</a> before calling <a href="#PGCTAB">PGCTAB</a>
+or <a href="#PGIMAG">PGIMAG</a>. On devices that can change the color representations
+of previously plotted graphics, <a href="#PGCTAB">PGCTAB</a> will also change the colors
+of existing graphics that were plotted with the marked color
+indexes. This feature can then be combined with <a href="#PGBAND">PGBAND</a> to
+interactively manipulate the displayed colors of data previously
+plotted with <a href="#PGIMAG">PGIMAG</a>.
+
+Limitations:
+ 1. Some devices do not propagate color representation changes
+    to previously drawn graphics.
+ 2. Some devices ignore requests to change color representations.
+ 3. The appearance of specific color representations on grey-scale
+    devices is device-dependent.
+
+Notes:
+ To reverse the sense of a color table, change the chosen contrast
+ and brightness to -CONTRA and 1-BRIGHT.
+
+ In the following, the term 'color table' refers to the input
+ L,R,G,B arrays, whereas 'color ramp' refers to the resulting
+ ramp of colors that would be seen with <a href="#PGWEDG">PGWEDG</a>.
+
+Arguments:
+ L      (input)  : An array of NC normalized ramp-intensity levels
+                   corresponding to the RGB primary color intensities
+                   in R(),G(),B(). Colors on the ramp are linearly
+                   interpolated from neighbouring levels.
+                   Levels must be sorted in increasing order.
+                    0.0 places a color at the beginning of the ramp.
+                    1.0 places a color at the end of the ramp.
+                   Colors outside these limits are legal, but will
+                   not be visible if CONTRA=1.0 and BRIGHT=0.5.
+ R      (input)  : An array of NC normalized red intensities.
+ G      (input)  : An array of NC normalized green intensities.
+ B      (input)  : An array of NC normalized blue intensities.
+ NC     (input)  : The number of color table entries.
+ CONTRA (input)  : The contrast of the color ramp (normally 1.0).
+                   Negative values reverse the direction of the ramp.
+ BRIGHT (input)  : The brightness of the color ramp. This is normally
+                   0.5, but can sensibly hold any value between 0.0
+                   and 1.0. Values at or beyond the latter two
+                   extremes, saturate the color ramp with the colors
+                   of the respective end of the color table.
+</pre>
+<hr>
+
+
+<h3><a name="PGDRAW"><em>pgdraw</em> -- draw a line from the current pen position to a point
+</a></h3>
+<dl><dt><code>pgdraw( x, y )</code></dl>
+<pre>
+Draw a line from the current pen position to the point
+with world-coordinates (X,Y). The line is clipped at the edge of the
+current window. The new pen position is (X,Y) in world coordinates.
+
+Arguments:
+ X      (input)  : world x-coordinate of the end point of the line.
+ Y      (input)  : world y-coordinate of the end point of the line.
+</pre>
+<hr>
+
+
+<h3><a name="PGEBUF"><em>pgebuf</em> -- end batch of output (buffer)
+</a></h3>
+<dl><dt><code>pgebuf</code></dl>
+<pre>
+A call to <a href="#PGEBUF">PGEBUF</a> marks the end of a batch of graphical output begun
+with the last call of <a href="#PGBBUF">PGBBUF</a>.  <a href="#PGBBUF">PGBBUF</a> and <a href="#PGEBUF">PGEBUF</a> calls should always
+be paired. Each call to <a href="#PGBBUF">PGBBUF</a> increments a counter, while each call
+to <a href="#PGEBUF">PGEBUF</a> decrements the counter. When the counter reaches 0, the
+batch of output is written on the output device.
+
+Arguments: none
+</pre>
+<hr>
+
+
+<h3><a name="PGEND"><em>pgend</em> -- close all open graphics devices
+</a></h3>
+<dl><dt><code>pgend</code></dl>
+<pre>
+Close and release any open graphics devices. All devices must be
+closed by calling either <a href="#PGCLOS">PGCLOS</a> (for each device) or <a href="#PGEND">PGEND</a> before
+the program terminates. If a device is not closed properly, some
+or all of the graphical output may be lost.
+
+Arguments: none
+</pre>
+<hr>
+
+
+<h3><a name="PGENV"><em>pgenv</em> -- set window and viewport and draw labeled frame
+</a></h3>
+<dl><dt><code>pgenv( xmin,xmax,ymin,ymax [, just [, axis]] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+     xmin: the left of the viewport.
+     xmax: the right of the viewport.
+     ymin: the bottom of the viewport.
+     ymax: the top of the viewport
+     just: if just=1, the x and y axes is scaled equally,
+           otherwise scaled independently.
+     axis: controls of axes.
+</pre>
+<pre>
+Set PGPLOT "Plotter Environment".  <a href="#PGENV">PGENV</a> establishes the scaling
+for subsequent calls to <a href="#PGPT">PGPT</a>, <a href="#PGLINE">PGLINE</a>, etc.  The plotter is
+advanced to a new page or panel, clearing the screen if necessary.
+If the "prompt state" is ON (see <a href="#PGASK">PGASK</a>), confirmation
+is requested from the user before clearing the screen.
+If requested, a box, axes, labels, etc. are drawn according to
+the setting of argument AXIS.
+
+Arguments:
+ XMIN   (input)  : the world x-coordinate at the bottom left corner
+                   of the viewport.
+ XMAX   (input)  : the world x-coordinate at the top right corner
+                   of the viewport (note XMAX may be less than XMIN).
+ YMIN   (input)  : the world y-coordinate at the bottom left corner
+                   of the viewport.
+ YMAX   (input)  : the world y-coordinate at the top right corner
+                   of the viewport (note YMAX may be less than YMIN).
+ JUST   (input)  : if JUST=1, the scales of the x and y axes (in
+                   world coordinates per inch) will be equal,
+                   otherwise they will be scaled independently.
+ AXIS   (input)  : controls the plotting of axes, tick marks, etc:
+     AXIS = -2 : draw no box, axes or labels;
+     AXIS = -1 : draw box only;
+     AXIS =  0 : draw box and label it with coordinates;
+     AXIS =  1 : same as AXIS=0, but also draw the
+                 coordinate axes (X=0, Y=0);
+     AXIS =  2 : same as AXIS=1, but also draw grid lines
+                 at major increments of the coordinates;
+     AXIS = 10 : draw box and label X-axis logarithmically;
+     AXIS = 20 : draw box and label Y-axis logarithmically;
+     AXIS = 30 : draw box and label both axes logarithmically.
+
+For other axis options, use routine <a href="#PGBOX">PGBOX</a>. <a href="#PGENV">PGENV</a> can be persuaded to
+call <a href="#PGBOX">PGBOX</a> with additional axis options by defining an environment
+parameter PGPLOT_ENVOPT containing the required option codes. 
+Examples:
+  PGPLOT_ENVOPT=P      ! draw Projecting tick marks
+  PGPLOT_ENVOPT=I      ! Invert the tick marks
+  PGPLOT_ENVOPT=IV     ! Invert tick marks and label y Vertically
+</pre>
+<hr>
+
+
+<h3><a name="PGERAS"><em>pgeras</em> -- erase all graphics from current page
+</a></h3>
+<dl><dt><code>pgeras</code></dl>
+<pre>
+Erase all graphics from the current page (or current panel, if
+the view surface has been divided into panels with <a href="#PGSUBP">PGSUBP</a>).
+
+Arguments: none
+</pre>
+<hr>
+
+
+<h3><a name="PGERR1"><em>pgerr1</em> -- horizontal or vertical error bar
+</a></h3>
+<dl><dt><code>pgerr1( dir, x, y, e, t )</code></dl>
+<pre>
+Plot a single error bar in the direction specified by DIR.
+This routine draws an error bar only; to mark the data point at
+the start of the error bar, an additional call to <a href="#PGPT">PGPT</a> is required.
+To plot many error bars, use <a href="#PGERRB">PGERRB</a>.
+
+Arguments:
+ DIR    (input)  : direction to plot the error bar relative to
+                   the data point. 
+                   One-sided error bar:
+                     DIR is 1 for +X (X to X+E);
+                            2 for +Y (Y to Y+E);
+                            3 for -X (X to X-E);
+                            4 for -Y (Y to Y-E).
+                   Two-sided error bar:
+                     DIR is 5 for +/-X (X-E to X+E); 
+                            6 for +/-Y (Y-E to Y+E).
+ X      (input)  : world x-coordinate of the data.
+ Y      (input)  : world y-coordinate of the data.
+ E      (input)  : value of error bar distance to be added to the
+                   data position in world coordinates.
+ T      (input)  : length of terminals to be drawn at the ends
+                   of the error bar, as a multiple of the default
+                   length; if T = 0.0, no terminals will be drawn.
+</pre>
+<hr>
+
+
+<h3><a name="PGERRB"><em>pgerrb</em> -- horizontal or vertical error bar
+</a></h3>
+<dl><dt><code>pgerrb( dir, x, y, err [,tlen] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+   dir : direction to plot the error bar relative to the data point. 
+         One-sided error bar:
+           DIR is 1 for +X (X to X+E);
+                  2 for +Y (Y to Y+E);
+                  3 for -X (X to X-E);
+                  4 for -Y (Y to Y-E).
+         Two-sided error bar:
+           DIR is 5 for +/-X (X-E to X+E); 
+                  6 for +/-Y (Y-E to Y+E).
+   x   : world x-coordinates of the data.
+   y   : world y-coordinates of the data.
+   err : value of error bar distance to be added to the
+         data position in world coordinates.
+   tlen: length of terminals to be drawn at the ends of the error bar,
+	 as a multiple of the default length.
+</pre>
+<pre>
+Plot error bars in the direction specified by DIR.
+This routine draws an error bar only; to mark the data point at
+the start of the error bar, an additional call to <a href="#PGPT">PGPT</a> is required.
+
+Arguments:
+ DIR    (input)  : direction to plot the error bar relative to
+                   the data point. 
+                   One-sided error bar:
+                     DIR is 1 for +X (X to X+E);
+                            2 for +Y (Y to Y+E);
+                            3 for -X (X to X-E);
+                            4 for -Y (Y to Y-E).
+                   Two-sided error bar:
+                     DIR is 5 for +/-X (X-E to X+E); 
+                            6 for +/-Y (Y-E to Y+E).
+ N      (input)  : number of error bars to plot.
+ X      (input)  : world x-coordinates of the data.
+ Y      (input)  : world y-coordinates of the data.
+ E      (input)  : value of error bar distance to be added to the
+                   data position in world coordinates.
+ T      (input)  : length of terminals to be drawn at the ends
+                   of the error bar, as a multiple of the default
+                   length; if T = 0.0, no terminals will be drawn.
+
+Note: the dimension of arrays X, Y, and E must be greater
+than or equal to N. If N is 1, X, Y, and E may be scalar
+variables, or expressions.
+</pre>
+<hr>
+
+
+<h3><a name="PGERRX"><em>pgerrx</em> -- horizontal error bar
+</a></h3>
+<dl><dt><code>pgerrx( x1, x2, y [,tlen] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+   x1 : world x-coordinates of lower end of the error bars.
+   x2 : world x-coordinates of upper end of the error bars.
+</pre>
+<pre>
+Plot horizontal error bars.
+This routine draws an error bar only; to mark the data point in
+the middle of the error bar, an additional call to <a href="#PGPT">PGPT</a> or
+<a href="#PGERRY">PGERRY</a> is required.
+
+Arguments:
+ N      (input)  : number of error bars to plot.
+ X1     (input)  : world x-coordinates of lower end of the
+                   error bars.
+ X2     (input)  : world x-coordinates of upper end of the
+                   error bars.
+ Y      (input)  : world y-coordinates of the data.
+ T      (input)  : length of terminals to be drawn at the ends
+                   of the error bar, as a multiple of the default
+                   length; if T = 0.0, no terminals will be drawn.
+
+Note: the dimension of arrays X1, X2, and Y must be greater
+than or equal to N. If N is 1, X1, X2, and Y may be scalar
+variables, or expressions, eg:
+      CALL <a href="#PGERRX">PGERRX</a>(1,X-SIGMA,X+SIGMA,Y)
+</pre>
+<hr>
+
+
+<h3><a name="PGERRY"><em>pgerry</em> -- vertical error bar
+</a></h3>
+<dl><dt><code>pgerry( x, y1, y2 [,tlen] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+   y1 : world y-coordinates of top end of the error bars.
+   y2 : world y-coordinates of bottom end of the error bars.
+</pre>
+<pre>
+Plot vertical error bars.
+This routine draws an error bar only; to mark the data point in
+the middle of the error bar, an additional call to <a href="#PGPT">PGPT</a> or
+<a href="#PGERRX">PGERRX</a> is required.
+
+Arguments:
+ N      (input)  : number of error bars to plot.
+ X      (input)  : world x-coordinates of the data.
+ Y1     (input)  : world y-coordinates of top end of the
+                   error bars.
+ Y2     (input)  : world y-coordinates of bottom end of the
+                   error bars.
+ T      (input)  : length of terminals to be drawn at the ends
+                   of the error bar, as a multiple of the default
+                   length; if T = 0.0, no terminals will be drawn.
+
+Note: the dimension of arrays X, Y1, and Y2 must be greater
+than or equal to N. If N is 1, X, Y1, and Y2 may be scalar
+variables or expressions, eg:
+      CALL <a href="#PGERRY">PGERRY</a>(1,X,Y+SIGMA,Y-SIGMA)
+</pre>
+<hr>
+
+
+<h3><a name="PGETXT"><em>pgetxt</em> -- erase text from graphics display
+</a></h3>
+<dl><dt><code>pgetxt</code></dl>
+<pre>
+Some graphics terminals display text (the normal interactive dialog)
+on the same screen as graphics. This routine erases the text from the
+view surface without affecting the graphics. It does nothing on
+devices which do not display text on the graphics screen, and on
+devices which do not have this capability.
+
+Arguments:
+ None
+</pre>
+<hr>
+
+
+<h3><a name="PGGRAY"><em>pggray</em> -- gray-scale map of a 2D data array
+</a></h3>
+<dl><dt><code>pggray( array [, range, tr] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+  Arguments:
+   range : range of array value to be drawn
+   TR    : transformation matrix.
+</pre>
+<pre>
+Draw gray-scale map of an array in current window. The subsection
+of the array A defined by indices (I1:I2, J1:J2) is mapped onto
+the view surface world-coordinate system by the transformation
+matrix TR. The resulting quadrilateral region is clipped at the edge
+of the window and shaded with the shade at each point determined
+by the corresponding array value.  The shade is a number in the
+range 0 to 1 obtained by linear interpolation between the background
+level (BG) and the foreground level (FG), i.e.,
+
+  shade = [A(i,j) - BG] / [FG - BG]
+
+The background level BG can be either less than or greater than the
+foreground level FG.  Points in the array that are outside the range
+BG to FG are assigned shade 0 or 1 as appropriate.
+
+<a href="#PGGRAY">PGGRAY</a> uses two different algorithms, depending how many color
+indices are available in the color index range specified for images.
+(This range is set with routine <a href="#PGSCIR">PGSCIR</a>, and the current or default
+range can be queried by calling routine <a href="#PGQCIR">PGQCIR</a>).
+
+If 16 or more color indices are available, <a href="#PGGRAY">PGGRAY</a> first assigns
+color representations to these color indices to give a linear ramp
+between the background color (color index 0) and the foreground color
+(color index 1), and then calls <a href="#PGIMAG">PGIMAG</a> to draw the image using these
+color indices. In this mode, the shaded region is "opaque": every
+pixel is assigned a color.
+
+If less than 16 color indices are available, <a href="#PGGRAY">PGGRAY</a> uses only
+color index 1, and uses  a "dithering" algorithm to fill in pixels,
+with the shade (computed as above) determining the faction of pixels
+that are filled. In this mode the shaded region is "transparent" and
+allows previously-drawn graphics to show through.
+
+The transformation matrix TR is used to calculate the world
+coordinates of the center of the "cell" that represents each
+array element. The world coordinates of the center of the cell
+corresponding to array element A(I,J) are given by:
+
+         X = TR(1) + TR(2)*I + TR(3)*J
+         Y = TR(4) + TR(5)*I + TR(6)*J
+
+Usually TR(3) and TR(5) are zero -- unless the coordinate
+transformation involves a rotation or shear.  The corners of the
+quadrilateral region that is shaded by <a href="#PGGRAY">PGGRAY</a> are given by
+applying this transformation to (I1-0.5,J1-0.5), (I2+0.5, J2+0.5).
+
+Arguments:
+ A      (input)  : the array to be plotted.
+ IDIM   (input)  : the first dimension of array A.
+ JDIM   (input)  : the second dimension of array A.
+ I1, I2 (input)  : the inclusive range of the first index
+                   (I) to be plotted.
+ J1, J2 (input)  : the inclusive range of the second
+                   index (J) to be plotted.
+ FG     (input)  : the array value which is to appear with the
+                   foreground color (corresponding to color index 1).
+ BG     (input)  : the array value which is to appear with the
+                   background color (corresponding to color index 0).
+ TR     (input)  : transformation matrix between array grid and
+                   world coordinates.
+</pre>
+<hr>
+
+
+<h3><a name="PGHIST"><em>pghist</em> -- histogram of unbinned data
+</a></h3>
+<dl><dt><code>pghist( data, nbin [,range, flag] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+   data   : the data values. NBIN may not exceed 200.
+   nbin   : the number of bins to use
+   range  : the range for the histogram.
+   flag   : = 0 PGENV is called automatically
+	    = 1 the histogram is plotted in the current window.
+	    = 2,3 with a filled area style.
+	    = 4,5 simple line.
+</pre>
+<pre>
+Draw a histogram of N values of a variable in array
+DATA(1...N) in the range DATMIN to DATMAX using NBIN bins.  Note
+that array elements which fall exactly on the boundary between
+two bins will be counted in the higher bin rather than the
+lower one; and array elements whose value is less than DATMIN or
+greater than or equal to DATMAX will not be counted at all.
+
+Arguments:
+ N      (input)  : the number of data values.
+ DATA   (input)  : the data values. Note: the dimension of array
+                   DATA must be greater than or equal to N. The
+                   first N elements of the array are used.
+ DATMIN (input)  : the minimum data value for the histogram.
+ DATMAX (input)  : the maximum data value for the histogram.
+ NBIN   (input)  : the number of bins to use: the range DATMIN to
+                   DATMAX is divided into NBIN equal bins and
+                   the number of DATA values in each bin is
+                   determined by <a href="#PGHIST">PGHIST</a>.  NBIN may not exceed 200.
+ <a href="#PGFLAG">PGFLAG</a> (input)  : if <a href="#PGFLAG">PGFLAG</a> = 1, the histogram is plotted in the
+                   current window and viewport; if <a href="#PGFLAG">PGFLAG</a> = 0,
+                   <a href="#PGENV">PGENV</a> is called automatically by <a href="#PGHIST">PGHIST</a> to start
+                   a new plot (the x-limits of the window will be
+                   DATMIN and DATMAX; the y-limits will be chosen
+                   automatically.
+                   IF <a href="#PGFLAG">PGFLAG</a> = 2,3 the histogram will be in the same
+                   window and viewport but with a filled area style.
+                   If pgflag=4,5 as for pgflag = 0,1, but simple
+                   line drawn as for <a href="#PGBIN">PGBIN</a>
+
+</pre>
+<hr>
+
+
+<h3><a name="PGIDEN"><em>pgiden</em> -- write username, date, and time at bottom of plot
+</a></h3>
+<dl><dt><code>pgiden</code></dl>
+<pre>
+Write username, date, and time at bottom of plot.
+
+Arguments: none.
+</pre>
+<hr>
+
+
+<h3><a name="PGIMAG"><em>pgimag</em> -- color image from a 2D data array
+</a></h3>
+<dl><dt><code>pgimag( array [,range [,tr]] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+  Arguments:
+   range : range of array value to be drawn
+   TR    : transformation matrix.
+</pre>
+<pre>
+Draw a color image of an array in current window. The subsection
+of the array A defined by indices (I1:I2, J1:J2) is mapped onto
+the view surface world-coordinate system by the transformation
+matrix TR. The resulting quadrilateral region is clipped at the edge
+of the window. Each element of the array is represented in the image
+by a small quadrilateral, which is filled with a color specified by
+the corresponding array value.
+
+The subroutine uses color indices in the range C1 to C2, which can
+be specified by calling <a href="#PGSCIR">PGSCIR</a> before <a href="#PGIMAG">PGIMAG</a>. The default values
+for C1 and C2 are device-dependent; these values can be determined by
+calling <a href="#PGQCIR">PGQCIR</a>. Note that color representations should be assigned to
+color indices C1 to C2 by calling <a href="#PGSCR">PGSCR</a> before calling <a href="#PGIMAG">PGIMAG</a>. On some
+devices (but not all), the color representation can be changed after
+the call to <a href="#PGIMAG">PGIMAG</a> by calling <a href="#PGSCR">PGSCR</a> again.
+
+Array values in the range A1 to A2 are mapped on to the range of
+color indices C1 to C2, with array values &lt= A1 being given color
+index C1 and values &gt= A2 being given color index C2. The mapping
+function for intermediate array values can be specified by
+calling routine <a href="#PGSITF">PGSITF</a> before <a href="#PGIMAG">PGIMAG</a>; the default is linear.
+
+On devices which have no available color indices (C1 &gt C2),
+<a href="#PGIMAG">PGIMAG</a> will return without doing anything. On devices with only
+one color index (C1=C2), all array values map to the same color
+which is rather uninteresting. An image is always "opaque",
+i.e., it obscures all graphical elements previously drawn in
+the region.
+
+The transformation matrix TR is used to calculate the world
+coordinates of the center of the "cell" that represents each
+array element. The world coordinates of the center of the cell
+corresponding to array element A(I,J) are given by:
+
+         X = TR(1) + TR(2)*I + TR(3)*J
+         Y = TR(4) + TR(5)*I + TR(6)*J
+
+Usually TR(3) and TR(5) are zero -- unless the coordinate
+transformation involves a rotation or shear.  The corners of the
+quadrilateral region that is shaded by <a href="#PGIMAG">PGIMAG</a> are given by
+applying this transformation to (I1-0.5,J1-0.5), (I2+0.5, J2+0.5).
+
+Arguments:
+ A      (input)  : the array to be plotted.
+ IDIM   (input)  : the first dimension of array A.
+ JDIM   (input)  : the second dimension of array A.
+ I1, I2 (input)  : the inclusive range of the first index
+                   (I) to be plotted.
+ J1, J2 (input)  : the inclusive range of the second
+                   index (J) to be plotted.
+ A1     (input)  : the array value which is to appear with shade C1.
+ A2     (input)  : the array value which is to appear with shade C2.
+ TR     (input)  : transformation matrix between array grid and
+                   world coordinates.
+</pre>
+<hr>
+
+
+<h3><a name="PGLAB"><em>pglab</em> -- write labels for x-axis, y-axis, and top of plot
+</a></h3>
+<dl><dt><code>pglab( xlbl, ylbl, toplbl )</code></dl>
+<pre>
+Write labels outside the viewport. This routine is a simple
+interface to <a href="#PGMTXT">PGMTXT</a>, which should be used if <a href="#PGLAB">PGLAB</a> is inadequate.
+
+Arguments:
+ XLBL   (input) : a label for the x-axis (centered below the
+                  viewport).
+ YLBL   (input) : a label for the y-axis (centered to the left
+                  of the viewport, drawn vertically).
+ TOPLBL (input) : a label for the entire plot (centered above the
+                  viewport).
+</pre>
+<hr>
+
+
+<h3><a name="PGLDEV"><em>pgldev</em> -- list available device types on standard output
+</a></h3>
+<dl><dt><code>pgldev</code></dl>
+<pre>
+Writes (to standard output) a list of all device types available in
+the current PGPLOT installation.
+
+Arguments: none.
+</pre>
+<hr>
+
+
+<h3><a name="PGLINE"><em>pgline</em> -- draw a polyline (curve defined by line-segments)
+</a></h3>
+<dl><dt><code>pgline( xarray, yarray )
+</code></dl>
+<pre>
+Primitive routine to draw a Polyline. A polyline is one or more
+connected straight-line segments.  The polyline is drawn using
+the current setting of attributes color-index, line-style, and
+line-width. The polyline is clipped at the edge of the window.
+
+Arguments:
+ N      (input)  : number of points defining the line; the line
+                   consists of (N-1) straight-line segments.
+                   N should be greater than 1 (if it is 1 or less,
+                   nothing will be drawn).
+ XPTS   (input)  : world x-coordinates of the points.
+ YPTS   (input)  : world y-coordinates of the points.
+
+The dimension of arrays X and Y must be greater than or equal to N.
+The "pen position" is changed to (X(N),Y(N)) in world coordinates
+(if N &gt 1).
+</pre>
+<hr>
+
+
+<h3><a name="PGMOVE"><em>pgmove</em> -- move pen (change current pen position)
+</a></h3>
+<dl><dt><code>pgmove( x, y )</code></dl>
+<pre>
+Primitive routine to move the "pen" to the point with world
+coordinates (X,Y). No line is drawn.
+
+Arguments:
+ X      (input)  : world x-coordinate of the new pen position.
+ Y      (input)  : world y-coordinate of the new pen position.
+</pre>
+<hr>
+
+
+<h3><a name="PGMTXT"><em>pgmtxt</em> -- write text at position relative to viewport
+</a></h3>
+<dl><dt><code>pgmtxt( side, disp, coord, fjust, text )</code></dl>
+<pre>
+Write text at a position specified relative to the viewport (outside
+or inside).  This routine is useful for annotating graphs. It is used
+by routine <a href="#PGLAB">PGLAB</a>.  The text is written using the current values of
+attributes color-index, line-width, character-height, and
+character-font.
+
+Arguments:
+ SIDE   (input)  : must include one of the characters 'B', 'L', 'T',
+                   or 'R' signifying the Bottom, Left, Top, or Right
+                   margin of the viewport. If it includes 'LV' or
+                   'RV', the string is written perpendicular to the
+                   frame rather than parallel to it.
+ DISP   (input)  : the displacement of the character string from the
+                   specified edge of the viewport, measured outwards
+                   from the viewport in units of the character
+                   height. Use a negative value to write inside the
+                   viewport, a positive value to write outside.
+ COORD  (input)  : the location of the character string along the
+                   specified edge of the viewport, as a fraction of
+                   the length of the edge.
+ FJUST  (input)  : controls justification of the string parallel to
+                   the specified edge of the viewport. If
+                   FJUST = 0.0, the left-hand end of the string will
+                   be placed at COORD; if JUST = 0.5, the center of
+                   the string will be placed at COORD; if JUST = 1.0,
+                   the right-hand end of the string will be placed at
+                   at COORD. Other values between 0 and 1 give inter-
+                   mediate placing, but they are not very useful.
+ TEXT   (input) :  the text string to be plotted. Trailing spaces are
+                   ignored when justifying the string, but leading
+                   spaces are significant.
+
+</pre>
+<hr>
+
+
+<h3><a name="PGOPEN"><em>pgopen</em> -- open a graphics device
+</a></h3>
+<dl><dt><code>pgopen( [device='?'] ) #=&gt id_of_device
+</code></dl>
+<pre>
+--- Ruby notes ---
+ If device is omitted, prompt an inquiry of the device.
+</pre>
+<pre>
+Open a graphics device for PGPLOT output. If the device is
+opened successfully, it becomes the selected device to which
+graphics output is directed until another device is selected
+with <a href="#PGSLCT">PGSLCT</a> or the device is closed with <a href="#PGCLOS">PGCLOS</a>.
+
+The value returned by <a href="#PGOPEN">PGOPEN</a> should be tested to ensure that
+the device was opened successfully, e.g.,
+
+      ISTAT = <a href="#PGOPEN">PGOPEN</a>('plot.ps/PS')
+      IF (ISTAT .LE. 0 ) STOP
+
+Note that <a href="#PGOPEN">PGOPEN</a> must be declared INTEGER in the calling program.
+
+The DEVICE argument is a character constant or variable; its value
+should be one of the following:
+
+(1) A complete device specification of the form 'device/type' or
+    'file/type', where 'type' is one of the allowed PGPLOT device
+    types (installation-dependent) and 'device' or 'file' is the 
+    name of a graphics device or disk file appropriate for this type.
+    The 'device' or 'file' may contain '/' characters; the final
+    '/' delimits the 'type'. If necessary to avoid ambiguity,
+    the 'device' part of the string may be enclosed in double
+    quotation marks.
+(2) A device specification of the form '/type', where 'type' is one
+    of the allowed PGPLOT device types. PGPLOT supplies a default
+    file or device name appropriate for this device type.
+(3) A device specification with '/type' omitted; in this case
+    the type is taken from the environment variable PGPLOT_TYPE,
+    if defined (e.g., setenv PGPLOT_TYPE PS). Because of possible
+    confusion with '/' in file-names, omitting the device type
+    in this way is not recommended.
+(4) A blank string (' '); in this case, <a href="#PGOPEN">PGOPEN</a> will use the value
+    of environment variable PGPLOT_DEV as the device specification,
+    or '/NULL' if the environment variable is undefined.
+(5) A single question mark, with optional trailing spaces ('?'); in
+    this case, PGPLOT will prompt the user to supply the device
+    specification, with a prompt string of the form
+        'Graphics device/type (? to see list, default XXX):'
+    where 'XXX' is the default (value of environment variable
+    PGPLOT_DEV).
+(6) A non-blank string in which the first character is a question
+    mark (e.g., '?Device: '); in this case, PGPLOT will prompt the
+    user to supply the device specification, using the supplied
+    string as the prompt (without the leading question mark but
+    including any trailing spaces).
+
+In cases (5) and (6), the device specification is read from the
+standard input. The user should respond to the prompt with a device
+specification of the form (1), (2), or (3). If the user types a 
+question-mark in response to the prompt, a list of available device
+types is displayed and the prompt is re-issued. If the user supplies
+an invalid device specification, the prompt is re-issued. If the user
+responds with an end-of-file character, e.g., ctrl-D in UNIX, program
+execution is aborted; this  avoids the possibility of an infinite
+prompting loop.  A programmer should avoid use of PGPLOT-prompting
+if this behavior is not desirable.
+
+The device type is case-insensitive (e.g., '/ps' and '/PS' are 
+equivalent). The device or file name may be case-sensitive in some
+operating systems.
+
+Examples of valid DEVICE arguments:
+
+(1)  'plot.ps/ps', 'dir/plot.ps/ps', '"dir/plot.ps"/ps', 
+     'user:[tjp.plots]plot.ps/PS'
+(2)  '/ps'      (PGPLOT interprets this as 'pgplot.ps/ps')
+(3)  'plot.ps'  (if PGPLOT_TYPE is defined as 'ps', PGPLOT
+                 interprets this as 'plot.ps/ps')
+(4)  '   '      (if PGPLOT_DEV is defined)
+(5)  '?  '
+(6)  '?Device specification for PGPLOT: '
+
+[This routine was added to PGPLOT in Version 5.1.0. Older programs
+use <a href="#PGBEG">PGBEG</a> instead.]
+
+Returns:
+ <a href="#PGOPEN">PGOPEN</a>          : returns either a positive value, the
+                   identifier of the graphics device for use with
+                   <a href="#PGSLCT">PGSLCT</a>, or a 0 or negative value indicating an
+                   error. In the event of error a message is
+                   written on the standard error unit.
+Arguments:
+ DEVICE  (input) : the 'device specification' for the plot device
+                   (see above).
+</pre>
+<hr>
+
+
+<h3><a name="PGPAGE"><em>pgpage</em> -- advance to new page
+</a></h3>
+<dl><dt><code>pgpage</code></dl>
+<pre>
+Advance plotter to a new page or panel, clearing the screen if
+necessary. If the "prompt state" is ON (see <a href="#PGASK">PGASK</a>), confirmation is
+requested from the user before clearing the screen. If the view
+surface has been subdivided into panels with <a href="#PGBEG">PGBEG</a> or <a href="#PGSUBP">PGSUBP</a>, then
+<a href="#PGPAGE">PGPAGE</a> advances to the next panel, and if the current panel is the
+last on the page, <a href="#PGPAGE">PGPAGE</a> clears the screen or starts a new sheet of
+paper.  <a href="#PGPAGE">PGPAGE</a> does not change the PGPLOT window or the viewport
+(in normalized device coordinates); but note that if the size of the
+view-surface is changed externally (e.g., by a workstation window
+manager) the size of the viewport is changed in proportion.
+
+Arguments: none
+</pre>
+<hr>
+
+
+<h3><a name="PGPANL"><em>pgpanl</em> -- switch to a different panel on the view surface
+</a></h3>
+<dl><dt><code>pgpanl( ix, iy )</code></dl>
+<pre>
+Start plotting in a different panel. If the view surface has been
+divided into panels by <a href="#PGBEG">PGBEG</a> or <a href="#PGSUBP">PGSUBP</a>, this routine can be used to
+move to a different panel. Note that PGPLOT does not remember what
+viewport and window were in use in each panel; these should be reset
+if necessary after calling <a href="#PGPANL">PGPANL</a>. Nor does PGPLOT clear the panel:
+call <a href="#PGERAS">PGERAS</a> after calling <a href="#PGPANL">PGPANL</a> to do this.
+
+Arguments:
+ IX     (input)  : the horizontal index of the panel (in the range
+                   1 &lt= IX &lt= number of panels in horizontal
+                   direction).
+ IY     (input)  : the vertical index of the panel (in the range
+                   1 &lt= IY &lt= number of panels in horizontal
+                   direction).
+</pre>
+<hr>
+
+
+<h3><a name="PGPAP"><em>pgpap</em> -- change the size of the view surface 
+</a></h3>
+<dl><dt><code>pgpap( width, aspect )</code></dl>
+<pre>
+This routine changes the size of the view surface ("paper size") to a
+specified width and aspect ratio (height/width), in so far as this is
+possible on the specific device. It is always possible to obtain a
+view surface smaller than the default size; on some devices (e.g.,
+printers that print on roll or fan-feed paper) it is possible to 
+obtain a view surface larger than the default.
+
+This routine should be called either immediately after <a href="#PGBEG">PGBEG</a> or
+immediately before <a href="#PGPAGE">PGPAGE</a>. The new size applies to all subsequent
+images until the next call to <a href="#PGPAP">PGPAP</a>.
+
+Arguments:
+ WIDTH  (input)  : the requested width of the view surface in inches;
+                   if WIDTH=0.0, <a href="#PGPAP">PGPAP</a> will obtain the largest view
+                   surface available consistent with argument ASPECT.
+                   (1 inch = 25.4 mm.)
+ ASPECT (input)  : the aspect ratio (height/width) of the view
+                   surface; e.g., ASPECT=1.0 gives a square view
+                   surface, ASPECT=0.618 gives a horizontal
+                   rectangle, ASPECT=1.618 gives a vertical rectangle.
+</pre>
+<hr>
+
+
+<h3><a name="PGPNTS"><em>pgpnts</em> -- draw several graph markers, not all the same
+</a></h3>
+<dl><dt><code>pgpnts( xarray, yarray, symarray )
+</code></dl>
+<pre>
+Draw Graph Markers. Unlike <a href="#PGPT">PGPT</a>, this routine can draw a different
+symbol at each point. The markers are drawn using the current values
+of attributes color-index, line-width, and character-height
+(character-font applies if the symbol number is &gt31).  If the point
+to be marked lies outside the window, no marker is drawn.  The "pen 
+position" is changed to (XPTS(N),YPTS(N)) in world coordinates
+(if N &gt 0).
+
+Arguments:
+ N      (input)  : number of points to mark.
+ X      (input)  : world x-coordinate of the points.
+ Y      (input)  : world y-coordinate of the points.
+ SYMBOL (input)  : code number of the symbol to be plotted at each
+                   point (see <a href="#PGPT">PGPT</a>).
+ NS     (input)  : number of values in the SYMBOL array.  If NS &lt= N,
+                   then the first NS points are drawn using the value
+                   of SYMBOL(I) at (X(I), Y(I)) and SYMBOL(1) for all
+                   the values of (X(I), Y(I)) where I &gt NS.
+
+Note: the dimension of arrays X and Y must be greater than or equal
+to N and the dimension of the array SYMBOL must be greater than or
+equal to NS.  If N is 1, X and Y may be scalars (constants or
+variables).  If NS is 1, then SYMBOL may be a scalar.  If N is
+less than 1, nothing is drawn.
+</pre>
+<hr>
+
+
+<h3><a name="PGPOLY"><em>pgpoly</em> -- draw a polygon, using fill-area attributes
+</a></h3>
+<dl><dt><code>pgpoly( xarray, yarray )
+</code></dl>
+<pre>
+Fill-area primitive routine: shade the interior of a closed
+polygon in the current window.  The action of this routine depends
+on the setting of the Fill-Area Style attribute (see <a href="#PGSFS">PGSFS</a>).
+The polygon is clipped at the edge of the
+window. The pen position is changed to (XPTS(1),YPTS(1)) in world
+coordinates (if N &gt 1).  If the polygon is not convex, a point is
+assumed to lie inside the polygon if a straight line drawn to
+infinity intersects and odd number of the polygon's edges.
+
+Arguments:
+ N      (input)  : number of points defining the polygon; the
+                   line consists of N straight-line segments,
+                   joining points 1 to 2, 2 to 3,... N-1 to N, N to 1.
+                   N should be greater than 2 (if it is 2 or less,
+                   nothing will be drawn).
+ XPTS   (input)  : world x-coordinates of the vertices.
+ YPTS   (input)  : world y-coordinates of the vertices.
+                   Note: the dimension of arrays XPTS and YPTS must be
+                   greater than or equal to N.
+</pre>
+<hr>
+
+
+<h3><a name="PGPT"><em>pgpt</em> -- draw several graph markers
+</a></h3>
+<dl><dt><code>pgpt( xarray, yarray [,symbol] )
+</code></dl>
+<pre>
+Primitive routine to draw Graph Markers (polymarker). The markers
+are drawn using the current values of attributes color-index,
+line-width, and character-height (character-font applies if the symbol
+number is &gt31).  If the point to be marked lies outside the window,
+no marker is drawn.  The "pen position" is changed to
+(XPTS(N),YPTS(N)) in world coordinates (if N &gt 0).
+
+Arguments:
+ N      (input)  : number of points to mark.
+ XPTS   (input)  : world x-coordinates of the points.
+ YPTS   (input)  : world y-coordinates of the points.
+ SYMBOL (input)  : code number of the symbol to be drawn at each 
+                   point:
+                   -1, -2  : a single dot (diameter = current
+                             line width).
+                   -3..-31 : a regular polygon with ABS(SYMBOL)
+                             edges (style set by current fill style).
+                   0..31   : standard marker symbols.
+                   32..127 : ASCII characters (in current font).
+                             e.g. to use letter F as a marker, let
+                             SYMBOL = ICHAR('F'). 
+                   &gt 127  :  a Hershey symbol number.
+
+Note: the dimension of arrays X and Y must be greater than or equal
+to N. If N is 1, X and Y may be scalars (constants or variables). If
+N is less than 1, nothing is drawn.
+</pre>
+<hr>
+
+
+<h3><a name="PGPT1"><em>pgpt1</em> -- draw one graph marker
+</a></h3>
+<dl><dt><code>pgpt1( xpt, ypt, symbol )</code></dl>
+<pre>
+Primitive routine to draw a single Graph Marker at a specified point.
+The marker is drawn using the current values of attributes
+color-index, line-width, and character-height (character-font applies
+if the symbol number is &gt31).  If the point to be marked lies outside
+the window, no marker is drawn.  The "pen position" is changed to
+(XPT,YPT) in world coordinates.
+
+To draw several markers with coordinates specified by X and Y
+arrays, use routine <a href="#PGPT">PGPT</a>.
+
+Arguments:
+ XPT    (input)  : world x-coordinate of the point.
+ YPT    (input)  : world y-coordinate of the point.
+ SYMBOL (input)  : code number of the symbol to be drawn:
+                   -1, -2  : a single dot (diameter = current
+                             line width).
+                   -3..-31 : a regular polygon with ABS(SYMBOL)
+                             edges (style set by current fill style).
+                   0..31   : standard marker symbols.
+                   32..127 : ASCII characters (in current font).
+                             e.g. to use letter F as a marker, let
+                             SYMBOL = ICHAR('F'). 
+                   &gt 127  :  a Hershey symbol number.
+</pre>
+<hr>
+
+
+<h3><a name="PGPTXT"><em>pgptxt</em> -- write text at arbitrary position and angle
+</a></h3>
+<dl><dt><code>pgptxt( x, y, angle, fjust, text )</code></dl>
+<pre>
+Primitive routine for drawing text. The text may be drawn at any
+angle with the horizontal, and may be centered or left- or right-
+justified at a specified position.  Routine <a href="#PGTEXT">PGTEXT</a> provides a
+simple interface to <a href="#PGPTXT">PGPTXT</a> for horizontal strings. Text is drawn
+using the current values of attributes color-index, line-width,
+character-height, and character-font.  Text is NOT subject to
+clipping at the edge of the window.
+
+Arguments:
+ X      (input)  : world x-coordinate.
+ Y      (input)  : world y-coordinate. The string is drawn with the
+                   baseline of all the characters passing through
+                   point (X,Y); the positioning of the string along
+                   this line is controlled by argument FJUST.
+ ANGLE  (input)  : angle, in degrees, that the baseline is to make
+                   with the horizontal, increasing counter-clockwise
+                   (0.0 is horizontal).
+ FJUST  (input)  : controls horizontal justification of the string.
+                   If FJUST = 0.0, the string will be left-justified
+                   at the point (X,Y); if FJUST = 0.5, it will be
+                   centered, and if FJUST = 1.0, it will be right
+                   justified. [Other values of FJUST give other
+                   justifications.]
+ TEXT   (input)  : the character string to be plotted.
+</pre>
+<hr>
+
+
+<h3><a name="PGQCF"><em>pgqcf</em> -- inquire character font
+</a></h3>
+<dl><dt><code>pgqcf #=&gt font</code></dl>
+<pre>
+Query the current Character Font (set by routine <a href="#PGSCF">PGSCF</a>).
+
+Argument:
+ FONT   (output)   : the current font number (in range 1-4).
+</pre>
+<hr>
+
+
+<h3><a name="PGQCH"><em>pgqch</em> -- inquire character height
+</a></h3>
+<dl><dt><code>pgqch #=&gt size</code></dl>
+<pre>
+Query the Character Size attribute (set by routine <a href="#PGSCH">PGSCH</a>).
+
+Argument:
+ SIZE   (output) : current character size (dimensionless multiple of
+                   the default size).
+</pre>
+<hr>
+
+
+<h3><a name="PGQCI"><em>pgqci</em> -- inquire color index
+</a></h3>
+<dl><dt><code>pgqci #=&gt ci</code></dl>
+<pre>
+Query the Color Index attribute (set by routine <a href="#PGSCI">PGSCI</a>).
+
+Argument:
+ CI     (output) : the current color index (in range 0-max). This is
+                   the color index actually in use, and may differ
+                   from the color index last requested by <a href="#PGSCI">PGSCI</a> if
+                   that index is not available on the output device.
+</pre>
+<hr>
+
+
+<h3><a name="PGQCIR"><em>pgqcir</em> -- inquire color index range
+</a></h3>
+<dl><dt><code>pgqcir #=&gt icilo, icihi</code></dl>
+<pre>
+Query the color index range to be used for producing images with
+<a href="#PGGRAY">PGGRAY</a> or <a href="#PGIMAG">PGIMAG</a>, as set by routine <a href="#PGSCIR">PGSCIR</a> or by device default.
+
+Arguments:
+ ICILO  (output) : the lowest color index to use for images
+ ICIHI  (output) : the highest color index to use for images
+</pre>
+<hr>
+
+
+<h3><a name="PGQCLP"><em>pgqclp</em> -- inquire clipping status
+</a></h3>
+<dl><dt><code>pgqclp #=&gt state</code></dl>
+<pre>
+Query the current clipping status (set by routine <a href="#PGSCLP">PGSCLP</a>).
+
+Argument:
+ STATE  (output) : receives the clipping status (0 =&gt disabled,
+                   1 =&gt enabled).
+</pre>
+<hr>
+
+
+<h3><a name="PGQCOL"><em>pgqcol</em> -- inquire color capability
+</a></h3>
+<dl><dt><code>pgqcol #=&gt ci1, ci2</code></dl>
+<pre>
+Query the range of color indices available on the current device.
+
+Argument:
+ CI1    (output) : the minimum available color index. This will be
+                   either 0 if the device can write in the
+                   background color, or 1 if not.
+ CI2    (output) : the maximum available color index. This will be
+                   1 if the device has no color capability, or a
+                   larger number (e.g., 3, 7, 15, 255).
+</pre>
+<hr>
+
+
+<h3><a name="PGQCR"><em>pgqcr</em>  -- inquire color representation
+</a></h3>
+<dl><dt><code>pgqcr( ci ) #=&gt cr, cg, cb</code></dl>
+<pre>
+Query the RGB colors associated with a color index.
+
+Arguments:
+ CI  (input)  : color index
+ CR  (output) : red, green and blue intensities
+ CG  (output)   in the range 0.0 to 1.0
+ CB  (output)
+</pre>
+<hr>
+
+
+<h3><a name="PGQDT"><em>pgqdt</em> -- inquire name of nth available device type
+</a></h3>
+<dl><dt><code>pgqdt( [ndev] ) #=&gt type, descr, inter
+</code></dl>
+<pre>
+--- Ruby notes ---
+  Arguments:
+    ndev  : the number of the device type (1..maximum).
+  Returns:
+    type  : receives the character device-type code of the
+            Nth device type.
+    descr : receives a description of the device type.
+    inter : receives 1 if the device type is an interactive
+            one, 0 otherwise.
+</pre>
+<pre>
+Return the name of the Nth available device type as a character
+string. The number of available types can be determined by calling
+<a href="#PGQNDT">PGQNDT</a>. If the value of N supplied is outside the range from 1 to
+the number of available types, the routine returns DLEN=TLEN=0.
+
+Arguments:
+ N      (input)  : the number of the device type (1..maximum).
+ TYPE   (output) : receives the character device-type code of the
+                   Nth device type. The argument supplied should be
+                   large enough for at least 8 characters. The first
+                   character in the string is a '/' character.
+ TLEN   (output) : receives the number of characters in TYPE,
+                   excluding trailing blanks.
+ DESCR  (output) : receives a description of the device type. The
+                   argument supplied should be large enough for at
+                   least 64 characters.
+ DLEN   (output) : receives the number of characters in DESCR,
+                   excluding trailing blanks.
+ INTER  (output) : receives 1 if the device type is an interactive
+                   one, 0 otherwise.
+</pre>
+<hr>
+
+
+<h3><a name="PGQFS"><em>pgqfs</em> -- inquire fill-area style
+</a></h3>
+<dl><dt><code>pgqfs #=&gt fs</code></dl>
+<pre>
+Query the current Fill-Area Style attribute (set by routine
+<a href="#PGSFS">PGSFS</a>).
+
+Argument:
+ FS     (output) : the current fill-area style:
+                     FS = 1 =&gt solid (default)
+                     FS = 2 =&gt outline
+                     FS = 3 =&gt hatched
+                     FS = 4 =&gt cross-hatched
+</pre>
+<hr>
+
+
+<h3><a name="PGQID"><em>pgqid</em> -- inquire current device identifier
+</a></h3>
+<dl><dt><code>pgqid #=&gt id</code></dl>
+<pre>
+This subroutine returns the identifier of the currently
+selected device, or 0 if no device is selected.  The identifier is
+assigned when <a href="#PGOPEN">PGOPEN</a> is called to open the device, and may be used
+as an argument to <a href="#PGSLCT">PGSLCT</a>.  Each open device has a different
+identifier.
+
+[This routine was added to PGPLOT in Version 5.1.0.]
+
+Argument:
+ ID     (output) : the identifier of the current device, or 0 if
+                   no device is currently selected.
+</pre>
+<hr>
+
+
+<h3><a name="PGQINF"><em>pgqinf</em> -- inquire PGPLOT general information
+</a></h3>
+<dl><dt><code>pgqinf( item ) #=&gt value
+</code></dl>
+<pre>
+--- Ruby notes ---
+  Arguments:
+    item  : character string defining the information
+  Returns:
+    value : character string containing the requested information.
+</pre>
+<pre>
+This routine can be used to obtain miscellaneous information about
+the PGPLOT environment. Input is a character string defining the
+information required, and output is a character string containing the
+requested information.
+
+The following item codes are accepted (note that the strings must
+match exactly, except for case, but only the first 8 characters are
+significant). For items marked *, PGPLOT must be in the OPEN state
+for the inquiry to succeed. If the inquiry is unsuccessful, either
+because the item code is not recognized or because the information
+is not available, a question mark ('?') is returned.
+
+  'VERSION'     - version of PGPLOT software in use.
+  'STATE'       - status of PGPLOT ('OPEN' if a graphics device
+                  is open for output, 'CLOSED' otherwise).
+  'USER'        - the username associated with the calling program.
+  'NOW'         - current date and time (e.g., '17-FEB-1986 10:04').
+  'DEVICE'    * - current PGPLOT device or file.
+  'FILE'      * - current PGPLOT device or file.
+  'TYPE'      * - device-type of the current PGPLOT device.
+  'DEV/TYPE'  * - current PGPLOT device and type, in a form which
+                  is acceptable as an argument for <a href="#PGBEG">PGBEG</a>.
+  'HARDCOPY'  * - is the current device a hardcopy device? ('YES' or
+                  'NO').
+  'TERMINAL'  * - is the current device the user's interactive
+                  terminal? ('YES' or 'NO').
+  'CURSOR'    * - does the current device have a graphics cursor?
+                  ('YES' or 'NO').
+  'SCROLL'    * - does current device have rectangle-scroll
+                  capability ('YES' or 'NO'); see <a href="#PGSCRL">PGSCRL</a>.
+
+Arguments:
+ ITEM  (input)  : character string defining the information to
+                  be returned; see above for a list of possible
+                  values.
+ VALUE (output) : returns a character-string containing the
+                  requested information, truncated to the length 
+                  of the supplied string or padded on the right with 
+                  spaces if necessary.
+ LENGTH (output): the number of characters returned in VALUE
+                  (excluding trailing blanks).
+</pre>
+<hr>
+
+
+<h3><a name="PGQITF"><em>pgqitf</em> -- inquire image transfer function
+</a></h3>
+<dl><dt><code>pgqitf #=&gt itf</code></dl>
+<pre>
+Return the Image Transfer Function as set by default or by a previous
+call to <a href="#PGSITF">PGSITF</a>. The Image Transfer Function is used by routines
+<a href="#PGIMAG">PGIMAG</a>, <a href="#PGGRAY">PGGRAY</a>, and <a href="#PGWEDG">PGWEDG</a>.
+
+Argument:
+ ITF    (output) : type of transfer function (see <a href="#PGSITF">PGSITF</a>)
+</pre>
+<hr>
+
+
+<h3><a name="PGQLS"><em>pgqls</em> -- inquire line style
+</a></h3>
+<dl><dt><code>pgqls #=&gt ls</code></dl>
+<pre>
+Query the current Line Style attribute (set by routine <a href="#PGSLS">PGSLS</a>).
+
+Argument:
+ LS     (output) : the current line-style attribute (in range 1-5).
+</pre>
+<hr>
+
+
+<h3><a name="PGQLW"><em>pgqlw</em> -- inquire line width
+</a></h3>
+<dl><dt><code>pgqlw #=&gt lw</code></dl>
+<pre>
+Query the current Line-Width attribute (set by routine <a href="#PGSLW">PGSLW</a>).
+
+Argument:
+ LW     (output)  : the line-width (in range 1-201).
+</pre>
+<hr>
+
+
+<h3><a name="PGQNDT"><em>pgqndt</em> -- inquire number of available device types
+</a></h3>
+<dl><dt><code>pgqndt #=&gt n</code></dl>
+<pre>
+Return the number of available device types. This routine is
+usually used in conjunction with <a href="#PGQDT">PGQDT</a> to get a list of the
+available device types.
+
+Arguments:
+ N      (output) : the number of available device types.
+</pre>
+<hr>
+
+
+<h3><a name="PGQPOS"><em>pgqpos</em> -- inquire current pen position
+</a></h3>
+<dl><dt><code>pgqpos #=&gt x, y</code></dl>
+<pre>
+Query the current "pen" position in world C coordinates (X,Y).
+
+Arguments:
+ X      (output)  : world x-coordinate of the pen position.
+ Y      (output)  : world y-coordinate of the pen position.
+</pre>
+<hr>
+
+
+<h3><a name="PGQTBG"><em>pgqtbg</em> -- inquire text background color index
+</a></h3>
+<dl><dt><code>pgqtbg #=&gt tbci</code></dl>
+<pre>
+Query the current Text Background Color Index (set by routine
+<a href="#PGSTBG">PGSTBG</a>).
+
+Argument:
+ TBCI   (output) : receives the current text background color index.
+</pre>
+<hr>
+
+
+<h3><a name="PGQTXT"><em>pgqtxt</em> -- find bounding box of text string
+</a></h3>
+<dl><dt><code>pgqtxt( x, y, angle, fjust, text ) #=&gt xbox, ybox
+</code></dl>
+<pre>
+This routine returns a bounding box for a text string. Instead
+of drawing the string as routine <a href="#PGPTXT">PGPTXT</a> does, it returns in XBOX
+and YBOX the coordinates of the corners of a rectangle parallel
+to the string baseline that just encloses the string. The four
+corners are in the order: lower left, upper left, upper right,
+lower right (where left and right refer to the first and last
+characters in the string).
+
+If the string is blank or contains no drawable characters, all
+four elements of XBOX and YBOX are assigned the starting point
+of the string, (X,Y).
+
+Arguments:
+ X, Y, ANGLE, FJUST, TEXT (input) : these arguments are the same as
+                   the corrresponding arguments in <a href="#PGPTXT">PGPTXT</a>.
+ XBOX, YBOX (output) : arrays of dimension 4; on output, they
+                   contain the world coordinates of the bounding
+                   box in (XBOX(1), YBOX(1)), ..., (XBOX(4), YBOX(4)).
+</pre>
+<hr>
+
+
+<h3><a name="PGQVP"><em>pgqvp</em> -- inquire viewport size and position
+</a></h3>
+<dl><dt><code>pgqvp( units ) #=&gt x1, x2, y1, y2</code></dl>
+<pre>
+Inquiry routine to determine the current viewport setting.
+The values returned may be normalized device coordinates, inches, mm,
+or pixels, depending on the value of the input parameter CFLAG.
+
+Arguments:
+ UNITS  (input)  : used to specify the units of the output parameters:
+                   UNITS = 0 : normalized device coordinates
+                   UNITS = 1 : inches
+                   UNITS = 2 : millimeters
+                   UNITS = 3 : pixels
+                   Other values give an error message, and are
+                   treated as 0.
+ X1     (output) : the x-coordinate of the bottom left corner of the
+                   viewport.
+ X2     (output) : the x-coordinate of the top right corner of the
+                   viewport.
+ Y1     (output) : the y-coordinate of the bottom left corner of the
+                   viewport.
+ Y2     (output) : the y-coordinate of the top right corner of the
+                   viewport.
+</pre>
+<hr>
+
+
+<h3><a name="PGQVSZ"><em>pgqvsz</em> -- inquire size of view surface
+</a></h3>
+<dl><dt><code>pgqvsz( units ) #=&gt x1, x2, y1, y2</code></dl>
+<pre>
+This routine returns the dimensions of the view surface (the maximum
+plottable area) of the currently selected graphics device, in 
+a variety of units. The size of the view surface is device-dependent
+and is established when the graphics device is opened. On some 
+devices, it can be changed by calling <a href="#PGPAP">PGPAP</a> before starting a new
+page with <a href="#PGPAGE">PGPAGE</a>. On some devices, the size can be changed (e.g.,
+by a workstation window manager) outside PGPLOT, and PGPLOT detects
+the change when <a href="#PGPAGE">PGPAGE</a> is used. Call this routine after <a href="#PGPAGE">PGPAGE</a> to 
+find the current size.
+
+Note 1: the width and the height of the view surface in normalized
+device coordinates are both always equal to 1.0.
+
+Note 2: when the device is divided into panels (see <a href="#PGSUBP">PGSUBP</a>), the
+view surface is a single panel.
+
+Arguments:
+ UNITS  (input)  : 0,1,2,3 for output in normalized device coords, 
+                   inches, mm, or device units (pixels)
+ X1     (output) : always returns 0.0
+ X2     (output) : width of view surface
+ Y1     (output) : always returns 0.0
+ Y2     (output) : height of view surface
+</pre>
+<hr>
+
+
+<h3><a name="PGQWIN"><em>pgqwin</em> -- inquire window boundary coordinates
+</a></h3>
+<dl><dt><code>pgqwin #=&gt x1, x2, y1, y2</code></dl>
+<pre>
+Inquiry routine to determine the current window setting.
+The values returned are world coordinates.
+
+Arguments:
+ X1     (output) : the x-coordinate of the bottom left corner
+                   of the window.
+ X2     (output) : the x-coordinate of the top right corner
+                   of the window.
+ Y1     (output) : the y-coordinate of the bottom left corner
+                   of the window.
+ Y2     (output) : the y-coordinate of the top right corner
+                   of the window.
+</pre>
+<hr>
+
+
+<h3><a name="PGRECT"><em>pgrect</em> -- draw a rectangle, using fill-area attributes
+</a></h3>
+<dl><dt><code>pgrect( x1, x2, y1, y2 )</code></dl>
+<pre>
+This routine can be used instead of <a href="#PGPOLY">PGPOLY</a> for the special case of
+drawing a rectangle aligned with the coordinate axes; only two
+vertices need be specified instead of four.  On most devices, it is
+faster to use <a href="#PGRECT">PGRECT</a> than <a href="#PGPOLY">PGPOLY</a> for drawing rectangles.  The
+rectangle has vertices at (X1,Y1), (X1,Y2), (X2,Y2), and (X2,Y1).
+
+Arguments:
+ X1, X2 (input) : the horizontal range of the rectangle.
+ Y1, Y2 (input) : the vertical range of the rectangle.
+</pre>
+<hr>
+
+
+<h3><a name="PGSAH"><em>pgsah</em> -- set arrow-head style
+</a></h3>
+<dl><dt><code>pgsah( fs, angle, barb )</code></dl>
+<pre>
+Set the style to be used for arrowheads drawn with routine <a href="#PGARRO">PGARRO</a>.
+
+Argument:
+ FS     (input)  : FS = 1 =&gt filled; FS = 2 =&gt outline.
+                   Other values are treated as 2. Default 1.
+ ANGLE  (input)  : the acute angle of the arrow point, in degrees;
+                   angles in the range 20.0 to 90.0 give reasonable
+                   results. Default 45.0.
+ BARB   (input)  : the fraction of the triangular arrow-head that
+                   is cut away from the back. 0.0 gives a triangular
+                   wedge arrow-head; 1.0 gives an open &gt. Values 0.3
+                   to 0.7 give reasonable results. Default 0.3.
+</pre>
+<hr>
+
+
+<h3><a name="PGSAVE"><em>pgsave</em> -- save PGPLOT attributes
+</a></h3>
+<dl><dt><code>pgsave</code></dl>
+<pre>
+This routine saves the current PGPLOT attributes in a private storage
+area. They can be restored by calling <a href="#PGUNSA">PGUNSA</a> (unsave). Attributes
+saved are: character font, character height, color index, fill-area
+style, line style, line width, pen position, arrow-head style, 
+hatching style, and clipping state. Color representation is not saved.
+
+Calls to <a href="#PGSAVE">PGSAVE</a> and <a href="#PGUNSA">PGUNSA</a> should always be paired. Up to 20 copies
+of the attributes may be saved. <a href="#PGUNSA">PGUNSA</a> always retrieves the last-saved
+values (last-in first-out stack).
+
+Note that when multiple devices are in use, <a href="#PGUNSA">PGUNSA</a> retrieves the
+values saved by the last <a href="#PGSAVE">PGSAVE</a> call, even if they were for a
+different device.
+
+Arguments: none
+</pre>
+<hr>
+<h3><a name="PGUNSA"><em>pgunsa</em> -- restore PGPLOT attributes
+</a></h3>
+<pre>
+This routine restores the PGPLOT attributes saved in the last call to
+<a href="#PGSAVE">PGSAVE</a>. Usage: CALL <a href="#PGUNSA">PGUNSA</a> (no arguments). See <a href="#PGSAVE">PGSAVE</a>.
+
+Arguments: none
+</pre>
+<hr>
+
+
+<h3><a name="PGSCF"><em>pgscf</em> -- set character font
+</a></h3>
+<dl><dt><code>pgscf( font )</code></dl>
+<pre>
+Set the Character Font for subsequent text plotting. Four different
+fonts are available:
+  1: (default) a simple single-stroke font ("normal" font)
+  2: roman font
+  3: italic font
+  4: script font
+This call determines which font is in effect at the beginning of
+each text string. The font can be changed (temporarily) within a text
+string by using the escape sequences \fn, \fr, \fi, and \fs for fonts
+1, 2, 3, and 4, respectively.
+
+Argument:
+ FONT   (input)  : the font number to be used for subsequent text
+                   plotting (in range 1-4).
+</pre>
+<hr>
+
+
+<h3><a name="PGSCH"><em>pgsch</em> -- set character height
+</a></h3>
+<dl><dt><code>pgsch( size )</code></dl>
+<pre>
+Set the character size attribute. The size affects all text and graph
+markers drawn later in the program. The default character size is
+1.0, corresponding to a character height about 1/40 the height of
+the view surface.  Changing the character size also scales the length
+of tick marks drawn by <a href="#PGBOX">PGBOX</a> and terminals drawn by <a href="#PGERRX">PGERRX</a> and <a href="#PGERRY">PGERRY</a>.
+
+Argument:
+ SIZE   (input)  : new character size (dimensionless multiple of
+                   the default size).
+</pre>
+<hr>
+
+
+<h3><a name="PGSCI"><em>pgsci</em> -- set color index
+</a></h3>
+<dl><dt><code>pgsci( ci )</code></dl>
+<pre>
+Set the Color Index for subsequent plotting, if the output device
+permits this. The default color index is 1, usually white on a black
+background for video displays or black on a white background for
+printer plots. The color index is an integer in the range 0 to a
+device-dependent maximum. Color index 0 corresponds to the background
+color; lines may be "erased" by overwriting them with color index 0
+(if the device permits this).
+
+If the requested color index is not available on the selected device,
+color index 1 will be substituted.
+
+The assignment of colors to color indices can be changed with
+subroutine <a href="#PGSCR">PGSCR</a> (set color representation).  Color indices 0-15
+have predefined color representations (see the PGPLOT manual), but
+these may be changed with <a href="#PGSCR">PGSCR</a>.  Color indices above 15  have no
+predefined representations: if these indices are used, <a href="#PGSCR">PGSCR</a> must
+be called to define the representation.
+
+Argument:
+ CI     (input)  : the color index to be used for subsequent plotting
+                   on the current device (in range 0-max). If the
+                   index exceeds the device-dependent maximum, the
+                   default color index (1) is used.
+</pre>
+<hr>
+
+
+<h3><a name="PGSCIR"><em>pgscir</em> -- set color index range
+</a></h3>
+<dl><dt><code>pgscir( icilo, icihi )</code></dl>
+<pre>
+Set the color index range to be used for producing images with
+<a href="#PGGRAY">PGGRAY</a> or <a href="#PGIMAG">PGIMAG</a>. If the range is not all within the range supported
+by the device, a smaller range will be used. The number of
+different colors available for images is ICIHI-ICILO+1.
+
+Arguments:
+ ICILO  (input)  : the lowest color index to use for images
+ ICIHI  (input)  : the highest color index to use for images
+</pre>
+<hr>
+
+
+<h3><a name="PGSCLP"><em>pgsclp</em> -- enable or disable clipping at edge of viewport
+</a></h3>
+<dl><dt><code>pgsclp( state )</code></dl>
+<pre>
+Normally all PGPLOT primitives except text are ``clipped'' at the
+edge of the viewport: parts of the primitives that lie outside
+the viewport are not drawn. If clipping is disabled by calling this
+routine, primitives are visible wherever they lie on the view
+surface. The default (clipping enabled) is appropriate for almost
+all applications.
+
+Argument:
+ STATE  (input)  : 0 to disable clipping, or 1 to enable clipping.
+
+25-Feb-1997 [TJP] - new routine.
+</pre>
+<hr>
+
+
+<h3><a name="PGSCR"><em>pgscr</em> -- set color representation
+</a></h3>
+<dl><dt><code>pgscr( ci, cr, cg, cb )</code></dl>
+<pre>
+Set color representation: i.e., define the color to be
+associated with a color index.  Ignored for devices which do not
+support variable color or intensity.  Color indices 0-15
+have predefined color representations (see the PGPLOT manual), but
+these may be changed with <a href="#PGSCR">PGSCR</a>.  Color indices 16-maximum have no
+predefined representations: if these indices are used, <a href="#PGSCR">PGSCR</a> must
+be called to define the representation. On monochrome output
+devices (e.g. VT125 terminals with monochrome monitors), the
+monochrome intensity is computed from the specified Red, Green, Blue
+intensities as 0.30*R + 0.59*G + 0.11*B, as in US color television
+systems, NTSC encoding.  Note that most devices do not have an
+infinite range of colors or monochrome intensities available;
+the nearest available color is used.  Examples: for black,
+set CR=CG=CB=0.0; for white, set CR=CG=CB=1.0; for medium gray,
+set CR=CG=CB=0.5; for medium yellow, set CR=CG=0.5, CB=0.0.
+
+Argument:
+ CI     (input)  : the color index to be defined, in the range 0-max.
+                   If the color index greater than the device
+                   maximum is specified, the call is ignored. Color
+                   index 0 applies to the background color.
+ CR     (input)  : red, green, and blue intensities,
+ CG     (input)    in range 0.0 to 1.0.
+ CB     (input)
+</pre>
+<hr>
+
+
+<h3><a name="PGSCRL"><em>pgscrl</em> -- scroll window
+</a></h3>
+<dl><dt><code>pgscrl( dx, dy )</code></dl>
+<pre>
+This routine moves the window in world-coordinate space while
+leaving the viewport unchanged. On devices that have the
+capability, the pixels within the viewport are scrolled
+horizontally, vertically or both in such a way that graphics
+previously drawn in the window are shifted so that their world
+coordinates are unchanged.
+
+If the old window coordinate range was (X1, X2, Y1, Y2), the new
+coordinate range will be approximately (X1+DX, X2+DX, Y1+DY, Y2+DY).
+The size and scale of the window are unchanged.
+
+Thee window can only be shifted by a whole number of pixels
+(device coordinates). If DX and DY do not correspond to integral
+numbers of pixels, the shift will be slightly different from that
+requested. The new window-coordinate range, and hence the exact
+amount of the shift, can be determined by calling <a href="#PGQWIN">PGQWIN</a> after this
+routine.
+
+Pixels that are moved out of the viewport by this operation are
+lost completely; they cannot be recovered by scrolling back.
+Pixels that are ``scrolled into'' the viewport are filled with
+the background color (color index 0).
+
+If the absolute value of DX is bigger than the width of the window,
+or the aboslute value of DY is bigger than the height of the window,
+the effect will be the same as zeroing all the pixels in the
+viewport.
+
+Not all devices have the capability to support this routine.
+It is only available on some interactive devices that have discrete
+pixels. To determine whether the current device has scroll capability,
+call <a href="#PGQINF">PGQINF</a>.
+
+Arguments:
+ DX     (input)  : distance (in world coordinates) to shift the
+                   window horizontally (positive shifts window to the
+                   right and scrolls to the left).
+ DY     (input)  : distance (in world coordinates) to shift the
+                   window vertically (positive shifts window up and
+                   scrolls down).
+</pre>
+<hr>
+
+
+<h3><a name="PGSCRN"><em>pgscrn</em> -- set color representation by name
+</a></h3>
+<dl><dt><code>pgscrn( ci, name ) #=&gt ier</code></dl>
+<pre>
+Set color representation: i.e., define the color to be
+associated with a color index.  Ignored for devices which do not
+support variable color or intensity.  This is an alternative to
+routine <a href="#PGSCR">PGSCR</a>. The color representation is defined by name instead
+of (R,G,B) components.
+
+Color names are defined in an external file which is read the first
+time that <a href="#PGSCRN">PGSCRN</a> is called. The name of the external file is
+found as follows:
+1. if environment variable (logical name) PGPLOT_RGB is defined,
+   its value is used as the file name;
+2. otherwise, if environment variable PGPLOT_DIR is defined, a
+   file "rgb.txt" in the directory named by this environment
+   variable is used;
+3. otherwise, file "rgb.txt" in the current directory is used.
+If all of these fail to find a file, an error is reported and
+the routine does nothing.
+
+Each line of the file
+defines one color, with four blank- or tab-separated fields per
+line. The first three fields are the R, G, B components, which
+are integers in the range 0 (zero intensity) to 255 (maximum
+intensity). The fourth field is the color name. The color name
+may include embedded blanks. Example:
+
+255   0   0 red
+255 105 180 hot pink
+255 255 255 white
+  0   0   0 black
+
+Arguments:
+ CI     (input)  : the color index to be defined, in the range 0-max.
+                   If the color index greater than the device
+                   maximum is specified, the call is ignored. Color
+                   index 0 applies to the background color.
+ NAME   (input)  : the name of the color to be associated with
+                   this color index. This name must be in the
+                   external file. The names are not case-sensitive.
+                   If the color is not listed in the file, the
+                   color representation is not changed.
+ IER    (output) : returns 0 if the routine was successful, 1
+                   if an error occurred (either the external file
+                   could not be read, or the requested color was
+                   not defined in the file).
+</pre>
+<hr>
+
+
+<h3><a name="PGSFS"><em>pgsfs</em> -- set fill-area style
+</a></h3>
+<dl><dt><code>pgsfs( fs )</code></dl>
+<pre>
+Set the Fill-Area Style attribute for subsequent area-fill by
+<a href="#PGPOLY">PGPOLY</a>, <a href="#PGRECT">PGRECT</a>, or <a href="#PGCIRC">PGCIRC</a>.  Four different styles are available: 
+solid (fill polygon with solid color of the current color-index), 
+outline (draw outline of polygon only, using current line attributes),
+hatched (shade interior of polygon with parallel lines, using
+current line attributes), or cross-hatched. The orientation and
+spacing of hatch lines can be specified with routine <a href="#PGSHS">PGSHS</a> (set
+hatch style).
+
+Argument:
+ FS     (input)  : the fill-area style to be used for subsequent
+                   plotting:
+                     FS = 1 =&gt solid (default)
+                     FS = 2 =&gt outline
+                     FS = 3 =&gt hatched
+                     FS = 4 =&gt cross-hatched
+                   Other values give an error message and are
+                   treated as 2.
+</pre>
+<hr>
+
+
+<h3><a name="PGSHLS"><em>pgshls</em> -- set color representation using HLS system
+</a></h3>
+<dl><dt><code>pgshls( ci, ch, cl, cs )</code></dl>
+<pre>
+Set color representation: i.e., define the color to be
+associated with a color index.  This routine is equivalent to
+<a href="#PGSCR">PGSCR</a>, but the color is defined in the Hue-Lightness-Saturation
+model instead of the Red-Green-Blue model. Hue is represented
+by an angle in degrees, with red at 120, green at 240,
+and blue at 0 (or 360). Lightness ranges from 0.0 to 1.0, with black
+at lightness 0.0 and white at lightness 1.0. Saturation ranges from
+0.0 (gray) to 1.0 (pure color). Hue is irrelevant when saturation
+is 0.0.
+
+Examples:           H     L     S        R     G     B
+    black          any   0.0   0.0      0.0   0.0   0.0
+    white          any   1.0   0.0      1.0   1.0   1.0
+    medium gray    any   0.5   0.0      0.5   0.5   0.5
+    red            120   0.5   1.0      1.0   0.0   0.0
+    yellow         180   0.5   1.0      1.0   1.0   0.0
+    pink           120   0.7   0.8      0.94  0.46  0.46
+
+Reference: SIGGRAPH Status Report of the Graphic Standards Planning
+Committee, Computer Graphics, Vol.13, No.3, Association for
+Computing Machinery, New York, NY, 1979. See also: J. D. Foley et al,
+``Computer Graphics: Principles and Practice'', second edition,
+Addison-Wesley, 1990, section 13.3.5.
+
+Argument:
+ CI     (input)  : the color index to be defined, in the range 0-max.
+                   If the color index greater than the device
+                   maximum is specified, the call is ignored. Color
+                   index 0 applies to the background color.
+ CH     (input)  : hue, in range 0.0 to 360.0.
+ CL     (input)  : lightness, in range 0.0 to 1.0.
+ CS     (input)  : saturation, in range 0.0 to 1.0.
+</pre>
+<hr>
+
+
+<h3><a name="PGSHS"><em>pgshs</em> -- set hatching style
+</a></h3>
+<dl><dt><code>pgshs( angle, sepn, phase )</code></dl>
+<pre>
+Set the style to be used for hatching (fill area with fill-style 3).
+The default style is ANGLE=45.0, SEPN=1.0, PHASE=0.0.
+
+Arguments:
+ ANGLE  (input)  : the angle the hatch lines make with the
+                   horizontal, in degrees, increasing 
+                   counterclockwise (this is an angle on the
+                   view surface, not in world-coordinate space).
+ SEPN   (input)  : the spacing of the hatch lines. The unit spacing
+                   is 1 percent of the smaller of the height or
+                   width of the view surface. This should not be
+                   zero.
+ PHASE  (input)  : a real number between 0 and 1; the hatch lines
+                   are displaced by this fraction of SEPN from a
+                   fixed reference.  Adjacent regions hatched with the
+                   same PHASE have contiguous hatch lines. To hatch
+                   a region with alternating lines of two colors,
+                   fill the area twice, with PHASE=0.0 for one color
+                   and PHASE=0.5 for the other color.
+</pre>
+<hr>
+
+
+<h3><a name="PGSITF"><em>pgsitf</em> -- set image transfer function
+</a></h3>
+<dl><dt><code>pgsitf( itf )</code></dl>
+<pre>
+Set the Image Transfer Function for subsequent images drawn by
+<a href="#PGIMAG">PGIMAG</a>, <a href="#PGGRAY">PGGRAY</a>, or <a href="#PGWEDG">PGWEDG</a>. The Image Transfer Function is used
+to map array values into the available range of color indices
+specified with routine <a href="#PGSCIR">PGSCIR</a> or (for <a href="#PGGRAY">PGGRAY</a> on some devices)
+into dot density.
+
+Argument:
+ ITF    (input)  : type of transfer function:
+                     ITF = 0 : linear
+                     ITF = 1 : logarithmic
+                     ITF = 2 : square-root
+</pre>
+<hr>
+
+
+<h3><a name="PGSLCT"><em>pgslct</em> -- select an open graphics device
+</a></h3>
+<dl><dt><code>pgslct( id )</code></dl>
+<pre>
+Select one of the open graphics devices and direct subsequent
+plotting to it. The argument is the device identifier returned by
+<a href="#PGOPEN">PGOPEN</a> when the device was opened. If the supplied argument is not a
+valid identifier of an open graphics device, a warning message is
+issued and the current selection is unchanged.
+
+[This routine was added to PGPLOT in Version 5.1.0.]
+
+Arguments:
+
+ID (input, integer): identifier of the device to be selected.
+</pre>
+<hr>
+
+
+<h3><a name="PGSLS"><em>pgsls</em> -- set line style
+</a></h3>
+<dl><dt><code>pgsls( ls )</code></dl>
+<pre>
+Set the line style attribute for subsequent plotting. This
+attribute affects line primitives only; it does not affect graph
+markers, text, or area fill.
+Five different line styles are available, with the following codes:
+1 (full line), 2 (dashed), 3 (dot-dash-dot-dash), 4 (dotted),
+5 (dash-dot-dot-dot). The default is 1 (normal full line).
+
+Argument:
+ LS     (input)  : the line-style code for subsequent plotting
+                   (in range 1-5).
+</pre>
+<hr>
+
+
+<h3><a name="PGSLW"><em>pgslw</em> -- set line width
+</a></h3>
+<dl><dt><code>pgslw( lw )</code></dl>
+<pre>
+Set the line-width attribute. This attribute affects lines, graph
+markers, and text. The line width is specified in units of 1/200 
+(0.005) inch (about 0.13 mm) and must be an integer in the range
+1-201. On some devices, thick lines are generated by tracing each
+line with multiple strokes offset in the direction perpendicular to
+the line.
+
+Argument:
+ LW     (input)  : width of line, in units of 0.005 inch (0.13 mm)
+                   in range 1-201.
+</pre>
+<hr>
+
+
+<h3><a name="PGSTBG"><em>pgstbg</em> -- set text background color index
+</a></h3>
+<dl><dt><code>pgstbg( tbci )</code></dl>
+<pre>
+Set the Text Background Color Index for subsequent text. By default
+text does not obscure underlying graphics. If the text background
+color index is positive, however, text is opaque: the bounding box
+of the text is filled with the color specified by <a href="#PGSTBG">PGSTBG</a> before
+drawing the text characters in the current color index set by <a href="#PGSCI">PGSCI</a>.
+Use color index 0 to erase underlying graphics before drawing text.
+
+Argument:
+ TBCI   (input)  : the color index to be used for the background
+                   for subsequent text plotting:
+                     TBCI &lt 0  =&gt transparent (default)
+                     TBCI &gt= 0 =&gt text will be drawn on an opaque
+                   background with color index TBCI.
+</pre>
+<hr>
+
+
+<h3><a name="PGSUBP"><em>pgsubp</em> -- subdivide view surface into panels
+</a></h3>
+<dl><dt><code>pgsubp( nxsub, nysub )</code></dl>
+<pre>
+PGPLOT divides the physical surface of the plotting device (screen,
+window, or sheet of paper) into NXSUB x NYSUB `panels'. When the 
+view surface is sub-divided in this way, <a href="#PGPAGE">PGPAGE</a> moves to the next
+panel, not the next physical page. The initial subdivision of the
+view surface is set in the call to <a href="#PGBEG">PGBEG</a>. When <a href="#PGSUBP">PGSUBP</a> is called,
+it forces the next call to <a href="#PGPAGE">PGPAGE</a> to start a new physical page,
+subdivided in the manner indicated. No plotting should be done
+between a call of <a href="#PGSUBP">PGSUBP</a> and a call of <a href="#PGPAGE">PGPAGE</a> (or <a href="#PGENV">PGENV</a>, which calls
+<a href="#PGPAGE">PGPAGE</a>).
+
+If NXSUB &gt 0, PGPLOT uses the panels in row order; if &lt0, 
+PGPLOT uses them in column order, e.g.,
+     
+ NXSUB=3, NYSUB=2            NXSUB=-3, NYSUB=2   
+                                               
++-----+-----+-----+         +-----+-----+-----+
+|  1  |  2  |  3  |         |  1  |  3  |  5  |
++-----+-----+-----+         +-----+-----+-----+
+|  4  |  5  |  6  |         |  2  |  4  |  6  |
++-----+-----+-----+         +-----+-----+-----+
+
+PGPLOT advances from one panels to the next when <a href="#PGPAGE">PGPAGE</a> is called,
+clearing the screen or starting a new page when the last panel has
+been used. It is also possible to jump from one panel to another
+in random order by calling <a href="#PGPANL">PGPANL</a>.
+
+Arguments:
+ NXSUB  (input)  : the number of subdivisions of the view surface in
+                   X (&gt0 or &lt0).
+ NYSUB  (input)  : the number of subdivisions of the view surface in
+                   Y (&gt0).
+</pre>
+<hr>
+
+
+<h3><a name="PGSVP"><em>pgsvp</em> -- set viewport (normalized device coordinates)
+</a></h3>
+<dl><dt><code>pgsvp( xleft, xright, ybot, ytop )</code></dl>
+<pre>
+Change the size and position of the viewport, specifying
+the viewport in normalized device coordinates.  Normalized
+device coordinates run from 0 to 1 in each dimension. The
+viewport is the rectangle on the view surface "through"
+which one views the graph.  All the PG routines which plot lines
+etc. plot them within the viewport, and lines are truncated at
+the edge of the viewport (except for axes, labels etc drawn with
+<a href="#PGBOX">PGBOX</a> or <a href="#PGLAB">PGLAB</a>).  The region of world space (the coordinate
+space of the graph) which is visible through the viewport is
+specified by a call to <a href="#PGSWIN">PGSWIN</a>.  It is legal to request a
+viewport larger than the view surface; only the part which
+appears on the view surface will be plotted.
+
+Arguments:
+ XLEFT  (input)  : x-coordinate of left hand edge of viewport, in NDC.
+ XRIGHT (input)  : x-coordinate of right hand edge of viewport,
+                   in NDC.
+ YBOT   (input)  : y-coordinate of bottom edge of viewport, in NDC.
+ YTOP   (input)  : y-coordinate of top  edge of viewport, in NDC.
+</pre>
+<hr>
+
+
+<h3><a name="PGSWIN"><em>pgswin</em> -- set window
+</a></h3>
+<dl><dt><code>pgswin( x1, x2, y1, y2 )</code></dl>
+<pre>
+Change the window in world coordinate space that is to be mapped on
+to the viewport.  Usually <a href="#PGSWIN">PGSWIN</a> is called automatically by <a href="#PGENV">PGENV</a>,
+but it may be called directly by the user.
+
+Arguments:
+ X1     (input)  : the x-coordinate of the bottom left corner
+                   of the viewport.
+ X2     (input)  : the x-coordinate of the top right corner
+                   of the viewport (note X2 may be less than X1).
+ Y1     (input)  : the y-coordinate of the bottom left corner
+                   of the viewport.
+ Y2     (input)  : the y-coordinate of the top right corner
+                   of the viewport (note Y2 may be less than Y1).
+</pre>
+<hr>
+
+
+<h3><a name="PGTBOX"><em>pgtbox</em> -- draw frame and write (DD) HH MM SS.S labelling
+</a></h3>
+<dl><dt><code>pgtbox( xopt, xtick, nxsub, yopt, ytick, nysub )</code></dl>
+<pre>
+
+Draw a box and optionally label one or both axes with (DD) HH MM SS 
+style numeric labels (useful for time or RA - DEC plots).   If this 
+style of labelling is desired, then <a href="#PGSWIN">PGSWIN</a> should have been called
+previously with the extrema in SECONDS of time.
+
+In the seconds field, you can have at most 3 places after the decimal
+point, so that 1 ms is the smallest time interval you can time label.
+
+Large numbers are coped with by fields of 6 characters long.  Thus 
+you could have times with days or hours as big as 999999.  However, 
+in practice, you might have trouble with labels overwriting  themselves
+with such large numbers unless you a) use a small time INTERVAL, 
+b) use a small character size or c) choose your own sparse ticks in 
+the call to <a href="#PGTBOX">PGTBOX</a>.  
+
+<a href="#PGTBOX">PGTBOX</a> will attempt, when choosing its own ticks, not to overwrite
+the labels, but this algorithm is not very bright and may fail.
+
+Note that small intervals but large absolute times such as
+TMIN = 200000.0 s and TMAX=200000.1 s will cause the algorithm
+to fail.  This is inherent in PGPLOT's use of single precision
+and cannot be avoided.  In such cases, you should use relative
+times if possible.
+
+<a href="#PGTBOX">PGTBOX</a>'s labelling philosophy is that the left-most or bottom tick of
+the axis contains a full label.  Thereafter, only changing fields are
+labelled.  Negative fields are given a '-' label, positive fields
+have none.   Axes that have the DD (or HH if the day field is not
+used) field on each major tick carry the sign on each field.  If the
+axis crosses zero, the zero tick will carry a full label and sign.
+
+This labelling style can cause a little confusion with some special
+cases, but as long as you know its philosophy, the truth can be divined.
+Consider an axis with TMIN=20s, TMAX=-20s.   The labels will look like
+
+       +----------+----------+----------+----------+
+    0h0m20s      10s      -0h0m0s      10s        20s
+
+Knowing that the left field always has a full label and that
+positive fields are unsigned, informs that time is decreasing
+from left to right, not vice versa.   This can become very 
+unclear if you have used the 'F' option, but that is your problem !
+
+Exceptions to this labelling philosophy are when the finest time
+increment being displayed is hours (with option 'Y') or days.  
+Then all fields carry a label.  For example,
+
+       +----------+----------+----------+----------+
+     -10h        -8h        -6h        -4h        -2h
+
+
+<a href="#PGTBOX">PGTBOX</a> can be used in place of <a href="#PGBOX">PGBOX</a>; it calls <a href="#PGBOX">PGBOX</a> and only invokes 
+time labelling if requested. Other options are passed intact to <a href="#PGBOX">PGBOX</a>.
+
+Inputs:
+ XOPT   :  X-options for <a href="#PGTBOX">PGTBOX</a>.  Same as for <a href="#PGBOX">PGBOX</a> plus 
+
+            'Z' for (DD) HH MM SS.S time labelling
+            'Y' means don't include the day field so that labels
+                are HH MM SS.S rather than DD HH MM SS.S   The hours
+                will accumulate beyond 24 if necessary in this case.
+            'X' label the HH field as modulo 24.  Thus, a label
+                such as 25h 10m would come out as 1h 10m
+            'H' means superscript numbers with d, h, m, &amp s  symbols
+            'D' means superscript numbers with    o, ', &amp '' symbols 
+            'F' causes the first label (left- or bottom-most) to
+                be omitted. Useful for sub-panels that abut each other.
+                Care is needed because first label carries sign as well.
+            'O' means omit leading zeros in numbers &lt 10
+                E.g.  3h 3m 1.2s rather than 03h 03m 01.2s  Useful
+                to help save space on X-axes. The day field does not 
+                use this facility.
+
+ YOPT   :  Y-options for <a href="#PGTBOX">PGTBOX</a>.  See above.
+ XTICK  :  X-axis major tick increment.  0.0 for default. 
+ YTICK  :  Y-axis major tick increment.  0.0 for default. 
+           If the 'Z' option is used then XTICK and/or YTICK must
+           be in seconds.
+ NXSUB  :  Number of intervals for minor ticks on X-axis. 0 for default
+ NYSUB  :  Number of intervals for minor ticks on Y-axis. 0 for default
+
+ The regular XOPT and YOPT axis options for <a href="#PGBOX">PGBOX</a> are
+
+ A : draw Axis (X axis is horizontal line Y=0, Y axis is vertical
+     line X=0).
+ B : draw bottom (X) or left (Y) edge of frame.
+ C : draw top (X) or right (Y) edge of frame.
+ G : draw Grid of vertical (X) or horizontal (Y) lines.
+ I : Invert the tick marks; ie draw them outside the viewport
+     instead of inside.
+ L : label axis Logarithmically (see below).
+ N : write Numeric labels in the conventional location below the
+     viewport (X) or to the left of the viewport (Y).
+ P : extend ("Project") major tick marks outside the box (ignored if
+     option I is specified).
+ M : write numeric labels in the unconventional location above the
+     viewport (X) or to the right of the viewport (Y).
+ T : draw major Tick marks at the major coordinate interval.
+ S : draw minor tick marks (Subticks).
+ V : orient numeric labels Vertically. This is only applicable to Y.
+     The default is to write Y-labels parallel to the axis.
+ 1 : force decimal labelling, instead of automatic choice (see <a href="#PGNUMB">PGNUMB</a>).
+ 2 : force exponential labelling, instead of automatic.
+
+     The default is to write Y-labels parallel to the axis
+ 
+
+       ******************        EXCEPTIONS       *******************
+
+       Note that 
+         1) <a href="#PGBOX">PGBOX</a> option 'L' (log labels) is ignored with option 'Z'
+         2) The 'O' option will be ignored for the 'V' option as it 
+            makes it impossible to align the labels nicely
+         3) Option 'Y' is forced with option 'D'
+
+       ***************************************************************
+
+
+</pre>
+<hr>
+
+
+<h3><a name="PGTEXT"><em>pgtext</em> -- write text (horizontal, left-justified)
+</a></h3>
+<dl><dt><code>pgtext( x, y, text )</code></dl>
+<pre>
+Write text. The bottom left corner of the first character is placed
+at the specified position, and the text is written horizontally.
+This is a simplified interface to the primitive routine <a href="#PGPTXT">PGPTXT</a>.
+For non-horizontal text, use <a href="#PGPTXT">PGPTXT</a>.
+
+Arguments:
+ X      (input)  : world x-coordinate of start of string.
+ Y      (input)  : world y-coordinate of start of string.
+ TEXT   (input)  : the character string to be plotted.
+</pre>
+<hr>
+
+
+<h3><a name="PGTICK"><em>pgtick</em> -- draw a single tick mark on an axis
+</a></h3>
+<dl><dt><code>pgtick( x1, y1, x2, y2, v [, str] [, "tickl"|"tickr"|"disp"|"orient"] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+  Example:
+    pgtick( 0,0,0,1, 0.5, "half", "tickr"=>1, "disp"=>2, "orient"=>90 )
+
+</pre>
+<pre>
+Draw and label single tick mark on a graph axis. The tick mark is
+a short line perpendicular to the direction of the axis (which is not
+drawn by this routine). The optional text label is drawn with its
+baseline parallel to the axis and reading in the same direction as
+the axis (from point 1 to point 2). Current line and text attributes
+are used.
+
+Arguments:
+ X1, Y1 (input)  : world coordinates of one endpoint of the axis.
+ X2, Y2 (input)  : world coordinates of the other endpoint of the axis.
+ V      (input)  : draw the tick mark at fraction V (0&lt=V&lt=1) along
+                   the line from (X1,Y1) to (X2,Y2).
+ TIKL   (input)  : length of tick mark drawn to left of axis
+                   (as seen looking from first endpoint to second), in
+                   units of the character height.
+ TIKR   (input)  : length of major tick marks drawn to right of axis,
+                   in units of the character height.
+ DISP   (input)  : displacement of label text to
+                   right of axis, in units of the character height.
+ ORIENT (input)  : orientation of label text, in degrees; angle between
+                   baseline of text and direction of axis (0-360°).
+ STR    (input)  : text of label (may be blank).
+</pre>
+<hr>
+
+
+
+
+<h3><a name="PGUPDT"><em>pgupdt</em> -- update display
+</a></h3>
+<dl><dt><code>pgupdt</code></dl>
+<pre>
+Update the graphics display: flush any pending commands to the
+output device. This routine empties the buffer created by <a href="#PGBBUF">PGBBUF</a>,
+but it does not alter the <a href="#PGBBUF">PGBBUF</a>/<a href="#PGEBUF">PGEBUF</a> counter. The routine should
+be called when it is essential that the display be completely up to
+date (before interaction with the user, for example) but it is not
+known if output is being buffered.
+
+Arguments: none
+</pre>
+<hr>
+
+
+<h3><a name="PGVECT"><em>pgvect</em> -- vector map of a 2D data array, with blanking
+</a></h3>
+<dl><dt><code>pgvect( x, y [, scale, pos, tr, blank ] )
+</code></dl>
+<pre>
+--- Ruby notes ---
+Arguments:
+   x     : horizontal component data array.
+   y     : vertical component data array.
+   scale : scale factor for vector lengths, if 0.0, C will be
+           set so that the longest vector is equal to the
+           smaller of TR(2)+TR(3) and TR(5)+TR(6).
+   pos   : vector positioning code.
+           <0 vector head positioned on coordinates
+           >0 vector base positioned on coordinates
+           =0 vector centered on the coordinates
+   tr    : transformation matrix
+   blank : elements of arrays A or B that are exactly equal to
+           this value are ignored (blanked).
+</pre>
+<pre>
+Draw a vector map of two arrays.  This routine is similar to
+<a href="#PGCONB">PGCONB</a> in that array elements that have the "magic value" defined by
+the argument BLANK are ignored, making gaps in the vector map.  The
+routine may be useful for data measured on most but not all of the
+points of a grid. Vectors are displayed as arrows; the style of the
+arrowhead can be set with routine <a href="#PGSAH">PGSAH</a>, and the the size of the
+arrowhead is determined by the current character size, set by <a href="#PGSCH">PGSCH</a>.
+
+Arguments:
+ A      (input)  : horizontal component data array.
+ B      (input)  : vertical component data array.
+ IDIM   (input)  : first dimension of A and B.
+ JDIM   (input)  : second dimension of A and B.
+ I1,I2  (input)  : range of first index to be mapped (inclusive).
+ J1,J2  (input)  : range of second index to be mapped (inclusive).
+ C      (input)  : scale factor for vector lengths, if 0.0, C will be
+                   set so that the longest vector is equal to the
+                   smaller of TR(2)+TR(3) and TR(5)+TR(6).
+ NC     (input)  : vector positioning code.
+                   &lt0 vector head positioned on coordinates
+                   &gt0 vector base positioned on coordinates
+                   =0 vector centered on the coordinates
+ TR     (input)  : array defining a transformation between the I,J
+                   grid of the array and the world coordinates. The
+                   world coordinates of the array point A(I,J) are
+                   given by:
+                     X = TR(1) + TR(2)*I + TR(3)*J
+                     Y = TR(4) + TR(5)*I + TR(6)*J
+                   Usually TR(3) and TR(5) are zero - unless the
+                   coordinate transformation involves a rotation
+                   or shear.
+ BLANK   (input) : elements of arrays A or B that are exactly equal to
+                   this value are ignored (blanked).
+</pre>
+<hr>
+
+
+<h3><a name="PGVSIZ"><em>pgvsiz</em> -- set viewport (inches)
+</a></h3>
+<dl><dt><code>pgvsiz( xleft, xright, ybot, ytop )</code></dl>
+<pre>
+Change the size and position of the viewport, specifying
+the viewport in physical device coordinates (inches).  The
+viewport is the rectangle on the view surface "through"
+which one views the graph.  All the PG routines which plot lines
+etc. plot them within the viewport, and lines are truncated at
+the edge of the viewport (except for axes, labels etc drawn with
+<a href="#PGBOX">PGBOX</a> or <a href="#PGLAB">PGLAB</a>).  The region of world space (the coordinate
+space of the graph) which is visible through the viewport is
+specified by a call to <a href="#PGSWIN">PGSWIN</a>.  It is legal to request a
+viewport larger than the view surface; only the part which
+appears on the view surface will be plotted.
+
+Arguments:
+ XLEFT  (input)  : x-coordinate of left hand edge of viewport, in
+                   inches from left edge of view surface.
+ XRIGHT (input)  : x-coordinate of right hand edge of viewport, in
+                   inches from left edge of view surface.
+ YBOT   (input)  : y-coordinate of bottom edge of viewport, in
+                   inches from bottom of view surface.
+ YTOP   (input)  : y-coordinate of top  edge of viewport, in inches
+                   from bottom of view surface.
+</pre>
+<hr>
+
+
+<h3><a name="PGVSTD"><em>pgvstd</em> -- set standard (default) viewport
+</a></h3>
+<dl><dt><code>pgvstd</code></dl>
+<pre>
+Define the viewport to be the standard viewport.  The standard
+viewport is the full area of the view surface (or panel),
+less a margin of 4 character heights all round for labelling.
+It thus depends on the current character size, set by <a href="#PGSCH">PGSCH</a>.
+
+Arguments: none.
+</pre>
+<hr>
+
+
+<h3><a name="PGWEDG"><em>pgwedg</em> -- annotate an image plot with a wedge
+</a></h3>
+<dl><dt><code>pgwedg( side, disp, width, fg, bg, label )</code></dl>
+<pre>
+Plot an annotated grey-scale or color wedge parallel to a given axis
+of the the current viewport. This routine is designed to provide a
+brightness/color scale for an image drawn with <a href="#PGIMAG">PGIMAG</a> or <a href="#PGGRAY">PGGRAY</a>.
+The wedge will be drawn with the transfer function set by <a href="#PGSITF">PGSITF</a>
+and using the color index range set by <a href="#PGSCIR">PGSCIR</a>.
+
+Arguments:
+ SIDE   (input)  : The first character must be one of the characters
+                   'B', 'L', 'T', or 'R' signifying the Bottom, Left,
+                   Top, or Right edge of the viewport.
+                   The second character should be 'I' to use <a href="#PGIMAG">PGIMAG</a>
+                   to draw the wedge, or 'G' to use <a href="#PGGRAY">PGGRAY</a>.
+ DISP   (input)  : the displacement of the wedge from the specified
+                   edge of the viewport, measured outwards from the
+                   viewport in units of the character height. Use a
+                   negative value to write inside the viewport, a
+                   positive value to write outside.
+ WIDTH  (input)  : The total width of the wedge including annotation,
+                   in units of the character height.
+ FG     (input)  : The value which is to appear with shade
+                   1 ("foreground"). Use the values of FG and BG
+                   that were supplied to <a href="#PGGRAY">PGGRAY</a> or <a href="#PGIMAG">PGIMAG</a>.
+ BG     (input)  : the value which is to appear with shade
+                   0 ("background").
+ LABEL  (input)  : Optional units label. If no label is required
+                   use ' '.
+</pre>
+<hr>
+
+
+<h3><a name="PGWNAD"><em>pgwnad</em> -- set window and adjust viewport to same aspect ratio
+</a></h3>
+<dl><dt><code>pgwnad( x1, x2, y1, y2 )</code></dl>
+<pre>
+Change the window in world coordinate space that is to be mapped on
+to the viewport, and simultaneously adjust the viewport so that the
+world-coordinate scales are equal in x and y. The new viewport is
+the largest one that can fit within the previously set viewport
+while retaining the required aspect ratio.
+
+Arguments:
+ X1     (input)  : the x-coordinate of the bottom left corner
+                   of the viewport.
+ X2     (input)  : the x-coordinate of the top right corner
+                   of the viewport (note X2 may be less than X1).
+ Y1     (input)  : the y-coordinate of the bottom left corner
+                   of the viewport.
+ Y2     (input)  : the y-coordinate of the top right corner of the
+                   viewport (note Y2 may be less than Y1).
+</pre>
+<hr>
+
+
+</body>
+</html>
