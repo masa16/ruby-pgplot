@@ -23,7 +23,7 @@ PGPLOT_GEMSPEC = Gem::Specification.new do |s|
   s.rubygems_version = "2.0.0"
   s.summary = "PGPLOT wrapper for Ruby. The PGPLOT library needs to be " \
               "installed in advance using GNU FORTRAN compiler"
-  s.files = `git ls-files FuncUsage README README.ja Rakefile demo doc ext pgplot.gemspec test`.split($/)
+  s.files = `git ls-files FuncUsage README README.ja Rakefile demo ext pgplot.gemspec test`.split($/)
 
   s.add_dependency('narray', '< 0.7.0')
 
