@@ -1,6 +1,8 @@
 require 'fileutils'
 
-fnw = File.join($build_dir,"drivers/pndriv.c")
+$src_dir = ARGV[0] || 'pgplot'
+
+fnw = File.join($src_dir,"drivers/pndriv.c")
 fnr = fnw + ".orig"
 
 FileUtils.mv(fnw,fnr)
