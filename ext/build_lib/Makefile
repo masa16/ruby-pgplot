@@ -12,6 +12,7 @@ $(pkg):
 $(sd)/drivers.list: $(pkg)
 	gunzip -c $(pkg) | tar xf -
 	touch $(sd)/drivers.list
+	ruby patch.rb
 
 $(bd)/drivers.list: drivers.conf $(sd)/drivers.list
 	ruby drivers.rb $(sd) $(bd)
