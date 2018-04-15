@@ -36,8 +36,9 @@ The PGPLOT library was not found.  To auto-build PGPLOT library
 as part of installing Ruby/PGPLOT, pass the --enable-autobuild option.
 
 Examples:
-     Gem install:  gem install pgplot -- --enable-autobuild
-  Manual install:  ruby extconf.rb --enable-autobuild
+       Gem install:  gem install pgplot -- --enable-autobuild
+    Manual install:  ruby extconf.rb --enable-autobuild
+
 "
   end
 end
@@ -62,41 +63,41 @@ def extconf_start
   #  --with-opt-lib=path
 end
 
-
-def find_dir_w_file(d,h)
-  g = Dir.glob(RbConfig.expand(d+"/"+h))
-  File.dirname(g.last) if g and !g.empty?
-end
-
-def find_dir_in_gemspec
-  begin
-    require 'rubygems'
-    if gemspec=Gem::Specification.find_by_path('narray')
-      return File.join(gemspec.full_gem_path, gemspec.require_path)
+def find_narray_h
+  $LOAD_PATH.each do |x|
+    p x
+    if File.exist? File.join(x,'narray.h')
+      $INCFLAGS = "-I#{x} " + $INCFLAGS
+      break
     end
-  rescue
   end
-  nil
 end
 
+def find_libnarray_a
+  $LOAD_PATH.each do |x|
+    if File.exist? File.join(x,'libnarray.a')
+      $LDFLAGS = "-L#{x} " + $LDFLAGS
+      break
+    end
+  end
+end
 
 def check_narray
-  gems_dir="$(rubylibprefix)/gems/$(ruby_version)/gems/"
-  narray_d="narray-0.[56].*"
-  narray_h="narray.h"
-  if narray_h_dir =
-      find_dir_in_gemspec ||
-      find_dir_w_file("../"+narray_d,narray_h) ||
-      find_dir_w_file(gems_dir+narray_d,narray_h) ||
-      find_dir_w_file(CONFIG['sitearchdir'],narray_h) ||
-      find_dir_w_file(CONFIG['archdir'],narray_h)
-    $CPPFLAGS = " -I#{narray_h_dir} " + $CPPFLAGS
+  require "narray"
+  find_narray_h
+  if !have_header("narray.h")
+    puts "
+  Header numo/narray.h was not found. Give pathname as follows:
+  % ruby extconf.rb --with-narray-include=narray_h_dir"
+    exit(1)
   end
-  exit unless have_header("narray.h")
 
-  if RUBY_PLATFORM =~ /cygwin|mingw/
-    $LDFLAGS = " -L#{CONFIG['sitearchdir']} "+$LDFLAGS
-    exit unless have_library("narray","na_make_object")
+  if RUBY_PLATFORM =~ /mswin|cygwin|mingw/
+    find_libnarray_a
+    unless have_library("narray","na_make_object")
+      puts "libnarray.a not found"
+      exit(1)
+    end
   end
 end
 
